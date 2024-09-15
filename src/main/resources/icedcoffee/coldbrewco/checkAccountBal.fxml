@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="374.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerMain">
+   <children>
+      <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="355.0" style="-fx-background-color: #F4F4D5;">
+         <children>
+            <ImageView fx:id="logo" fitHeight="73.0" fitWidth="90.0" layoutX="50.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@coffee-cup_1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="135.0" layoutY="36.0" prefHeight="43.0" prefWidth="158.0" text="Cold Brew Co" textAlignment="CENTER" textFill="#846004">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="107.0" prefHeight="43.0" prefWidth="168.0" text="Balance Management" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="162.0" prefHeight="43.0" prefWidth="168.0" text="Current Balance:" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentBalanceLabel" layoutX="149.0" layoutY="172.0" prefHeight="19.0" prefWidth="158.0" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="123.0" layoutY="235.0" prefHeight="43.0" prefWidth="168.0" text="Add Funds" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="287.0" prefHeight="43.0" prefWidth="168.0" text="Enter Amount:" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="cashAmountField" layoutX="149.0" layoutY="296.0" prefHeight="5.0" prefWidth="158.0" style="-fx-border-color: #000000;" />
+            <Label layoutX="191.0" layoutY="378.0" onMouseClicked="#onAddButtonClick" prefHeight="23.0" prefWidth="54.0" style="-fx-border-color: #000000;" text="     Add" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="256.0" layoutY="378.0" onMouseClicked="#onCancelButtonClick" prefHeight="23.0" prefWidth="54.0" style="-fx-border-color: #000000;" text="  Cancel" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="191.0" layoutY="430.0" onMouseClicked="#onReturnMainPageButtonClick" prefHeight="23.0" prefWidth="116.0" style="-fx-border-color: #000000; -fx-background-color: #FFD875;" text="     Return Main Page" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkBalance" layoutX="217.0" layoutY="212.0" onMouseClicked="#onCheckBalanceButtonClick" prefHeight="23.0" prefWidth="90.0" style="-fx-border-color: #000000;" text="Check Balance" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

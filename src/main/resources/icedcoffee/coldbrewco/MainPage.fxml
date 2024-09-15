@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerMain">
+   <children>
+      <Pane layoutX="15.0" layoutY="15.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
+         <children>
+            <Label layoutX="361.0" layoutY="46.0" text="Cold Brew Co" textAlignment="CENTER" textFill="#846004">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="logo" fitHeight="91.0" fitWidth="98.0" layoutX="260.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@coffee-cup_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="checkCash" fitHeight="91.0" fitWidth="95.0" layoutX="174.0" layoutY="200.0" onMouseClicked="#onCheckCashButtonClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@CheckCash.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="selectOrder" fitHeight="91.0" fitWidth="95.0" layoutX="407.0" layoutY="194.0" onMouseClicked="#onSelectOrderButtonClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@SelectOrder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="logOut" fitHeight="91.0" fitWidth="95.0" layoutX="284.0" layoutY="394.0" onMouseClicked="#onLogOutButtonClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@LogOut.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="close" fitHeight="91.0" fitWidth="95.0" layoutX="517.0" layoutY="394.0" onMouseClicked="#onExitMainPageButtonClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Close.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="139.0" layoutY="304.0" onMouseClicked="#onCheckCashButtonClick" text="Check Balance" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="385.0" layoutY="304.0" onMouseClicked="#onSelectOrderButtonClick" text="Select Order" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="288.0" layoutY="498.0" onMouseClicked="#onLogOutButtonClick" text="Log Out" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="542.0" layoutY="498.0" onMouseClicked="#onExitMainPageButtonClick" text="Exit" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="23.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="checkOrder" fitHeight="91.0" fitWidth="91.0" layoutX="619.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@CheckOrder.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="598.0" layoutY="304.0" text="Check Order" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

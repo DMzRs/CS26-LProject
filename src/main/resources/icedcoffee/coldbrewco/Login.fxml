@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #CB8A2B;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerLogin">
+   <children>
+      <Label layoutX="71.0" layoutY="51.0" prefHeight="79.0" prefWidth="229.0" style="-fx-background-color: #CB8A2B;" text="COLD BREW CO" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="34.0" />
+         </font>
+      </Label>
+      <Pane layoutX="354.0" layoutY="51.0" prefHeight="299.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="69.0" layoutY="64.0" style="-fx-background-color: White;" text="Username">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="124.0" style="-fx-background-color: White;" text="Password">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" layoutX="26.0" layoutY="92.0" />
+            <Label fx:id="loginlabel" layoutX="57.0" layoutY="14.0" style="-fx-background-color: White;" text="LOGIN">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="31.0" />
+               </font>
+            </Label>
+            <Button fx:id="loginButton" layoutX="72.0" layoutY="186.0" mnemonicParsing="false" onMouseClicked="#onLoginButtonClick" text="Login">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="30.0" layoutY="241.0" style="-fx-background-color: White;" text="Don't have an account?">
+               <font>
+                  <Font name="Franklin Gothic Book" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="SignUpHere" layoutX="60.0" layoutY="269.0" onMouseClicked="#onSignUpHereButtonClick" style="-fx-background-color: White;" text="Sign up here!" textAlignment="CENTER" textFill="#675e09" underline="true">
+               <font>
+                  <Font name="Franklin Gothic Book" size="14.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="150.0" />
+         </children>
+      </Pane>
+      <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="89.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@coffee-cup_1.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
