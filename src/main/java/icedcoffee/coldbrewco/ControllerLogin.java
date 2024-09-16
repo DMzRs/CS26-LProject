@@ -17,6 +17,10 @@ import java.io.IOException;
 public class ControllerLogin {
 
     @FXML
+    private TextField usernameAdmin;
+    @FXML
+    private PasswordField passwordAdmin;
+    @FXML
     private TextField usernameField;
     @FXML
     private TextField newUserField;
@@ -25,7 +29,7 @@ public class ControllerLogin {
     @FXML
     private PasswordField passwordField;
 
-
+    //for normal user login
     @FXML
     protected void onLoginButtonClick() throws IOException {
         DatabaseLogin login = new DatabaseLogin();
@@ -41,7 +45,21 @@ public class ControllerLogin {
         }
     }
 
+    //for admin login
+    @FXML
+    protected void onLoginAdminButtonClick() throws IOException {
+        DatabaseLogin login = new DatabaseLogin();
+        String username = usernameAdmin.getText();
+        String password = passwordAdmin.getText();
+        int currentAdminId = login.ReturnLoginAdmin(username,password);
+        if(currentAdminId > 0){
+            JOptionPane.showMessageDialog(null,"Admin Login Successful");
+        } else {
+            JOptionPane.showMessageDialog(null,"Admin Login Failed");
+        }
+    }
 
+    //to create new user account
     @FXML
     protected void onCreateAccountButtonClick() {
         String NewUsername = newUserField.getText();
@@ -59,17 +77,42 @@ public class ControllerLogin {
         }
     }
 
+    //to switch to admin login Page
+    @FXML
+    protected void onHiddenAdminLoginButtonClick() throws IOException {
+        switchtoAdminLogin();
+    }
+
     //button to switch to register account
     @FXML
     protected void onSignUpHereButtonClick() throws IOException {
         switchtoRegisterAccount();
     }
 
-    //button to switch back to log in account
+    //button to switch back to log in account from admin login page
+    @FXML
+    protected void onHiddenLoginButtonClick() throws IOException {
+        switchtoLoginAccount(usernameAdmin);
+
+    }
+    //button to switch back to log in account from create new user
     @FXML
     protected void onLogInHereButtonClick() throws IOException {
-        switchtoLoginAccount();
+        switchtoLoginAccount(newUserField);
     }
+
+
+    //to switch stage to admin login
+    private void switchtoAdminLogin() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("adminLogin.fxml"));
+        Scene adminLogin = new Scene(fxmlLoader.load(), 650, 400);
+
+        Stage currentStage = (Stage) usernameField.getScene().getWindow();
+        currentStage.setScene(adminLogin);
+        currentStage.setTitle("Admin Login Page");
+        currentStage.show();
+    }
+
 
     //to switch stage to register account
     private void switchtoRegisterAccount() throws IOException {
@@ -83,11 +126,11 @@ public class ControllerLogin {
     }
 
     //to switch stage to log in account again
-    private void switchtoLoginAccount() throws IOException {
+    private void switchtoLoginAccount(TextField textField) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Login.fxml"));
         Scene loginAccount = new Scene(fxmlLoader.load(), 600, 400);
 
-        Stage currentStage = (Stage) newUserField.getScene().getWindow();
+        Stage currentStage = (Stage) textField.getScene().getWindow();
         currentStage.setScene(loginAccount);
         currentStage.setTitle("Login Page");
         currentStage.show();

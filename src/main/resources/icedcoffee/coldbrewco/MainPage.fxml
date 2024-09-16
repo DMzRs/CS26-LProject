@@ -17,27 +17,27 @@
             </Label>
             <ImageView fx:id="logo" fitHeight="91.0" fitWidth="98.0" layoutX="260.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@coffee-cup_1.png" />
+                  <Image url="@../../images/coffee-cup_1.png" />
                </image>
             </ImageView>
             <ImageView fx:id="checkCash" fitHeight="91.0" fitWidth="95.0" layoutX="174.0" layoutY="200.0" onMouseClicked="#onCheckCashButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@CheckCash.png" />
+                  <Image url="@../../images/CheckCash.png" />
                </image>
             </ImageView>
             <ImageView fx:id="selectOrder" fitHeight="91.0" fitWidth="95.0" layoutX="407.0" layoutY="194.0" onMouseClicked="#onSelectOrderButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@SelectOrder.png" />
+                  <Image url="@../../images/SelectOrder.png" />
                </image>
             </ImageView>
             <ImageView fx:id="logOut" fitHeight="91.0" fitWidth="95.0" layoutX="284.0" layoutY="394.0" onMouseClicked="#onLogOutButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@LogOut.png" />
+                  <Image url="@../../images/LogOut.png" />
                </image>
             </ImageView>
             <ImageView fx:id="close" fitHeight="91.0" fitWidth="95.0" layoutX="517.0" layoutY="394.0" onMouseClicked="#onExitMainPageButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Close.png" />
+                  <Image url="@../../images/Close.png" />
                </image>
             </ImageView>
             <Label layoutX="139.0" layoutY="304.0" onMouseClicked="#onCheckCashButtonClick" text="Check Balance" textAlignment="CENTER">
@@ -62,7 +62,7 @@
             </Label>
             <ImageView fx:id="checkOrder" fitHeight="91.0" fitWidth="91.0" layoutX="619.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@CheckOrder.png" />
+                  <Image url="@../../images/CheckOrder.png" />
                </image>
             </ImageView>
             <Label layoutX="598.0" layoutY="304.0" text="Check Order" textAlignment="CENTER">

@@ -125,10 +125,10 @@ public class ControllerMain {
     @FXML
     protected void onSelectOrderButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Order Page.fxml"));
-        Scene loginAccount = new Scene(fxmlLoader.load(), 900, 700);
+        Scene Orderselect = new Scene(fxmlLoader.load(), 900, 700);
 
         Stage currentStage = (Stage) selectOrder.getScene().getWindow();
-        currentStage.setScene(loginAccount);
+        currentStage.setScene(Orderselect);
         currentStage.setTitle("Order Page");
         currentStage.centerOnScreen();
         currentStage.show();

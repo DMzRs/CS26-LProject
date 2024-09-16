@@ -13,7 +13,7 @@
          <children>
             <ImageView fx:id="logo" fitHeight="73.0" fitWidth="90.0" layoutX="50.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@coffee-cup_1.png" />
+                  <Image url="@../../images/coffee-cup_1.png" />
                </image>
             </ImageView>
             <Label layoutX="135.0" layoutY="36.0" prefHeight="43.0" prefWidth="158.0" text="Cold Brew Co" textAlignment="CENTER" textFill="#846004">
@@ -36,7 +36,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="123.0" layoutY="235.0" prefHeight="43.0" prefWidth="168.0" text="Add Funds" textOverrun="CENTER_ELLIPSIS">
+            <Label layoutX="123.0" layoutY="243.0" prefHeight="43.0" prefWidth="168.0" text="Add Funds" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="20.0" />
                </font>
@@ -67,6 +67,11 @@
                   <Font name="Franklin Gothic Demi Cond" size="15.0" />
                </font>
             </Label>
+            <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="207.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/WalletIcon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

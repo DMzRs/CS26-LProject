@@ -15,14 +15,14 @@
                   <Font name="Franklin Gothic Heavy" size="36.0" />
                </font>
             </Label>
-            <ImageView fx:id="logoMainOrder" fitHeight="92.0" fitWidth="93.0" layoutX="259.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="92.0" fitWidth="93.0" layoutX="259.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/coffee-cup_1.png" />
                </image>
             </ImageView>
-            <Pane layoutX="82.0" layoutY="135.0" onMouseClicked="#onCaramelMachClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+            <Pane layoutX="82.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fx:id="caramelMach" fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="42.0" onMouseClicked="#onCaramelMachClick" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/CaramelMacchiato.jpg" />
                      </image>
@@ -32,7 +32,7 @@
                         <Font name="Franklin Gothic Heavy" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="18.0" layoutY="14.0" onMouseClicked="#onCaramelMachClick" text="Caramel Macchiato">
+                  <Label layoutX="18.0" layoutY="14.0" text="Caramel Macchiato">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="18.0" />
                      </font>
@@ -134,17 +134,79 @@
                   </Label>
                </children>
             </Pane>
-            <ImageView fx:id="backButton" fitHeight="75.0" fitWidth="74.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/BackArrow.png" />
-               </image>
-            </ImageView>
             <Label layoutX="755.0" layoutY="618.0" />
-            <Label layoutX="561.0" layoutY="604.0" prefHeight="28.0" prefWidth="222.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="     Proceed to Check Out">
-               <font>
-                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
-               </font>
-            </Label>
+            <Pane layoutX="443.0" prefHeight="670.0" prefWidth="427.0" style="-fx-background-color: #966216;">
+               <children>
+                  <Pane layoutX="14.0" prefHeight="670.0" prefWidth="414.0" style="-fx-background-color: #F4F4D5; -fx-background-radius: 10px;">
+                     <children>
+                        <ImageView fx:id="backButton1" fitHeight="75.0" fitWidth="74.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#onBackButton1Click" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/BackArrow.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nameBox" layoutX="101.0" layoutY="81.0" text="Caramel Macchiato">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="25.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutX="27.0" layoutY="145.0" prefHeight="172.0" prefWidth="163.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20px; -fx-border-color: #000000; -fx-border-radius: 20px;">
+                           <children>
+                              <ImageView fx:id="specificImageBox" fitHeight="119.0" fitWidth="98.0" layoutX="33.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/CaramelMacchiato.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Label layoutX="214.0" layoutY="145.0" text="Ingredients:">
+                           <font>
+                              <Font name="Franklin Gothic Medium" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="descriptionBox" layoutX="216.0" layoutY="177.0" prefHeight="279.0" prefWidth="175.0" text="Ingredients:">
+                           <font>
+                              <Font name="Franklin Gothic Medium" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="344.0" text="Price:">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="priceBox" layoutX="101.0" layoutY="344.0" text="99">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="591.0" text="Quantity">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="151.0" layoutY="594.0" prefHeight="21.0" prefWidth="29.0" style="-fx-background-color: FFFFFF; -fx-border-color: #000000;" text="1" textOverrun="CENTER_WORD_ELLIPSIS">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="190.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/minus-sign.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="122.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/plus.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="266.0" layoutY="591.0" prefHeight="28.0" prefWidth="98.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text=" Add Order">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>

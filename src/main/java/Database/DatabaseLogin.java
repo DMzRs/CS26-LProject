@@ -35,6 +35,35 @@ public class DatabaseLogin {
         return 0;
     }
 
+    //for admin login
+    public int ReturnLoginAdmin(String username, String password) {
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem",
+                    "root",
+                    "alamkoangpass"
+            );
+            String checkData = ("SELECT adminId,username,password FROM admin WHERE username = ? AND password = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(checkData);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int user= resultSet.getInt("adminId");
+                return user;
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     //for user create account
     public boolean RegisterUser(String username, String password) {
         try {

@@ -9,13 +9,23 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #CB8A2B;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerLogin">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerLogin">
    <children>
-      <Label layoutX="71.0" layoutY="51.0" prefHeight="79.0" prefWidth="229.0" style="-fx-background-color: #CB8A2B;" text="COLD BREW CO" textAlignment="CENTER" textOverrun="CLIP">
-         <font>
-            <Font name="Franklin Gothic Demi Cond" size="34.0" />
-         </font>
-      </Label>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="374.0" prefWidth="571.0" style="-fx-background-color: F4F4D5;">
+         <children>
+            <Pane layoutX="282.0" layoutY="-4.0" prefHeight="380.0" prefWidth="6.0" style="-fx-background-color: #966216;" />
+            <Label layoutX="34.0" layoutY="43.0" prefHeight="79.0" prefWidth="200.0" text="COLD BREW CO" textAlignment="CENTER" textFill="#ffd875" textOverrun="CLIP">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="34.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="59.0" layoutY="112.0" onMouseClicked="#onHiddenAdminLoginButtonClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/coffee-cup_1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
       <Pane layoutX="354.0" layoutY="51.0" prefHeight="299.0" prefWidth="200.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="69.0" layoutY="64.0" style="-fx-background-color: White;" text="Username">
@@ -52,10 +62,5 @@
             <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="150.0" />
          </children>
       </Pane>
-      <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="89.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@coffee-cup_1.png" />
-         </image>
-      </ImageView>
    </children>
 </Pane>
