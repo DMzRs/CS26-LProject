@@ -6,14 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseUpdate {
+
+    public String sqlurl = "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem";
+    public String sqluser = "root";
+    public String sqlpassword = "alamkoangpass";
+
     public boolean addMoney(int userId, int amountToAdd) {
         try {
             // Establish connection
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem",
-                    "root",
-                    "alamkoangpass"
-            );
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
             // Correct SQL query to update balance
             String updateBalanceQuery = "UPDATE users SET accountBalance = accountBalance + ? WHERE userId = ?";

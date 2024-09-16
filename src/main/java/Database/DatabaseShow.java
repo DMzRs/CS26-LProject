@@ -3,15 +3,15 @@ package Database;
 import java.sql.*;
 
 public class DatabaseShow {
+    public String sqlurl = "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem";
+    public String sqluser = "root";
+    public String sqlpassword = "alamkoangpass";
 
     public int showMoney(int userId)    {
         try {
             int balance;
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem",
-                    "root",
-                    "alamkoangpass"
-            );
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+
             String showBalance = "SELECT * FROM users WHERE userId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showBalance);
             preparedStatement.setInt(1, userId);

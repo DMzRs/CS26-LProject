@@ -5,15 +5,14 @@ import ForEnkeepingLoginId.LoginId;
 import java.sql.*;
 
 public class DatabaseLogin {
+    public String sqlurl = "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem";
+    public String sqluser = "root";
+    public String sqlpassword = "alamkoangpass";
 
     //for user login
     public int ReturnLoginUser(String username, String password) {
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem",
-                    "root",
-                    "alamkoangpass"
-            );
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String checkData = ("SELECT UserId,username,password FROM users WHERE username = ? AND password = ?");
             PreparedStatement preparedStatement = connection.prepareStatement(checkData);
             preparedStatement.setString(1, username);
@@ -38,11 +37,7 @@ public class DatabaseLogin {
     //for admin login
     public int ReturnLoginAdmin(String username, String password) {
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem",
-                    "root",
-                    "alamkoangpass"
-            );
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String checkData = ("SELECT adminId,username,password FROM admin WHERE username = ? AND password = ?");
             PreparedStatement preparedStatement = connection.prepareStatement(checkData);
             preparedStatement.setString(1, username);
@@ -67,11 +62,7 @@ public class DatabaseLogin {
     //for user create account
     public boolean RegisterUser(String username, String password) {
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem",
-                    "root",
-                    "alamkoangpass"
-            );
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String insertData = ("INSERT INTO users (username, password) VALUES (?, ?)");
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertData);
