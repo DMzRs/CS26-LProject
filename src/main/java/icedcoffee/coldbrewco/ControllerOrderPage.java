@@ -93,4 +93,9 @@ public class ControllerOrderPage {
         descriptionBox.setText(Description);
         priceBox.setText(String.valueOf(price));
     }
+
+    @FXML
+    protected void addQuantityButton() throws IOException {
+
+    }
 }
