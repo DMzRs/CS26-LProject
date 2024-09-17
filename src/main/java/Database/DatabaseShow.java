@@ -3,9 +3,9 @@ package Database;
 import java.sql.*;
 
 public class DatabaseShow {
-    public String sqlurl = "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem";
-    public String sqluser = "root";
-    public String sqlpassword = "alamkoangpass";
+    public String sqlurl = DatabaseLink.getsqlurl();
+    public String sqluser = DatabaseLink.getsqluser();
+    public String sqlpassword = DatabaseLink.getsqlpassword();
 
     public int showMoney(int userId)    {
         try {
@@ -31,4 +31,78 @@ public class DatabaseShow {
         }
         return 0;
     }
+
+    public String showProductDescription(int productId)    {
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+
+            String showDescription = "SELECT productDescription FROM product WHERE productId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showDescription);
+            preparedStatement.setInt(1, productId);
+
+            // Execute query
+            ResultSet result = preparedStatement.executeQuery();
+
+            // Process result
+            if (result.next()) {
+                String description = result.getString("productDescription");
+                return description;
+            } else {
+                return "No product found with productId: " + productId;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "No description";
+    }
+
+    public String showProductName(int productId)    {
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+
+            String showName = "SELECT * FROM product WHERE productId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showName);
+            preparedStatement.setInt(1, productId);
+
+            // Execute query
+            ResultSet result = preparedStatement.executeQuery();
+
+            // Process result
+            if (result.next()) {
+                String Name = result.getString("productName");
+                return Name;
+            } else {
+                return "No product found with productId: " + productId;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "No description";
+    }
+
+    public int showProductPrice(int productId)    {
+        try {
+            int price;
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+
+            String showPrice = "SELECT * FROM product WHERE productId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showPrice);
+            preparedStatement.setInt(1, productId);
+
+            // Execute query
+            ResultSet result = preparedStatement.executeQuery();
+
+            // Process result
+            if (result.next()) {
+                price = result.getInt("price");
+                return price;
+            }   else   {
+                System.out.println("No product found with productId: " + productId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
+

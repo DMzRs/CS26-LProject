@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerOrderPage">
+<Pane fx:id="orderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerOrderPage">
    <children>
       <Pane layoutX="15.0" layoutY="15.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
          <children>
@@ -22,7 +23,7 @@
             </ImageView>
             <Pane layoutX="82.0" layoutY="135.0" onMouseClicked="#onCaramelMachClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fx:id="caramelMach" fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="42.0" onMouseClicked="#onCaramelMachClick" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/CaramelMacchiato.jpg" />
                      </image>
@@ -32,12 +33,15 @@
                         <Font name="Franklin Gothic Heavy" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="18.0" layoutY="14.0" onMouseClicked="#onCaramelMachClick" text="Caramel Macchiato">
+                  <Label fx:id="caramelName" layoutX="18.0" layoutY="14.0" text="Caramel Macchiato">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="18.0" />
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Pane layoutX="335.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
@@ -57,6 +61,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Pane layoutX="583.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
@@ -64,6 +71,9 @@
                      <image>
                         <Image url="@../../images/VanillaLatte.jpg" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <Label layoutX="46.0" layoutY="14.0" text="Vanilla Latte">
                      <font>
@@ -95,6 +105,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Pane layoutX="335.0" layoutY="380.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
@@ -114,6 +127,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Pane layoutX="583.0" layoutY="380.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
@@ -133,17 +149,26 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <ImageView fx:id="backButton" fitHeight="75.0" fitWidth="74.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/BackArrow.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <Label layoutX="755.0" layoutY="618.0" />
-            <Label layoutX="561.0" layoutY="604.0" prefHeight="28.0" prefWidth="222.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="     Proceed to Check Out">
+            <Label fx:id="checkOutButton" layoutX="561.0" layoutY="604.0" prefHeight="28.0" prefWidth="222.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="     Proceed to Check Out">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="23.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
          </children>
       </Pane>

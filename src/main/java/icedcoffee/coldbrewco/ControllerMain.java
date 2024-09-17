@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.io.IOException;
 
@@ -52,7 +51,7 @@ public class ControllerMain {
 
     }
 
-    //not fixed
+    //to show balance
     @FXML
     private void showBalance(){
         DatabaseShow show = new DatabaseShow();
@@ -62,7 +61,7 @@ public class ControllerMain {
 
     }
 
-    //notfixed
+
     //to save funds amount added
     @FXML
     protected void onAddButtonClick(){

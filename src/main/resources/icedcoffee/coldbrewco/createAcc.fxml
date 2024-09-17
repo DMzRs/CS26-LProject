@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -38,7 +39,10 @@
                   <Font name="Franklin Gothic Demi" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="newUserField" layoutX="25.0" layoutY="95.0" />
+            <TextField fx:id="newUserField" layoutX="25.0" layoutY="95.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label fx:id="registerlabel" layoutX="31.0" layoutY="14.0" style="-fx-background-color: White;" text="REGISTER">
                <font>
                   <Font name="Franklin Gothic Demi" size="31.0" />
@@ -48,6 +52,9 @@
                <font>
                   <Font name="Franklin Gothic Demi" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Label layoutX="22.0" layoutY="243.0" style="-fx-background-color: White;" text="Already have an account?">
                <font>
@@ -58,8 +65,14 @@
                <font>
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <PasswordField fx:id="newPassField" layoutX="26.0" layoutY="159.0" />
+            <PasswordField fx:id="newPassField" layoutX="26.0" layoutY="159.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></PasswordField>
          </children>
       </Pane>
    </children>

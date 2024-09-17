@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -23,6 +24,9 @@
                <image>
                   <Image url="@../../images/coffee-cup_1.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </Pane>
@@ -38,7 +42,10 @@
                   <Font name="Franklin Gothic Demi" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" layoutX="26.0" layoutY="92.0" />
+            <TextField fx:id="usernameField" layoutX="26.0" layoutY="92.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label fx:id="loginlabel" layoutX="57.0" layoutY="14.0" style="-fx-background-color: White;" text="LOGIN">
                <font>
                   <Font name="Franklin Gothic Demi" size="31.0" />
@@ -48,6 +55,9 @@
                <font>
                   <Font name="Franklin Gothic Demi" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Label layoutX="30.0" layoutY="241.0" style="-fx-background-color: White;" text="Don't have an account?">
                <font>
@@ -58,8 +68,14 @@
                <font>
                   <Font name="Franklin Gothic Book" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="150.0" />
+            <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="150.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></PasswordField>
          </children>
       </Pane>
    </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,21 +25,33 @@
                <image>
                   <Image url="@../../images/CheckCash.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="selectOrder" fitHeight="91.0" fitWidth="95.0" layoutX="407.0" layoutY="194.0" onMouseClicked="#onSelectOrderButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/SelectOrder.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="logOut" fitHeight="91.0" fitWidth="95.0" layoutX="284.0" layoutY="394.0" onMouseClicked="#onLogOutButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/LogOut.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="close" fitHeight="91.0" fitWidth="95.0" layoutX="517.0" layoutY="394.0" onMouseClicked="#onExitMainPageButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/Close.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <Label layoutX="139.0" layoutY="304.0" onMouseClicked="#onCheckCashButtonClick" text="Check Balance" textAlignment="CENTER">
                <font>
@@ -64,6 +77,9 @@
                <image>
                   <Image url="@../../images/CheckOrder.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <Label layoutX="598.0" layoutY="304.0" text="Check Order" textAlignment="CENTER">
                <font>

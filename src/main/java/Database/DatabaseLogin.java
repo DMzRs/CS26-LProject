@@ -5,9 +5,9 @@ import ForEnkeepingLoginId.LoginId;
 import java.sql.*;
 
 public class DatabaseLogin {
-    public String sqlurl = "jdbc:mysql://127.0.0.1:3306/icedcoffeesystem";
-    public String sqluser = "root";
-    public String sqlpassword = "alamkoangpass";
+    public String sqlurl = DatabaseLink.getsqlurl();
+    public String sqluser = DatabaseLink.getsqluser();
+    public String sqlpassword = DatabaseLink.getsqlpassword();
 
     //for user login
     public int ReturnLoginUser(String username, String password) {

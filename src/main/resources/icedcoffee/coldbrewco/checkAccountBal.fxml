@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -46,26 +47,41 @@
                   <Font name="Franklin Gothic Demi" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="cashAmountField" layoutX="149.0" layoutY="296.0" prefHeight="5.0" prefWidth="158.0" style="-fx-border-color: #000000;" />
+            <TextField fx:id="cashAmountField" layoutX="149.0" layoutY="296.0" prefHeight="5.0" prefWidth="158.0" style="-fx-border-color: #000000;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label layoutX="191.0" layoutY="378.0" onMouseClicked="#onAddButtonClick" prefHeight="23.0" prefWidth="54.0" style="-fx-border-color: #000000;" text="     Add" textAlignment="CENTER">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label layoutX="256.0" layoutY="378.0" onMouseClicked="#onCancelButtonClick" prefHeight="23.0" prefWidth="54.0" style="-fx-border-color: #000000;" text="  Cancel" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="256.0" layoutY="378.0" onMouseClicked="#onCancelButtonClick" prefHeight="23.0" prefWidth="54.0" style="-fx-border-color: #000000;" text="Clear" textAlignment="CENTER">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="191.0" layoutY="430.0" onMouseClicked="#onReturnMainPageButtonClick" prefHeight="23.0" prefWidth="116.0" style="-fx-border-color: #000000; -fx-background-color: #FFD875;" text="     Return Main Page" textAlignment="CENTER">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="13.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label fx:id="checkBalance" layoutX="217.0" layoutY="212.0" onMouseClicked="#onCheckBalanceButtonClick" prefHeight="23.0" prefWidth="90.0" style="-fx-border-color: #000000;" text="Check Balance" textAlignment="CENTER">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="15.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="207.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
                <image>
