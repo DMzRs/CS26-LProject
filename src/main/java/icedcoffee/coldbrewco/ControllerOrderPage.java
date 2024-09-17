@@ -7,8 +7,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import java.io.InputStream;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -19,6 +21,18 @@ public class ControllerOrderPage {
     private ImageView backButton;
     @FXML
     private ImageView backButton1;
+    @FXML
+    private ImageView CaraMacImage;
+    @FXML
+    private ImageView SpanishLatImage;
+    @FXML
+    private ImageView VanillaLatImage;
+    @FXML
+    private ImageView IcedAmericanoImage;
+    @FXML
+    private ImageView MatchaLatteImage;
+    @FXML
+    private ImageView StrawberryLatteImage;
     @FXML
     private ImageView specificImageBox;
     @FXML
@@ -46,6 +60,26 @@ public class ControllerOrderPage {
     @FXML
     protected void onCaramelMachClick() throws IOException {
         onCoffeeClick(1);
+    }
+    @FXML
+    protected void onSpanishLatteClick() throws IOException {
+        onCoffeeClick(2);
+    }
+    @FXML
+    protected void onVanillaLatteClick() throws IOException {
+        onCoffeeClick(3);
+    }
+    @FXML
+    protected void onIcedAmeClick() throws IOException {
+        onCoffeeClick(4);
+    }
+    @FXML
+    protected void onMatchaLatteClick() throws IOException {
+        onCoffeeClick(5);
+    }
+    @FXML
+    protected void onStrawberryClick() throws IOException {
+        onCoffeeClick(6);
     }
 
     //go back to main order page
@@ -92,6 +126,43 @@ public class ControllerOrderPage {
         nameBox.setText(Name);
         descriptionBox.setText(Description);
         priceBox.setText(String.valueOf(price));
+
+        String imagePath = ""; // Initialize image path
+
+        // Determine the correct image path based on productId
+        switch (productId) {
+            case 1:
+                imagePath = "/images/CaramelMacchiato.jpg";
+                break;
+            case 2:
+                imagePath = "/images/SpanishLatte.jpg";
+                break;
+            case 3:
+                imagePath = "/images/VanillaLatte.jpg";
+                break;
+            case 4:
+                imagePath = "/images/IcedAmericano.jpg";
+                break;
+            case 5:
+                imagePath = "/images/MatchaLatte.jpg";
+                break;
+            case 6:
+                imagePath = "/images/StrawberryMatchaLatte.jpg";
+                break;
+            default:
+                System.out.println("Invalid product ID");
+                return; // Exit if product ID is invalid
+        }
+
+        // Load the image
+        InputStream imageStream = getClass().getResourceAsStream(imagePath);
+        if (imageStream != null) {
+            specificImageBox.setImage(new Image(imageStream));
+            specificImageBox.setFitWidth(98);
+            specificImageBox.setFitHeight(119);
+        } else {
+            System.out.println("Image resource not found: " + imagePath);
+        }
     }
 
     @FXML

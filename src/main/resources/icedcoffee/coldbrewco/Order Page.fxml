@@ -23,7 +23,7 @@
             </ImageView>
             <Pane layoutX="82.0" layoutY="135.0" onMouseClicked="#onCaramelMachClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="CaraMachImage" fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/CaramelMacchiato.jpg" />
                      </image>
@@ -43,9 +43,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane layoutX="335.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+            <Pane layoutX="335.0" layoutY="135.0" onMouseClicked="#onSpanishLatteClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fitHeight="137.0" fitWidth="141.0" layoutX="32.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="SpanishLatImage" fitHeight="137.0" fitWidth="141.0" layoutX="32.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/SpanishLatte.jpg" />
                      </image>
@@ -65,9 +65,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane layoutX="583.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+            <Pane layoutX="583.0" layoutY="135.0" onMouseClicked="#onVanillaLatteClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fitHeight="151.0" fitWidth="193.0" layoutX="5.0" layoutY="25.0" pickOnBounds="true">
+                  <ImageView fx:id="VanillaLatImage" fitHeight="151.0" fitWidth="193.0" layoutX="5.0" layoutY="25.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../images/VanillaLatte.jpg" />
                      </image>
@@ -87,9 +87,9 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="82.0" layoutY="380.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+            <Pane layoutX="82.0" layoutY="380.0" onMouseClicked="#onIcedAmeClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fitHeight="119.0" fitWidth="98.0" layoutX="57.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="IcedAmericanoImage" fitHeight="119.0" fitWidth="98.0" layoutX="57.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/IcedAmericano.jpg" />
                      </image>
@@ -109,9 +109,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane layoutX="335.0" layoutY="380.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+            <Pane layoutX="335.0" layoutY="380.0" onMouseClicked="#onMatchaLatteClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fitHeight="129.0" fitWidth="98.0" layoutX="53.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="MatchaLatteImage" fitHeight="129.0" fitWidth="98.0" layoutX="53.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/MatchaLatte.jpg" />
                      </image>
@@ -131,11 +131,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane layoutX="583.0" layoutY="380.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+            <Pane layoutX="583.0" layoutY="380.0" onMouseClicked="#onStrawberryClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="StrawberryLatteImage" fitHeight="137.0" fitWidth="132.0" layoutX="34.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/CaramelMacchiato.jpg" />
+                        <Image url="@../../images/StrawberryMatchaLatte.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="7.0" layoutY="14.0" prefHeight="22.0" prefWidth="200.0" text="Straberry Matcha Latte ">
