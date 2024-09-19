@@ -41,6 +41,8 @@ public class ControllerOrderPage {
     private Label priceBox;
     @FXML
     private Label descriptionBox;
+    @FXML
+    private Label orderQuantityLabel;
 
 
     //to go back to main Page
@@ -165,8 +167,65 @@ public class ControllerOrderPage {
         }
     }
 
+    //increase number of orders
     @FXML
-    protected void addQuantityButton() throws IOException {
+    protected void addQuantityButton() {
+        String quantityString = orderQuantityLabel.getText();
+        int quantity = Integer.parseInt(quantityString);
+        quantity = quantity + 1;
+        orderQuantityLabel.setText(String.valueOf(quantity));
+    }
 
+    //decrease number of orders
+    @FXML
+    protected void reduceQuantityButton(){
+        int quantity = Integer.parseInt(orderQuantityLabel.getText());
+        if(quantity>1) {
+            quantity = quantity - 1;
+            orderQuantityLabel.setText(String.valueOf(quantity));
+        }
+    }
+
+    @FXML
+    protected void addOrderButton() {
+        String coffeeName = nameBox.getText();
+        int coffeePriceInt = Integer.parseInt(priceBox.getText());
+        int orderQuantity = Integer.parseInt(orderQuantityLabel.getText());
+        int totalPrice = coffeePriceInt*orderQuantity;
+        ControllerOrderDetailsPage controllerDetails = new ControllerOrderDetailsPage();
+        controllerDetails.setOrderNameColumn(coffeeName);
+        controllerDetails.setOrderPriceColumn(coffeePriceInt);
+        controllerDetails.setOrderQuantityColumn(orderQuantity);
+        controllerDetails.setOrderTotalPriceColumn(totalPrice);
+    }
+
+    //to switch to Order Details Page
+    @FXML
+    protected void proceedToOrderDetailsButton() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("OrderDetailsPage.fxml"));
+        Scene orderDetails = new Scene(fxmlLoader.load(), 900, 700);
+
+        Stage currentStage = (Stage) backButton.getScene().getWindow();
+        currentStage.setScene(orderDetails);
+        currentStage.setTitle("Order Details Page");
+        currentStage.centerOnScreen();
+        currentStage.show();
+    }
+
+    private int getCoffeeDetails(String coffeeName) {
+        if(coffeeName.equals("Caramel Macchiato")) {
+            return 1;
+        } else if (coffeeName.equals("Spanish Latte")) {
+            return 2;
+        }else if (coffeeName.equals("Vanilla Latte")) {
+            return 3;
+        }else if (coffeeName.equals("Iced Americano")) {
+            return 4;
+        }else if (coffeeName.equals("Matcha Latte")) {
+            return 5;
+        } else if (coffeeName.equals("Strawberry Matcha Latte")) {
+            return 6;
+        }
+        return 0;
     }
 }

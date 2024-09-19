@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="orderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerOrderDetailsPage">
+   <children>
+      <Pane layoutX="15.0" layoutY="15.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
+         <children>
+            <Label layoutX="361.0" layoutY="46.0" text="Cold Brew Co" textAlignment="CENTER" textFill="#846004">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="92.0" fitWidth="93.0" layoutX="259.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/coffee-cup_1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="checkOutButton" alignment="CENTER" layoutX="620.0" layoutY="585.0" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Check Out Orders">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="addItemButton" alignment="CENTER" layoutX="79.0" layoutY="576.0" prefHeight="51.0" prefWidth="147.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Add Items">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="removeItemButton" alignment="CENTER" layoutX="259.0" layoutY="576.0" prefHeight="51.0" prefWidth="147.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Remove Item">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <TableView fx:id="orderTable" fixedCellSize="5.0" layoutX="80.0" layoutY="111.0" prefHeight="448.0" prefWidth="711.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="313.0" text="Coffee Name" />
+                <TableColumn fx:id="quantityColumn" prefWidth="132.0" text="Quantity" />
+                  <TableColumn fx:id="priceColumn" minWidth="3.0" prefWidth="144.0" text="Price" />
+                  <TableColumn fx:id="totalPriceColumn" prefWidth="121.0" text="Total Price" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</Pane>

@@ -162,7 +162,7 @@
                </cursor>
             </ImageView>
             <Label layoutX="755.0" layoutY="618.0" />
-            <Label fx:id="checkOutButton" layoutX="561.0" layoutY="604.0" prefHeight="28.0" prefWidth="222.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="     Proceed to Check Out">
+            <Label fx:id="orderDetails" alignment="CENTER" layoutX="561.0" layoutY="604.0" onMouseClicked="#proceedToOrderDetailsButton" prefHeight="42.0" prefWidth="222.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Proceed to Order Details">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="23.0" />
                </font>
