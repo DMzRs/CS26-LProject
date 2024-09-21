@@ -45,7 +45,7 @@
             </Pane>
             <Pane layoutX="335.0" layoutY="135.0" onMouseClicked="#onSpanishLatteClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fx:id="SpanishLatImage" fitHeight="137.0" fitWidth="141.0" layoutX="32.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="SpanishLatImage" fitHeight="137.0" fitWidth="141.0" layoutX="52.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/SpanishLatte.jpg" />
                      </image>
@@ -67,7 +67,7 @@
             </Pane>
             <Pane layoutX="583.0" layoutY="135.0" onMouseClicked="#onVanillaLatteClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fx:id="VanillaLatImage" fitHeight="151.0" fitWidth="193.0" layoutX="5.0" layoutY="25.0" pickOnBounds="true">
+                  <ImageView fx:id="VanillaLatImage" fitHeight="129.0" fitWidth="108.0" layoutX="46.0" layoutY="42.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../images/VanillaLatte.jpg" />
                      </image>
@@ -133,7 +133,7 @@
             </Pane>
             <Pane layoutX="583.0" layoutY="380.0" onMouseClicked="#onStrawberryClick" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                <children>
-                  <ImageView fx:id="StrawberryLatteImage" fitHeight="137.0" fitWidth="132.0" layoutX="34.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="StrawberryLatteImage" fitHeight="137.0" fitWidth="132.0" layoutX="62.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/StrawberryMatchaLatte.jpg" />
                      </image>

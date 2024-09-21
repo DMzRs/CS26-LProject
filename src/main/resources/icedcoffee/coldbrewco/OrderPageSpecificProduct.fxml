@@ -24,7 +24,7 @@
             </Label>
             <Pane fx:id="emptyImageOrder" layoutX="27.0" layoutY="145.0" prefHeight="172.0" prefWidth="163.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20px; -fx-border-color: #000000; -fx-border-radius: 20px;">
                <children>
-                  <ImageView fx:id="specificImageBox" fitHeight="119.0" fitWidth="98.0" layoutX="33.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="specificImageBox" cache="true" cacheHint="QUALITY" fitHeight="119.0" fitWidth="98.0" layoutX="33.0" layoutY="28.0" nodeOrientation="INHERIT" pickOnBounds="true">
                      <image>
                         <Image url="@../../images/CaramelMacchiato.jpg" />
                      </image>
@@ -61,7 +61,7 @@
                   <Font name="Franklin Gothic Heavy" size="16.0" />
                </font>
             </Label>
-            <ImageView accessibleRole="DECREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="190.0" layoutY="597.0" onMouseClicked="#reduceQuantityButton" pickOnBounds="true" preserveRatio="true">
+            <ImageView accessibleRole="DECREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="124.0" layoutY="597.0" onMouseClicked="#reduceQuantityButton" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/minus-sign.png" />
                </image>
@@ -69,7 +69,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView accessibleRole="INCREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="122.0" layoutY="597.0" onMouseClicked="#addQuantityButton" pickOnBounds="true" preserveRatio="true">
+            <ImageView accessibleRole="INCREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="194.0" layoutY="597.0" onMouseClicked="#addQuantityButton" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/plus.png" />
                </image>

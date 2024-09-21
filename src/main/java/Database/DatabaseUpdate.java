@@ -38,4 +38,32 @@ public class DatabaseUpdate {
             return false;
         }
     }
+
+    public boolean deductMoney(int userId, int amountToDeduct) {
+        try {
+            // Establish connection
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+
+            // Correct SQL query to update balance
+            String updateBalanceQuery = "UPDATE users SET accountBalance = accountBalance - ? WHERE userId = ?";
+
+            // Prepare the statement
+            PreparedStatement preparedStatement = connection.prepareStatement(updateBalanceQuery);
+            preparedStatement.setInt(1, amountToDeduct); // Set the amount to add
+            preparedStatement.setInt(2, userId);       // Set the user ID
+
+            // Execute the update
+            int affectedRows = preparedStatement.executeUpdate();
+
+            // Close resources
+            preparedStatement.close();
+            connection.close();
+
+            // Return true if rows were affected
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

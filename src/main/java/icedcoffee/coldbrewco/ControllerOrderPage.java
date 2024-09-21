@@ -1,17 +1,19 @@
 package icedcoffee.coldbrewco;
 
 import Database.DatabaseShow;
+import Database.OrderItem;
+import Database.OrderItemStorage;
+import icedcoffee.coldbrewco.ControllerOrderDetailsPage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import java.io.InputStream;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -118,6 +120,7 @@ public class ControllerOrderPage {
         orderPagePane.setLayoutX(rootPane.getWidth() - orderPagePane.getPrefWidth());
     }
 
+    //to show product details when clicked in order page
     @FXML
     private void showProductDetails(int productId) throws IOException {
         DatabaseShow show = new DatabaseShow();
@@ -186,18 +189,31 @@ public class ControllerOrderPage {
         }
     }
 
+    //to add Order to Order Details
     @FXML
     protected void addOrderButton() {
         String coffeeName = nameBox.getText();
         int coffeePriceInt = Integer.parseInt(priceBox.getText());
         int orderQuantity = Integer.parseInt(orderQuantityLabel.getText());
-        int totalPrice = coffeePriceInt*orderQuantity;
-        ControllerOrderDetailsPage controllerDetails = new ControllerOrderDetailsPage();
-        controllerDetails.setOrderNameColumn(coffeeName);
-        controllerDetails.setOrderPriceColumn(coffeePriceInt);
-        controllerDetails.setOrderQuantityColumn(orderQuantity);
-        controllerDetails.setOrderTotalPriceColumn(totalPrice);
+
+        // Create the new OrderItem
+        OrderItem newOrder = new OrderItem(coffeeName, coffeePriceInt, orderQuantity);
+
+        // Get the current selected items from the storage
+        ObservableList<OrderItem> currentItems = OrderItemStorage.getInstance().getSelectedItems();
+
+        // Check if the item already exists in the storage
+        for (OrderItem existingItem : currentItems) {
+            if (existingItem.getName().equals(coffeeName)) {
+                existingItem.setQuantity(existingItem.getQuantity() + orderQuantity);
+                return;
+            }
+        }
+
+        // If the item does not exist, add the new order to the storage
+        OrderItemStorage.getInstance().addItem(newOrder);
     }
+
 
     //to switch to Order Details Page
     @FXML
@@ -205,27 +221,19 @@ public class ControllerOrderPage {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("OrderDetailsPage.fxml"));
         Scene orderDetails = new Scene(fxmlLoader.load(), 900, 700);
 
+        // Get the controller instance of OrderDetailsPage
+        ControllerOrderDetailsPage detailsController = fxmlLoader.getController();
+
+        // Pass the current selected items (you'll need to manage the selectedItems list in this class)
+        ObservableList<OrderItem> selectedItems = FXCollections.observableArrayList();  // or pass your existing list
+        detailsController.setOrderItems(selectedItems);
+
+
+        // Set the scene for the new stage
         Stage currentStage = (Stage) backButton.getScene().getWindow();
         currentStage.setScene(orderDetails);
         currentStage.setTitle("Order Details Page");
         currentStage.centerOnScreen();
         currentStage.show();
-    }
-
-    private int getCoffeeDetails(String coffeeName) {
-        if(coffeeName.equals("Caramel Macchiato")) {
-            return 1;
-        } else if (coffeeName.equals("Spanish Latte")) {
-            return 2;
-        }else if (coffeeName.equals("Vanilla Latte")) {
-            return 3;
-        }else if (coffeeName.equals("Iced Americano")) {
-            return 4;
-        }else if (coffeeName.equals("Matcha Latte")) {
-            return 5;
-        } else if (coffeeName.equals("Strawberry Matcha Latte")) {
-            return 6;
-        }
-        return 0;
     }
 }

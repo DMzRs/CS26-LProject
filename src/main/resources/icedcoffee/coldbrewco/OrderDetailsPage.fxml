@@ -23,7 +23,7 @@
                   <Image url="@../../images/coffee-cup_1.png" />
                </image>
             </ImageView>
-            <Label fx:id="checkOutButton" alignment="CENTER" layoutX="620.0" layoutY="585.0" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Check Out Orders">
+            <Label fx:id="checkOutButton" alignment="CENTER" layoutX="633.0" layoutY="613.0" onMouseClicked="#onCheckOutButtonClick" prefHeight="28.0" prefWidth="158.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Check Out Orders">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="23.0" />
                </font>
@@ -31,7 +31,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="addItemButton" alignment="CENTER" layoutX="79.0" layoutY="576.0" prefHeight="51.0" prefWidth="147.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Add Items">
+            <Label alignment="CENTER" layoutX="72.0" layoutY="613.0" onMouseClicked="#addItemsButton" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Add Items">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="23.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="removeItemButton" alignment="CENTER" layoutX="259.0" layoutY="576.0" prefHeight="51.0" prefWidth="147.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Remove Item">
+            <Label fx:id="removeItemButton" alignment="CENTER" layoutX="252.0" layoutY="613.0" onMouseClicked="#onRemoveItemButtonClick" prefHeight="28.0" prefWidth="129.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Remove Item">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="23.0" />
                </font>
@@ -47,13 +47,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <TableView fx:id="orderTable" fixedCellSize="5.0" layoutX="80.0" layoutY="111.0" prefHeight="448.0" prefWidth="711.0">
-              <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="313.0" text="Coffee Name" />
-                <TableColumn fx:id="quantityColumn" prefWidth="132.0" text="Quantity" />
-                  <TableColumn fx:id="priceColumn" minWidth="3.0" prefWidth="144.0" text="Price" />
-                  <TableColumn fx:id="totalPriceColumn" prefWidth="121.0" text="Total Price" />
-              </columns>
+            <TableView fx:id="orderCoffeeTable" layoutX="72.0" layoutY="107.0" prefHeight="476.0" prefWidth="720.0" style="-fx-border-color: #966216;">
+               <columns>
+                  <TableColumn fx:id="nameColumn" prefWidth="398.0" text="Coffee Name" />
+                  <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="98.0" text="Price" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="104.0" text="Quantity" />
+                  <TableColumn fx:id="subTotalColumn" prefWidth="119.0" text="SubTotal" />
+               </columns>
             </TableView>
          </children>
       </Pane>

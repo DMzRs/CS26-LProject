@@ -7,6 +7,11 @@ module icedcoffee.coldbrewco {
     requires java.sql;
     requires java.desktop;
 
+    // Open the icedcoffee.coldbrewco package to javafx.fxml
     opens icedcoffee.coldbrewco to javafx.fxml;
+
+    // Open the Database package to javafx.base for reflection access
+    opens Database to javafx.base;
+
     exports icedcoffee.coldbrewco;
 }

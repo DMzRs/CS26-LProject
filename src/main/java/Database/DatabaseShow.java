@@ -104,5 +104,22 @@ public class DatabaseShow {
         }
         return 0;
     }
+
+    public int showProductId(String productName){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showId = "SELECT * FROM product WHERE productName = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showId);
+            preparedStatement.setString(1, productName);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int productId = result.getInt("productId");
+                return productId;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
 
