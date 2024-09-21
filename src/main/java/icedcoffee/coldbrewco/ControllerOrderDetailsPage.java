@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,6 +17,9 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class ControllerOrderDetailsPage {
+
+    @FXML
+    private Label removeItemButton;
 
     @FXML
     private TableView<OrderItem> orderCoffeeTable;
@@ -84,60 +88,75 @@ public class ControllerOrderDetailsPage {
         }
     }
 
+
     //to Check Out Orders
     @FXML
-    private void onCheckOutButtonClick() {
+    private void onCheckOutButtonClick() throws IOException {
         DatabaseShow show = new DatabaseShow();
         DatabaseInsert insert = new DatabaseInsert();
-        int TotalPrice = 0;
+
         // Get all items from the TableView
         ObservableList<OrderItem> allItems = orderCoffeeTable.getItems();
+        int totalPrice = 0;
 
         // Create a StringBuilder to collect the names
         StringBuilder coffeeNames = new StringBuilder("All Selected Coffee:\n");
 
-        // Iterate through the items to retrieve coffee names
+        // Iterate through the items to retrieve coffee names and calculate total price
         for (OrderItem item : allItems) {
             coffeeNames.append(item.getName())
                     .append(" (Quantity: ").append(item.getQuantity())
                     .append(")\n");
-            TotalPrice += item.getSubTotal();
+            totalPrice += item.getSubTotal();
         }
 
         // Show confirmation dialog
         int confirmation = JOptionPane.showConfirmDialog(
                 null,
-                coffeeNames.toString() + "Total Price: " + TotalPrice,
+                coffeeNames.toString() + "Total Price: " + totalPrice,
                 "Confirm Your Order",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
         );
-
         // Handle the user's response
         if (confirmation == JOptionPane.YES_OPTION) {
             // Proceed with the checkout
-            System.out.println("Order confirmed!");
+            ObservableList<OrderItem> receiptItems = FXCollections.observableArrayList(allItems);
+
             int balance = show.showMoney(LoginId.getLoginId());
-            if (balance >= TotalPrice) {
-                while (!allItems.isEmpty()) {
-                    OrderItem itemToRemove = allItems.get(0); // Get the first item
+            if (balance >= totalPrice) {
+                // Insert orders into the database and remove items
+                for (OrderItem itemToRemove : allItems) {
                     String coffeeName = itemToRemove.getName();
                     int itemQuantity = itemToRemove.getQuantity();
                     int subTotal = itemToRemove.getSubTotal();
-                    insert.newOrderUser(LoginId.getLoginId(),show.showProductId(coffeeName),itemQuantity,subTotal);
-                    allItems.remove(itemToRemove); // Remove the item
+
+                    insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
                 }
+                // Clear items after processing
+                allItems.clear();
+
+                // Load ReceiptPage and pass the order items
+                FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
+                Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
+                ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController(); // Get the controller
+                controllerReceiptPage.setOrderItems(receiptItems);
+
+                // Set the scene for the new stage
+                Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
+                currentStage.setScene(receiptPage);
+                currentStage.setTitle("Receipt Page");
+                currentStage.centerOnScreen();
+                currentStage.show();
             } else {
-                System.out.println("Balance is not good");
+                JOptionPane.showMessageDialog(null,"Please select an item to remove/Add funds to your account!");
             }
         } else {
-            System.out.println("Order canceled.");
+            System.out.println("Order Canceled");
         }
     }
 
-    @FXML
-    private void switchtoPrintOrderPage() {
 
-    }
+
 }
 

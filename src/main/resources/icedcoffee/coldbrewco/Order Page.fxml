@@ -11,12 +11,12 @@
    <children>
       <Pane layoutX="15.0" layoutY="15.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
          <children>
-            <Label layoutX="361.0" layoutY="46.0" text="Cold Brew Co" textAlignment="CENTER" textFill="#846004">
+            <Label layoutX="348.0" layoutY="52.0" text="Cold Brew Corp" textAlignment="CENTER" textFill="#846004">
                <font>
                   <Font name="Franklin Gothic Heavy" size="36.0" />
                </font>
             </Label>
-            <ImageView fx:id="logoMainOrder" fitHeight="92.0" fitWidth="93.0" layoutX="259.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoMainOrder" fitHeight="92.0" fitWidth="93.0" layoutX="246.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/coffee-cup_1.png" />
                </image>

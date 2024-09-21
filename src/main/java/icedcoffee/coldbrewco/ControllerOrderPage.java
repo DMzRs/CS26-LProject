@@ -224,10 +224,8 @@ public class ControllerOrderPage {
         // Get the controller instance of OrderDetailsPage
         ControllerOrderDetailsPage detailsController = fxmlLoader.getController();
 
-        // Pass the current selected items (you'll need to manage the selectedItems list in this class)
-        ObservableList<OrderItem> selectedItems = FXCollections.observableArrayList();  // or pass your existing list
+        ObservableList<OrderItem> selectedItems = OrderItemStorage.getInstance().getSelectedItems();
         detailsController.setOrderItems(selectedItems);
-
 
         // Set the scene for the new stage
         Stage currentStage = (Stage) backButton.getScene().getWindow();

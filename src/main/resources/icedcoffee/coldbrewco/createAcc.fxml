@@ -15,7 +15,7 @@
       <Pane layoutX="15.0" layoutY="13.0" prefHeight="374.0" prefWidth="571.0" style="-fx-background-color: F4F4D5;">
          <children>
             <Pane layoutX="282.0" layoutY="-4.0" prefHeight="380.0" prefWidth="6.0" style="-fx-background-color: #966216;" />
-            <Label layoutX="34.0" layoutY="43.0" prefHeight="79.0" prefWidth="200.0" text="COLD BREW CO" textAlignment="CENTER" textFill="#ffd875" textOverrun="CLIP">
+            <Label layoutX="15.0" layoutY="44.0" prefHeight="79.0" prefWidth="238.0" text="COLD BREW CORP" textAlignment="CENTER" textFill="#ffd875" textOverrun="CLIP">
                <font>
                   <Font name="Franklin Gothic Demi Cond" size="34.0" />
                </font>

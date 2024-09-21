@@ -10,7 +10,7 @@
 
 <StackPane fx:id="orderStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerOrderPage">
    <children>
-      <Pane fx:id="specificOrderPane" prefHeight="657.0" prefWidth="513.0" style="-fx-background-color: #F4F4D5;">
+      <Pane fx:id="specificOrderPane" prefHeight="657.0" prefWidth="513.0" style="-fx-background-color: #F4F4D5; -fx-border-color: #966216;">
          <children>
             <ImageView fx:id="backButton1" fitHeight="75.0" fitWidth="74.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#onBackButton1Click" pickOnBounds="true" preserveRatio="true">
                <image>
