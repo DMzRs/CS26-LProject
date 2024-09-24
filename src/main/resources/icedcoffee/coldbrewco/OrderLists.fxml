@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerOrderList">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
+         <children>
+            <Label layoutX="357.0" layoutY="40.0" text="Cold Brew Corp" textAlignment="CENTER" textFill="#846004">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="92.0" fitWidth="93.0" layoutX="255.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/coffee-cup_1.png" />
+               </image>
+            </ImageView>
+            <TableView fx:id="previousOrderTable" layoutX="48.0" layoutY="99.0" prefHeight="472.0" prefWidth="774.0" style="-fx-border-color: #966216;">
+              <columns>
+                <TableColumn fx:id="previousProductNameColumn" prefWidth="175.0" text="Product Name" />
+                <TableColumn fx:id="previousPriceColumn" minWidth="0.0" prefWidth="114.0" text="Price" />
+                  <TableColumn fx:id="previousQuantityColumn" prefWidth="151.0" text="Quantity" />
+                  <TableColumn fx:id="previousDateColumn" minWidth="7.0" prefWidth="135.0" text="Date" />
+                  <TableColumn fx:id="previousSubTotalColumn" prefWidth="198.0" text="SubTotal" />
+              </columns>
+            </TableView>
+            <ImageView fx:id="backToMain" fitHeight="75.0" fitWidth="74.0" layoutX="42.0" layoutY="14.0" onMouseClicked="#onSwitchToMainButtonClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/BackArrow.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="642.0" layoutY="604.0" onMouseClicked="#showOrderListButtonClick" prefHeight="33.0" prefWidth="180.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Show Previous Orders">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

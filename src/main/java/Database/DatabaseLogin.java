@@ -13,7 +13,7 @@ public class DatabaseLogin {
     public int ReturnLoginUser(String username, String password) {
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String checkData = ("SELECT UserId,username,password FROM users WHERE username = ? AND password = ?");
+            String checkData = ("SELECT UserId,username,password FROM user WHERE username = ? AND password = ?");
             PreparedStatement preparedStatement = connection.prepareStatement(checkData);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -63,7 +63,7 @@ public class DatabaseLogin {
     public boolean RegisterUser(String username, String password) {
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String insertData = ("INSERT INTO users (username, password) VALUES (?, ?)");
+            String insertData = ("INSERT INTO user (username, password) VALUES (?, ?)");
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertData);
             preparedStatement.setString(1, username);

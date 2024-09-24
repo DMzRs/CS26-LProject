@@ -73,7 +73,7 @@
                   <Font name="Franklin Gothic Heavy" size="23.0" />
                </font>
             </Label>
-            <ImageView fx:id="checkOrder" fitHeight="91.0" fitWidth="91.0" layoutX="619.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="checkOrder" fitHeight="91.0" fitWidth="91.0" layoutX="619.0" layoutY="200.0" onMouseClicked="#onCheckPreviousOrderButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/CheckOrder.png" />
                </image>
@@ -81,7 +81,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="598.0" layoutY="304.0" text="Check Order" textAlignment="CENTER">
+            <Label layoutX="578.0" layoutY="302.0" onMouseClicked="#onCheckPreviousOrderButtonClick" prefHeight="57.0" prefWidth="173.0" text="Check Previous Orders" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Heavy" size="23.0" />
                </font>

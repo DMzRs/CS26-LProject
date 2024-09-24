@@ -17,7 +17,7 @@ public class DatabaseUpdate {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
             // Correct SQL query to update balance
-            String updateBalanceQuery = "UPDATE users SET accountBalance = accountBalance + ? WHERE userId = ?";
+            String updateBalanceQuery = "UPDATE user SET accountBalance = accountBalance + ? WHERE userId = ?";
 
             // Prepare the statement
             PreparedStatement preparedStatement = connection.prepareStatement(updateBalanceQuery);
@@ -45,7 +45,7 @@ public class DatabaseUpdate {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
             // Correct SQL query to update balance
-            String updateBalanceQuery = "UPDATE users SET accountBalance = accountBalance - ? WHERE userId = ?";
+            String updateBalanceQuery = "UPDATE user SET accountBalance = accountBalance - ? WHERE userId = ?";
 
             // Prepare the statement
             PreparedStatement preparedStatement = connection.prepareStatement(updateBalanceQuery);

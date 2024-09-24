@@ -12,7 +12,7 @@ public class DatabaseShow {
             int balance;
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
-            String showBalance = "SELECT * FROM users WHERE userId = ?";
+            String showBalance = "SELECT * FROM user WHERE userId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showBalance);
             preparedStatement.setInt(1, userId);
 
@@ -115,6 +115,23 @@ public class DatabaseShow {
             if (result.next()) {
                 int productId = result.getInt("productId");
                 return productId;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int showOrderId(int userId)    {
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showOrderList = "SELECT * FROM orders WHERE userId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showOrderList);
+            preparedStatement.setInt(1, userId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int orderId = result.getInt("orderId");
+                return orderId;
             }
         } catch (SQLException e) {
             e.printStackTrace();

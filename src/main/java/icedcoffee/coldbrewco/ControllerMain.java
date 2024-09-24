@@ -133,4 +133,16 @@ public class ControllerMain {
         currentStage.show();
     }
 
+    @FXML
+    protected void onCheckPreviousOrderButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("OrderLists.fxml"));
+        Scene prevOrders = new Scene(fxmlLoader.load(), 900, 700);
+
+        Stage currentStage = (Stage) selectOrder.getScene().getWindow();
+        currentStage.setScene(prevOrders);
+        currentStage.setTitle("Previous Orders Page");
+        currentStage.centerOnScreen();
+        currentStage.show();
+    }
+
 }

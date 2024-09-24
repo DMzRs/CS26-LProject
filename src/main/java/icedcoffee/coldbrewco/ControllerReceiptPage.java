@@ -86,18 +86,20 @@ public class ControllerReceiptPage {
         receiptDate.setText("Date: "+day+"/"+month+"/"+year);
     }
 
+    //Close Event to go Back to Main Page
     @FXML
     protected void onCloseButtonClicked() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Order Page.fxml"));
-        Scene orderPage = new Scene(fxmlLoader.load(), 900, 700);
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
+        Scene mainPage = new Scene(fxmlLoader.load(), 900, 700);
 
         Stage currentStage = (Stage) BalanceLabelR.getScene().getWindow();
-        currentStage.setScene(orderPage);
-        currentStage.setTitle("Order Page");
+        currentStage.setScene(mainPage);
+        currentStage.setTitle("Main Page");
         currentStage.centerOnScreen();
         currentStage.show();
     }
 
+    //
     @FXML
     protected void onPrintButtonClicked() throws IOException{
 
