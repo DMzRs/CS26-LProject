@@ -138,5 +138,22 @@ public class DatabaseShow {
         }
         return 0;
     }
+
+    public int getProductQuantity(int productId){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showId = "SELECT * FROM product WHERE productId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showId);
+            preparedStatement.setInt(1, productId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int productQuantity = result.getInt("productQuantity");
+                return productQuantity;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
 
