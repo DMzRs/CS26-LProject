@@ -11,6 +11,17 @@ public class DatabaseUpdate {
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
+    public void updateUserSales(int userId, int totalPrice){
+        try{
+            Connection con = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            PreparedStatement ps = con.prepareStatement("update user set userSales = (userSales + ?) where userid = ?");
+            ps.setInt(1, totalPrice);
+            ps.setInt(2, userId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public boolean deductProductQuantity(int productId, int quantityBought) {
         try {

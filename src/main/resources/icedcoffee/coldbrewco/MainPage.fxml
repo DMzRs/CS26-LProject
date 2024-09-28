@@ -21,58 +21,86 @@
                   <Image url="@../../images/coffee-cup_1.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="selectOrder" fitHeight="91.0" fitWidth="95.0" layoutX="260.0" layoutY="201.0" onMouseClicked="#onSelectOrderButtonClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/SelectOrder.png" />
-               </image>
+            <Pane layoutX="215.0" layoutY="187.0" onMouseClicked="#onSelectOrderButtonClick" prefHeight="177.0" prefWidth="182.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <children>
+                  <ImageView fx:id="selectOrder" fitHeight="91.0" fitWidth="95.0" layoutX="46.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/SelectOrder.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label layoutX="24.0" layoutY="130.0" text="Select Order" textAlignment="CENTER">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </ImageView>
-            <ImageView fx:id="logOut" fitHeight="91.0" fitWidth="95.0" layoutX="260.0" layoutY="409.0" onMouseClicked="#onLogOutButtonClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/LogOut.png" />
-               </image>
+            </Pane>
+            <Pane layoutX="460.0" layoutY="187.0" onMouseClicked="#onCheckPreviousOrderButtonClick" prefHeight="177.0" prefWidth="182.0" style="-fx-border-color: #966216; -fx-background-color: FFFFFF; -fx-border-radius: 20px; -fx-background-radius: 20px;">
+               <children>
+                  <ImageView fx:id="checkOrder" fitHeight="91.0" fitWidth="91.0" layoutX="52.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/CheckOrder.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="118.0" prefHeight="57.0" prefWidth="169.0" text="Check Your Sales" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </ImageView>
-            <ImageView fx:id="close" fitHeight="91.0" fitWidth="95.0" layoutX="505.0" layoutY="409.0" onMouseClicked="#onExitMainPageButtonClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/Close.png" />
-               </image>
+            </Pane>
+            <Pane layoutX="215.0" layoutY="412.0" onMouseClicked="#onLogOutButtonClick" prefHeight="177.0" prefWidth="182.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <children>
+                  <ImageView fx:id="logOut" fitHeight="91.0" fitWidth="95.0" layoutX="46.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/LogOut.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label layoutX="50.0" layoutY="128.0" text="Log Out" textAlignment="CENTER">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </ImageView>
-            <Label layoutX="238.0" layoutY="311.0" onMouseClicked="#onSelectOrderButtonClick" text="Select Order" textAlignment="CENTER">
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="23.0" />
-               </font>
-            </Label>
-            <Label layoutX="264.0" layoutY="513.0" onMouseClicked="#onLogOutButtonClick" text="Log Out" textAlignment="CENTER">
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="23.0" />
-               </font>
-            </Label>
-            <Label layoutX="530.0" layoutY="513.0" onMouseClicked="#onExitMainPageButtonClick" text="Exit" textAlignment="CENTER">
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="23.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="checkOrder" fitHeight="91.0" fitWidth="91.0" layoutX="505.0" layoutY="201.0" onMouseClicked="#onCheckPreviousOrderButtonClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/CheckOrder.png" />
-               </image>
+            </Pane>
+            <Pane layoutX="460.0" layoutY="412.0" onMouseClicked="#onExitMainPageButtonClick" prefHeight="177.0" prefWidth="182.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <children>
+                  <ImageView fx:id="close" fitHeight="91.0" fitWidth="95.0" layoutX="46.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/Close.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label layoutX="71.0" layoutY="128.0" text="Exit" textAlignment="CENTER">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </ImageView>
-            <Label layoutX="464.0" layoutY="303.0" onMouseClicked="#onCheckPreviousOrderButtonClick" prefHeight="57.0" prefWidth="173.0" text="Check Previous Orders" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="23.0" />
-               </font>
-            </Label>
+            </Pane>
          </children>
       </Pane>
    </children>

@@ -1,5 +1,6 @@
 package icedcoffee.coldbrewco;
 import Database.DatabaseLogin;
+import ForEnkeepingLoginId.AdminId;
 import ForEnkeepingLoginId.LoginId;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +54,9 @@ public class ControllerLogin {
         String password = passwordAdmin.getText();
         int currentAdminId = login.ReturnLoginAdmin(username,password);
         if(currentAdminId > 0){
+            AdminId.setAdminId(currentAdminId);
             JOptionPane.showMessageDialog(null,"Admin Login Successful");
+            switchtoAdminMainPage();
         } else {
             JOptionPane.showMessageDialog(null,"Admin Login Failed");
         }
@@ -145,6 +148,17 @@ public class ControllerLogin {
         Stage currentStage = (Stage) usernameField.getScene().getWindow();
         currentStage.setScene(mainAccount);
         currentStage.setTitle("Main Page");
+        currentStage.centerOnScreen();
+        currentStage.show();
+    }
+
+    private void switchtoAdminMainPage() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("AdminMainPage.fxml"));
+        Scene adminPage = new Scene(fxmlLoader.load(), 900, 700);
+
+        Stage currentStage = (Stage) usernameAdmin.getScene().getWindow();
+        currentStage.setScene(adminPage);
+        currentStage.setTitle("Admin Main Page");
         currentStage.centerOnScreen();
         currentStage.show();
     }

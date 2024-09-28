@@ -94,6 +94,7 @@ public class ControllerOrderDetailsPage {
     private void onCheckOutButtonClick() throws IOException {
         DatabaseShow show = new DatabaseShow();
         DatabaseInsert insert = new DatabaseInsert();
+        DatabaseUpdate update = new DatabaseUpdate();
 
         // Get all items from the TableView
         ObservableList<OrderItem> allItems = orderCoffeeTable.getItems();
@@ -134,6 +135,7 @@ public class ControllerOrderDetailsPage {
 
                     insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
                 }
+                update.updateUserSales(LoginId.getLoginId(), totalPrice);
                 // Clear items after processing
                 allItems.clear();
 

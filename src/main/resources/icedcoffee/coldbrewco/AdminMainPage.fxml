@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerAdminMainPage">
+   <children>
+      <Pane layoutX="15.0" layoutY="15.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
+         <children>
+            <Label layoutX="118.0" layoutY="50.0" text="Cold Brew Corp" textAlignment="CENTER" textFill="#846004" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="91.0" fitWidth="98.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/coffee-cup_1.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="464.0" layoutY="50.0" prefHeight="57.0" prefWidth="101.0" text="Hello!," textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="greetLabel" contentDisplay="CENTER" layoutX="565.0" layoutY="50.0" prefHeight="57.0" prefWidth="157.0" text="Hello!," textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="28.0" />
+               </font>
+            </Label>
+            <Pane layoutX="206.0" layoutY="177.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="95.0" layoutX="56.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/adminViewCustomer.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="127.0" prefHeight="57.0" prefWidth="181.0" text="View Employees Sales" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="489.0" layoutY="177.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="91.0" layoutX="55.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/adminProductPage.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="134.0" prefHeight="34.0" prefWidth="173.0" text="Product Page" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="489.0" layoutY="422.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="95.0" layoutX="55.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/Close.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label layoutX="80.0" layoutY="138.0" text="Exit" textAlignment="CENTER">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="206.0" layoutY="422.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="95.0" layoutX="55.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/LogOut.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label layoutX="59.0" layoutY="138.0" text="Log Out" textAlignment="CENTER">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</Pane>

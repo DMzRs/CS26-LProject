@@ -122,12 +122,12 @@ public class DatabaseShow {
     public int totalSaleOnSpecificUser(int userId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String showTotal = "SELECT SUM(subTotal) AS totalSale FROM orders WHERE userId = ?";
+            String showTotal = "SELECT userSales from user where userId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showTotal);
             preparedStatement.setInt(1, userId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                int totalSale = result.getInt("totalSale");
+                int totalSale = result.getInt("userSales");
                 return totalSale;
             }
         } catch (SQLException e){
@@ -161,6 +161,22 @@ public class DatabaseShow {
         return orderList;
     }
 
+    public String showAdminName(int AdminId){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showName = "SELECT * FROM admin WHERE adminId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showName);
+            preparedStatement.setInt(1, AdminId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                String Name = result.getString("username");
+                return Name;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
 
 }
 
