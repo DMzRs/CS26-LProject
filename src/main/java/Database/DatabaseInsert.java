@@ -8,7 +8,6 @@ public class DatabaseInsert {
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
     public void newOrderUser(int userId, int productId, int orderQuantity, int subTotal){
-        DatabaseUpdate update = new DatabaseUpdate();
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String insertOrderQuery = "INSERT INTO orders (userId,productId,orderQuantity,date,subTotal)VALUES(?,?,?,CURRENT_DATE,?)";
@@ -18,9 +17,6 @@ public class DatabaseInsert {
             preparedStatement.setInt(3, orderQuantity);
             preparedStatement.setInt(4, subTotal);
             preparedStatement.executeUpdate();
-
-            update.deductMoney(userId, subTotal);
-
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {

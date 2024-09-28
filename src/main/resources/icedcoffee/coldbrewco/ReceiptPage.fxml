@@ -67,7 +67,7 @@
                   <Font name="Franklin Gothic Medium" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="BalanceLabelR" layoutX="276.0" layoutY="430.0" prefHeight="22.0" prefWidth="115.0" text="Balance:">
+            <Label fx:id="BalanceLabelR" layoutX="210.0" layoutY="430.0" prefHeight="22.0" prefWidth="181.0" text="Balance:">
                <font>
                   <Font name="Franklin Gothic Medium" size="15.0" />
                </font>

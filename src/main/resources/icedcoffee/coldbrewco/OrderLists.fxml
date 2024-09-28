@@ -23,7 +23,7 @@
                   <Image url="@../../images/coffee-cup_1.png" />
                </image>
             </ImageView>
-            <TableView fx:id="previousOrderTable" layoutX="48.0" layoutY="99.0" prefHeight="472.0" prefWidth="774.0" style="-fx-border-color: #966216;">
+            <TableView fx:id="previousOrderTable" layoutX="48.0" layoutY="99.0" prefHeight="464.0" prefWidth="774.0" style="-fx-border-color: #966216;">
               <columns>
                 <TableColumn fx:id="previousProductNameColumn" prefWidth="175.0" text="Product Name" />
                 <TableColumn fx:id="previousPriceColumn" minWidth="0.0" prefWidth="114.0" text="Price" />
@@ -40,7 +40,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="CENTER" layoutX="642.0" layoutY="604.0" onMouseClicked="#showOrderListButtonClick" prefHeight="33.0" prefWidth="180.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text="Show Previous Orders">
+            <Label fx:id="totalSold" layoutX="671.0" layoutY="608.0" prefHeight="27.0" prefWidth="151.0" style="-fx-border-color: #000000; -fx-background-color: FFFFFF;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="539.0" layoutY="605.0" prefHeight="33.0" prefWidth="132.0" text="Your Total Sales:">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

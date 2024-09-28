@@ -123,8 +123,9 @@ public class ControllerOrderDetailsPage {
             // Proceed with the checkout
             ObservableList<OrderItem> receiptItems = FXCollections.observableArrayList(allItems);
 
-            int balance = show.showMoney(LoginId.getLoginId());
-            if (balance >= totalPrice) {
+            String moneyReceivedStr = JOptionPane.showInputDialog(null,"Enter Money Received:","Input Dialog", JOptionPane.QUESTION_MESSAGE);
+            int moneyReceived = Integer.parseInt(moneyReceivedStr);
+            if (moneyReceived >= totalPrice) {
                 // Insert orders into the database and remove items
                 for (OrderItem itemToRemove : allItems) {
                     String coffeeName = itemToRemove.getName();
@@ -140,7 +141,7 @@ public class ControllerOrderDetailsPage {
                 FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
                 Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
                 ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController(); // Get the controller
-                controllerReceiptPage.setOrderItems(receiptItems);
+                controllerReceiptPage.setOrderItems(receiptItems, moneyReceived);
 
                 // Set the scene for the new stage
                 Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
@@ -149,7 +150,7 @@ public class ControllerOrderDetailsPage {
                 currentStage.centerOnScreen();
                 currentStage.show();
             } else {
-                JOptionPane.showMessageDialog(null,"Please select an item to remove/Add funds to your account!");
+                JOptionPane.showMessageDialog(null,"Please select an item to remove!");
             }
         } else {
             System.out.println("Order Canceled");

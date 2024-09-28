@@ -45,10 +45,10 @@ public class ControllerReceiptPage {
     private TableColumn<OrderItem, Integer> SubTotalCoffee;
 
     // Method to set order items in the TableView
-    public void setOrderItems(ObservableList<OrderItem> items) {
+    public void setOrderItems(ObservableList<OrderItem> items,int receivedMoney) {
         if (ReceiptTable != null) {
             ReceiptTable.setItems(items);
-            updateReceiptDetails();
+            updateReceiptDetails(receivedMoney);
         } else {
             System.out.println("ReceiptTable is null!");
         }
@@ -64,8 +64,8 @@ public class ControllerReceiptPage {
         SubTotalCoffee.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
     }
 
-    private void updateReceiptDetails() {
-        DatabaseShow show = new DatabaseShow();
+
+    private void updateReceiptDetails(int moneyReceived) {
         ObservableList<OrderItem> allItems = ReceiptTable.getItems();
 
 
@@ -75,10 +75,9 @@ public class ControllerReceiptPage {
             total += subTotal;
         }
 
-        int change = show.showMoney(LoginId.getLoginId());
-        BalanceLabelR.setText("Balance: " + (change + total));
+        BalanceLabelR.setText("Money Received: " + moneyReceived);
         TotalLabel.setText("Total: " + total);
-        ChangeLabel.setText("Change: " + change);
+        ChangeLabel.setText("Change: " + (moneyReceived - total));
         LocalDate date = LocalDate.now();
         int day = date.getDayOfMonth();
         int month = date.getMonthValue();

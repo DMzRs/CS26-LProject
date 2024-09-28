@@ -24,87 +24,30 @@ public class ControllerMain {
     @FXML
     private TextField cashAmountField;
 
-    //Click Event to switch to check balance page
+    //to go to select order page
     @FXML
-    protected void onCheckCashButtonClick() throws IOException {
-    switchtoCheckBalance();
-    }
+    protected void onSelectOrderButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Order Page.fxml"));
+        Scene Orderselect = new Scene(fxmlLoader.load(), 900, 700);
 
-    //Button click show balance
-    @FXML
-    protected void onCheckBalanceButtonClick(){
-    showBalance();
-    }
-
-    //to switch check balance stage
-    @FXML
-    private void switchtoCheckBalance()throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("checkAccountBal.fxml"));
-        Scene checkBalance = new Scene(fxmlLoader.load(), 375, 575);
-
-
-        Stage currentStage = (Stage) checkCash.getScene().getWindow();
-        currentStage.setScene(checkBalance);
-        currentStage.setTitle("Balance Page");
-        currentStage.centerOnScreen();
-        currentStage.show();
-
-    }
-
-    //to show balance
-    @FXML
-    private void showBalance(){
-        DatabaseShow show = new DatabaseShow();
-        int userid = LoginId.getLoginId();
-        int balance = show.showMoney(userid);
-        currentBalanceLabel.setText(" "+balance);
-
-    }
-
-
-    //to save funds amount added
-    @FXML
-    protected void onAddButtonClick(){
-        DatabaseUpdate update = new DatabaseUpdate();
-        LoginId loginId = new LoginId();
-
-        String cashAmount = cashAmountField.getText();
-        int cash = Integer.parseInt(cashAmount);
-        int userid = loginId.getLoginId();
-
-        boolean cofirmAdd = update.addMoney(userid,cash);
-        if(cofirmAdd){
-            showBalance();
-            JOptionPane.showMessageDialog(null, "You have successfully added money to the database");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "You have not successfully added money to the database");
-        }
-    }
-
-    //to delete input text
-    @FXML
-    protected void onCancelButtonClick(){
-        cashAmountField.clear();
-    }
-
-    //toReturnMainPage
-    @FXML
-    protected void onReturnMainPageButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
-        Scene mainAccount = new Scene(fxmlLoader.load(), 900, 700);
-
-        Stage currentStage = (Stage) cashAmountField.getScene().getWindow();
-        currentStage.setScene(mainAccount);
-        currentStage.setTitle("Main Page");
+        Stage currentStage = (Stage) selectOrder.getScene().getWindow();
+        currentStage.setScene(Orderselect);
+        currentStage.setTitle("Order Page");
         currentStage.centerOnScreen();
         currentStage.show();
     }
 
-    //to exit program
+    //to check order history from current userId
     @FXML
-    protected void onExitMainPageButtonClick(){
-        System.exit(0);
+    protected void onCheckPreviousOrderButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("OrderLists.fxml"));
+        Scene prevOrders = new Scene(fxmlLoader.load(), 900, 700);
+
+        Stage currentStage = (Stage) selectOrder.getScene().getWindow();
+        currentStage.setScene(prevOrders);
+        currentStage.setTitle("Previous Orders Page");
+        currentStage.centerOnScreen();
+        currentStage.show();
     }
 
     //to go back to log in page
@@ -121,28 +64,10 @@ public class ControllerMain {
         currentStage.show();
     }
 
+    //to exit program
     @FXML
-    protected void onSelectOrderButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Order Page.fxml"));
-        Scene Orderselect = new Scene(fxmlLoader.load(), 900, 700);
-
-        Stage currentStage = (Stage) selectOrder.getScene().getWindow();
-        currentStage.setScene(Orderselect);
-        currentStage.setTitle("Order Page");
-        currentStage.centerOnScreen();
-        currentStage.show();
-    }
-
-    @FXML
-    protected void onCheckPreviousOrderButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("OrderLists.fxml"));
-        Scene prevOrders = new Scene(fxmlLoader.load(), 900, 700);
-
-        Stage currentStage = (Stage) selectOrder.getScene().getWindow();
-        currentStage.setScene(prevOrders);
-        currentStage.setTitle("Previous Orders Page");
-        currentStage.centerOnScreen();
-        currentStage.show();
+    protected void onExitMainPageButtonClick(){
+        System.exit(0);
     }
 
 }

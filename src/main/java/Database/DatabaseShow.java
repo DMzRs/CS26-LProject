@@ -1,5 +1,8 @@
 package Database;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 public class DatabaseShow {
@@ -7,30 +10,6 @@ public class DatabaseShow {
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
-    public int showMoney(int userId)    {
-        try {
-            int balance;
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-
-            String showBalance = "SELECT * FROM user WHERE userId = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(showBalance);
-            preparedStatement.setInt(1, userId);
-
-            // Execute query
-            ResultSet result = preparedStatement.executeQuery();
-
-            // Process result
-            if (result.next()) {
-                balance = result.getInt("accountBalance");
-                return balance;
-            } else {
-                System.out.println("No user found with userId: " + userId);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
     public String showProductDescription(int productId)    {
         try {
@@ -122,22 +101,6 @@ public class DatabaseShow {
         return 0;
     }
 
-    public int showOrderId(int userId)    {
-        try{
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String showOrderList = "SELECT * FROM orders WHERE userId = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(showOrderList);
-            preparedStatement.setInt(1, userId);
-            ResultSet result = preparedStatement.executeQuery();
-            if (result.next()) {
-                int orderId = result.getInt("orderId");
-                return orderId;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
     public int getProductQuantity(int productId){
         try{
@@ -155,5 +118,49 @@ public class DatabaseShow {
         }
         return 0;
     }
+
+    public int totalSaleOnSpecificUser(int userId){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showTotal = "SELECT SUM(subTotal) AS totalSale FROM orders WHERE userId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showTotal);
+            preparedStatement.setInt(1, userId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int totalSale = result.getInt("totalSale");
+                return totalSale;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public ObservableList<PreviousOrders> getPreviousOrdersUser(int userId){
+        ObservableList<PreviousOrders> orderList = FXCollections.observableArrayList();
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showOrderList = "SELECT productId,orderQuantity,date,subTotal FROM orders WHERE userId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showOrderList);
+            preparedStatement.setInt(1, userId);
+            ResultSet result = preparedStatement.executeQuery();
+            while (result.next()) {
+                int productId = result.getInt("productId");
+                int orderQuantity = result.getInt("orderQuantity");
+                Date date = result.getDate("date");
+                int subTotal = result.getInt("subTotal");
+
+                String name = showProductName(productId);
+                int price = showProductPrice(productId);
+                String dateStr = date.toString();
+
+                orderList.add(new PreviousOrders(name,price,orderQuantity,dateStr,subTotal));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderList;
+    }
+
+
 }
 
