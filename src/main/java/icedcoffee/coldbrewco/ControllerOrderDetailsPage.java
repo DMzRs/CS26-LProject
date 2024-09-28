@@ -132,7 +132,7 @@ public class ControllerOrderDetailsPage {
                     String coffeeName = itemToRemove.getName();
                     int itemQuantity = itemToRemove.getQuantity();
                     int subTotal = itemToRemove.getSubTotal();
-
+                    update.productBought(show.showProductId(coffeeName),itemQuantity);
                     insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
                 }
                 update.updateUserSales(LoginId.getLoginId(), totalPrice);

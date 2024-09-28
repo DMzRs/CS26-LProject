@@ -4,13 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.concurrent.Callable;
 
 public class DatabaseShow {
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
-
+    //to show product description using product id
     public String showProductDescription(int productId)    {
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
@@ -35,6 +36,7 @@ public class DatabaseShow {
         return "No description";
     }
 
+    //to show product name using product id
     public String showProductName(int productId)    {
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
@@ -59,6 +61,7 @@ public class DatabaseShow {
         return "No description";
     }
 
+    //to show price of a product using product id
     public int showProductPrice(int productId)    {
         try {
             int price;
@@ -84,6 +87,7 @@ public class DatabaseShow {
         return 0;
     }
 
+    // to show product id using product name
     public int showProductId(String productName){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
@@ -101,7 +105,7 @@ public class DatabaseShow {
         return 0;
     }
 
-
+    //to get the product quantity using product id
     public int getProductQuantity(int productId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
@@ -119,6 +123,7 @@ public class DatabaseShow {
         return 0;
     }
 
+    //to get sale on specific user Id
     public int totalSaleOnSpecificUser(int userId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
@@ -135,6 +140,8 @@ public class DatabaseShow {
         }
         return 0;
     }
+
+    // to get the table for previous orders made on specific userId
     public ObservableList<PreviousOrders> getPreviousOrdersUser(int userId){
         ObservableList<PreviousOrders> orderList = FXCollections.observableArrayList();
         try{
@@ -161,6 +168,85 @@ public class DatabaseShow {
         return orderList;
     }
 
+    //to get all user sales one by one
+    public ObservableList<EmployeeSales> getEmployeeSalesUser(){
+        ObservableList<EmployeeSales> employeeSalesList = FXCollections.observableArrayList();
+        try{
+            int userIdLimit = showLastUserId();
+            int userId = 1;
+            while(userId <= userIdLimit) {
+                Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+                String showEmpListSales = "SELECT SUM(orderQuantity) AS totalCoffeeSold, SUM(subTotal) AS TotalSales FROM orders WHERE userId = ? ";
+                PreparedStatement preparedStatement = connection.prepareStatement(showEmpListSales);
+                preparedStatement.setInt(1, userId);
+                ResultSet result = preparedStatement.executeQuery();
+                while (result.next()) {
+                    int totalCoffeeSold = result.getInt("totalCoffeeSold");
+                    int totalSales = result.getInt("TotalSales");
+
+                    String userName = showName(userId);
+
+                    employeeSalesList.add(new EmployeeSales(userName, totalCoffeeSold, totalSales));
+                }
+                userId++;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return employeeSalesList;
+    }
+
+    //limiter for getEmployeeSales
+    public int showLastUserId(){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showLastUserId = "SELECT userId AS lastId FROM user ORDER BY userId DESC LIMIT 1";
+            PreparedStatement preparedStatement = connection.prepareStatement(showLastUserId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int userId = result.getInt("lastId");
+                return userId;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    //to show the name of a user
+    public String showName(int userId){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showName = "SELECT username FROM user WHERE userId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showName);
+            preparedStatement.setInt(1, userId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                String Name = result.getString("username");
+                return Name;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public int showOverallSales(){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showTotalSales = "Select SUM(subTotal) AS OverallSales FROM orders";
+            PreparedStatement preparedStatement = connection.prepareStatement(showTotalSales);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int overallSales = result.getInt("OverallSales");
+                return overallSales;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    //to show admin name
     public String showAdminName(int AdminId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);

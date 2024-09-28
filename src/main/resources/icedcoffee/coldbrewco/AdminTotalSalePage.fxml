@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerAdminSalesPage">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
+         <children>
+            <Label layoutX="357.0" layoutY="40.0" text="Cold Brew Corp" textAlignment="CENTER" textFill="#846004">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="92.0" fitWidth="93.0" layoutX="255.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/coffee-cup_1.png" />
+               </image>
+            </ImageView>
+            <TableView fx:id="SalesTable" layoutX="48.0" layoutY="115.0" prefHeight="448.0" prefWidth="774.0" style="-fx-border-color: #966216;">
+               <columns>
+                  <TableColumn fx:id="empNameCol" prefWidth="441.0" text="Employee Name" />
+                  <TableColumn fx:id="coffeeSoldCol" minWidth="0.0" prefWidth="171.0" text="Total Coffee Sold" />
+                  <TableColumn fx:id="salesPerEmpCol" prefWidth="160.0" text="Total Sales per Employee" />
+               </columns>
+            </TableView>
+            <ImageView fx:id="backToAdminMain" fitHeight="75.0" fitWidth="74.0" layoutX="42.0" layoutY="14.0" onMouseClicked="#switchToAdminMainButton" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/BackArrow.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="totalSold" layoutX="671.0" layoutY="608.0" prefHeight="27.0" prefWidth="151.0" style="-fx-border-color: #000000; -fx-background-color: FFFFFF;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="539.0" layoutY="605.0" prefHeight="33.0" prefWidth="132.0" text="Total Sales:">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

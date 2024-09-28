@@ -113,6 +113,7 @@ public class ControllerLogin {
         Stage currentStage = (Stage) usernameField.getScene().getWindow();
         currentStage.setScene(adminLogin);
         currentStage.setTitle("Admin Login Page");
+        currentStage.centerOnScreen();
         currentStage.show();
     }
 

@@ -1,6 +1,7 @@
 package icedcoffee.coldbrewco;
 
 import Database.DatabaseShow;
+import Database.DatabaseUpdate;
 import Database.OrderItem;
 import Database.OrderItemStorage;
 import icedcoffee.coldbrewco.ControllerOrderDetailsPage;
@@ -45,6 +46,10 @@ public class ControllerOrderPage {
     private Label descriptionBox;
     @FXML
     private Label orderQuantityLabel;
+    @FXML
+    private Label availableQuantity;
+    @FXML
+    private Label NotAvailable;
 
 
     //to go back to main Page
@@ -93,7 +98,7 @@ public class ControllerOrderPage {
     }
 
 
-    //to go back to caramel mach
+
     @FXML
     private void BacktoOrderPage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Order Page.fxml"));
@@ -120,6 +125,7 @@ public class ControllerOrderPage {
         orderPagePane.setLayoutX(rootPane.getWidth() - orderPagePane.getPrefWidth());
     }
 
+
     //to show product details when clicked in order page
     @FXML
     private void showProductDetails(int productId) throws IOException {
@@ -127,10 +133,13 @@ public class ControllerOrderPage {
         String Name = show.showProductName(productId);
         String Description = show.showProductDescription(productId);
         int price = show.showProductPrice(productId);
+        int availableQuantityInt = show.getProductQuantity(productId);
 
         nameBox.setText(Name);
         descriptionBox.setText(Description);
         priceBox.setText(String.valueOf(price));
+        availableQuantity.setText(String.valueOf(availableQuantityInt));
+        NotAvailable.setVisible(availableQuantityInt <= 0);
 
         String imagePath = ""; // Initialize image path
 
@@ -173,10 +182,13 @@ public class ControllerOrderPage {
     //increase number of orders
     @FXML
     protected void addQuantityButton() {
+        int availableQuantityInt = Integer.parseInt(availableQuantity.getText());
         String quantityString = orderQuantityLabel.getText();
         int quantity = Integer.parseInt(quantityString);
-        quantity = quantity + 1;
-        orderQuantityLabel.setText(String.valueOf(quantity));
+        if(quantity<availableQuantityInt) {
+            quantity = quantity + 1;
+            orderQuantityLabel.setText(String.valueOf(quantity));
+        }
     }
 
     //decrease number of orders
@@ -191,7 +203,7 @@ public class ControllerOrderPage {
 
     //to add Order to Order Details
     @FXML
-    protected void addOrderButton() {
+    protected void addOrderButton() throws IOException {
         String coffeeName = nameBox.getText();
         int coffeePriceInt = Integer.parseInt(priceBox.getText());
         int orderQuantity = Integer.parseInt(orderQuantityLabel.getText());
@@ -212,6 +224,7 @@ public class ControllerOrderPage {
 
         // If the item does not exist, add the new order to the storage
         OrderItemStorage.getInstance().addItem(newOrder);
+        BacktoOrderPage();
     }
 
 

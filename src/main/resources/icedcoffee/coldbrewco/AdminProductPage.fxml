@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="icedcoffee.coldbrewco.AdminProductPage"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerAdminProductPage">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="670.0" prefWidth="870.0" style="-fx-background-color: #F4F4D5;">
+         <children>
+            <Label layoutX="357.0" layoutY="40.0" text="Cold Brew Corp" textAlignment="CENTER" textFill="#846004">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="92.0" fitWidth="93.0" layoutX="255.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/coffee-cup_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="backToAdminMain" fitHeight="75.0" fitWidth="74.0" layoutX="42.0" layoutY="14.0" onMouseClicked="#backtoMainPage" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/BackArrow.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ScrollPane layoutX="64.0" layoutY="112.0" prefHeight="490.0" prefWidth="745.0" style="-fx-border-color: #966216;">
+              <content>
+                <AnchorPane fx:id="scrollAnchor" minHeight="0.0" minWidth="0.0" prefHeight="488.0" prefWidth="742.0">
+                     <children>
+                        <Pane fx:id="productContainer" layoutX="52.0" layoutY="22.0" prefHeight="126.0" prefWidth="638.0" style="-fx-background-color: #F4F4D5; -fx-border-color: #966216;">
+                           <children>
+                              <ImageView fx:id="imageContainer" fitHeight="92.0" fitWidth="98.0" layoutX="21.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="nameContainer" layoutX="135.0" layoutY="29.0" prefHeight="23.0" prefWidth="211.0" text="Name">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="quantityContainer" layoutX="129.0" layoutY="71.0" prefHeight="23.0" prefWidth="211.0" text="quantity">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="addButton" layoutX="515.0" layoutY="29.0" mnemonicParsing="false" text="Add Quantity">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="removeButton" layoutX="491.0" layoutY="71.0" mnemonicParsing="false" text="Remove Quantity">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+   </children>
+</Pane>

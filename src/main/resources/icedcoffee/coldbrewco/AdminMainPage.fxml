@@ -31,7 +31,7 @@
                   <Font name="Franklin Gothic Heavy" size="28.0" />
                </font>
             </Label>
-            <Pane layoutX="206.0" layoutY="177.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+            <Pane layoutX="206.0" layoutY="177.0" onMouseClicked="#checkEmployeeSalesButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -51,7 +51,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="489.0" layoutY="177.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+            <Pane layoutX="489.0" layoutY="177.0" onMouseClicked="#productPageButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -71,7 +71,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="489.0" layoutY="422.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+            <Pane layoutX="489.0" layoutY="422.0" onMouseClicked="#ExitButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -91,7 +91,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="206.0" layoutY="422.0" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+            <Pane layoutX="206.0" layoutY="422.0" onMouseClicked="#LogoutButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
