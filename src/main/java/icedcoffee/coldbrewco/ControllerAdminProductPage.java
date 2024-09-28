@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class ControllerAdminProductPage {
@@ -98,9 +99,19 @@ public class ControllerAdminProductPage {
         newAddButton.setOnAction(event -> {
             int productIndex = (int) newAddButton.getUserData(); // Retrieve the index
             int currentQuantity = show.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
-            update.addProductQuantity(productIndex + 1, currentQuantity + 1); // Update quantity in database
-            newQuantityLabel.setText("Current Quantity: " + (currentQuantity + 1)); // Update label
-            System.out.println("Add button for product " + productIndex + " clicked.");
+            String addedQuantityStr = JOptionPane.showInputDialog(null,"Enter Quantity to Add:","Add Quantity",JOptionPane.QUESTION_MESSAGE);
+            if (addedQuantityStr != null) {
+                try {
+                    int addedQuantity = Integer.parseInt(addedQuantityStr);
+                    update.addProductQuantity(productIndex + 1, currentQuantity + addedQuantity); // Update quantity in database
+                    newQuantityLabel.setText("Current Quantity: " + (currentQuantity + addedQuantity)); // Update label
+                    System.out.println("Add button for product " + productIndex + " clicked.");
+                }catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null,"Enter valid number!","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                System.out.println("Cancelled");
+            }
         });
         newProductContainer.getChildren().add(newAddButton);
 
@@ -114,8 +125,22 @@ public class ControllerAdminProductPage {
             int productIndex = (int) newRemoveButton.getUserData(); // Retrieve the index
             int currentQuantity = show.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
             if (currentQuantity > 0) {
-                update.deductProductQuantity(productIndex + 1, currentQuantity - 1); // Update quantity in database
-                newQuantityLabel.setText("Current Quantity: " + (currentQuantity - 1)); // Update label
+                String deductedQuantityStr = JOptionPane.showInputDialog(null,"Enter Quantity to Remove:","Remove Quantity",JOptionPane.QUESTION_MESSAGE);
+                if(deductedQuantityStr != null) {
+                    try {
+                        int deductedQuantity = Integer.parseInt(deductedQuantityStr);
+                        if (deductedQuantity <= currentQuantity) {
+                            update.deductProductQuantity(productIndex + 1, currentQuantity - deductedQuantity); // Update quantity in database
+                            newQuantityLabel.setText("Current Quantity: " + (currentQuantity - deductedQuantity)); // Update label
+                        } else {
+                            JOptionPane.showMessageDialog(null,"You can't remove more than the current quantity!");
+                        }
+                    }catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null,"Enter valid number!","Error",JOptionPane.ERROR_MESSAGE);
+                    }
+                } else{
+                System.out.println("Cancelled");
+                }
             } else {
                 System.out.println("Cannot remove quantity. Current quantity is 0.");
             }

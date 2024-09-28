@@ -124,35 +124,44 @@ public class ControllerOrderDetailsPage {
             // Proceed with the checkout
             ObservableList<OrderItem> receiptItems = FXCollections.observableArrayList(allItems);
 
-            String moneyReceivedStr = JOptionPane.showInputDialog(null,"Enter Money Received:","Input Dialog", JOptionPane.QUESTION_MESSAGE);
-            int moneyReceived = Integer.parseInt(moneyReceivedStr);
-            if (moneyReceived >= totalPrice) {
-                // Insert orders into the database and remove items
-                for (OrderItem itemToRemove : allItems) {
-                    String coffeeName = itemToRemove.getName();
-                    int itemQuantity = itemToRemove.getQuantity();
-                    int subTotal = itemToRemove.getSubTotal();
-                    update.productBought(show.showProductId(coffeeName),itemQuantity);
-                    insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
+            String moneyReceivedStr = JOptionPane.showInputDialog(null, "Enter Money Received:", "Money Received", JOptionPane.QUESTION_MESSAGE);
+
+
+            if (moneyReceivedStr != null) {
+                try {
+                    int moneyReceived = Integer.parseInt(moneyReceivedStr);
+
+                    if (moneyReceived >= totalPrice) {
+                        for (OrderItem itemToRemove : allItems) {
+                            String coffeeName = itemToRemove.getName();
+                            int itemQuantity = itemToRemove.getQuantity();
+                            int subTotal = itemToRemove.getSubTotal();
+                            update.productBought(show.showProductId(coffeeName), itemQuantity);
+                            insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
+                        }
+                        update.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
+                        allItems.clear();
+
+
+                        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
+                        Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
+                        ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController(); // Get the controller
+                        controllerReceiptPage.setOrderItems(receiptItems, moneyReceived);
+
+
+                        Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
+                        currentStage.setScene(receiptPage);
+                        currentStage.setTitle("Receipt Page");
+                        currentStage.centerOnScreen();
+                        currentStage.show();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Received amount is less than the total price!");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid number for the money received!");
                 }
-                update.updateUserSales(LoginId.getLoginId(), totalPrice);
-                // Clear items after processing
-                allItems.clear();
-
-                // Load ReceiptPage and pass the order items
-                FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
-                Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
-                ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController(); // Get the controller
-                controllerReceiptPage.setOrderItems(receiptItems, moneyReceived);
-
-                // Set the scene for the new stage
-                Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
-                currentStage.setScene(receiptPage);
-                currentStage.setTitle("Receipt Page");
-                currentStage.centerOnScreen();
-                currentStage.show();
             } else {
-                JOptionPane.showMessageDialog(null,"Please select an item to remove!");
+                JOptionPane.showMessageDialog(null, "Transaction was canceled.");
             }
         } else {
             System.out.println("Order Canceled");

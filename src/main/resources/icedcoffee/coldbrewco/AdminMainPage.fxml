@@ -31,7 +31,7 @@
                   <Font name="Franklin Gothic Heavy" size="28.0" />
                </font>
             </Label>
-            <Pane layoutX="206.0" layoutY="177.0" onMouseClicked="#checkEmployeeSalesButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+            <Pane layoutX="348.0" layoutY="176.0" onMouseClicked="#checkEmployeeSalesButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -51,7 +51,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="489.0" layoutY="177.0" onMouseClicked="#productPageButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+            <Pane layoutX="589.0" layoutY="176.0" onMouseClicked="#productPageButton" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -64,7 +64,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="134.0" prefHeight="34.0" prefWidth="173.0" text="Product Page" textAlignment="CENTER" wrapText="true">
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="127.0" prefHeight="57.0" prefWidth="173.0" text="Check Coffee Stocks" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="23.0" />
                      </font>
@@ -107,6 +107,26 @@
                   <Label layoutX="59.0" layoutY="138.0" text="Log Out" textAlignment="CENTER">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="106.0" layoutY="176.0" onMouseClicked="#addEmployeeAccount" prefHeight="198.0" prefWidth="200.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: FFFFFF; -fx-border-color: #966216;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="101.0" layoutX="51.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/addNewUser.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="127.0" prefHeight="57.0" prefWidth="200.0" text="Add New Employee Account" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="20.0" />
                      </font>
                   </Label>
                </children>

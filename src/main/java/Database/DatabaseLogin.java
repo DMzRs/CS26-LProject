@@ -1,7 +1,5 @@
 package Database;
 
-import ForEnkeepingLoginId.LoginId;
-
 import java.sql.*;
 
 public class DatabaseLogin {
@@ -10,10 +8,10 @@ public class DatabaseLogin {
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
     //for user login
-    public int ReturnLoginUser(String username, String password) {
+    public int ReturnLoginEmployee(String username, String password) {
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String checkData = ("SELECT UserId,username,password FROM user WHERE username = ? AND password = ?");
+            String checkData = ("SELECT empId,username,password FROM employee WHERE username = ? AND password = ?");
             PreparedStatement preparedStatement = connection.prepareStatement(checkData);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -21,7 +19,7 @@ public class DatabaseLogin {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                int user= resultSet.getInt("UserId");
+                int user= resultSet.getInt("empId");
                 return user;
             }
             resultSet.close();
@@ -60,14 +58,15 @@ public class DatabaseLogin {
     }
 
     //for user create account
-    public boolean RegisterUser(String username, String password) {
+    public boolean RegisterEmployee(String FullName, String username, String password) {
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String insertData = ("INSERT INTO user (username, password) VALUES (?, ?)");
+            String insertData = ("INSERT INTO employee (empFullName,username, password) VALUES (?, ?, ?)");
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertData);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, FullName);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
 
             preparedStatement.executeUpdate();
 

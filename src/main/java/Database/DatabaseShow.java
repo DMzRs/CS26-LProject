@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.concurrent.Callable;
 
 public class DatabaseShow {
     public String sqlurl = DatabaseLink.getsqlurl();
@@ -123,16 +122,16 @@ public class DatabaseShow {
         return 0;
     }
 
-    //to get sale on specific user Id
-    public int totalSaleOnSpecificUser(int userId){
+    //to get sale on specific employee id
+    public int totalSaleOnSpecificEmployee(int employeeId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String showTotal = "SELECT userSales from user where userId = ?";
+            String showTotal = "SELECT empSales from employee where empId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showTotal);
-            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                int totalSale = result.getInt("userSales");
+                int totalSale = result.getInt("empSales");
                 return totalSale;
             }
         } catch (SQLException e){
@@ -142,13 +141,13 @@ public class DatabaseShow {
     }
 
     // to get the table for previous orders made on specific userId
-    public ObservableList<PreviousOrders> getPreviousOrdersUser(int userId){
+    public ObservableList<PreviousOrders> getPreviousOrdersEmployee(int employeeId){
         ObservableList<PreviousOrders> orderList = FXCollections.observableArrayList();
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String showOrderList = "SELECT productId,orderQuantity,date,subTotal FROM orders WHERE userId = ?";
+            String showOrderList = "SELECT productId,orderQuantity,date,subTotal FROM orders WHERE empId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showOrderList);
-            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
                 int productId = result.getInt("productId");
@@ -169,26 +168,26 @@ public class DatabaseShow {
     }
 
     //to get all user sales one by one
-    public ObservableList<EmployeeSales> getEmployeeSalesUser(){
+    public ObservableList<EmployeeSales> getEmployeeSales(){
         ObservableList<EmployeeSales> employeeSalesList = FXCollections.observableArrayList();
         try{
-            int userIdLimit = showLastUserId();
-            int userId = 1;
-            while(userId <= userIdLimit) {
+            int empIdLimit = showLastEmployeeId();
+            int empId = 1;
+            while(empId <= empIdLimit) {
                 Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
-                String showEmpListSales = "SELECT SUM(orderQuantity) AS totalCoffeeSold, SUM(subTotal) AS TotalSales FROM orders WHERE userId = ? ";
+                String showEmpListSales = "SELECT SUM(orderQuantity) AS totalCoffeeSold, SUM(subTotal) AS TotalSales FROM orders WHERE empId = ? ";
                 PreparedStatement preparedStatement = connection.prepareStatement(showEmpListSales);
-                preparedStatement.setInt(1, userId);
+                preparedStatement.setInt(1, empId);
                 ResultSet result = preparedStatement.executeQuery();
                 while (result.next()) {
                     int totalCoffeeSold = result.getInt("totalCoffeeSold");
                     int totalSales = result.getInt("TotalSales");
 
-                    String userName = showName(userId);
+                    String userName = showName(empId);
 
                     employeeSalesList.add(new EmployeeSales(userName, totalCoffeeSold, totalSales));
                 }
-                userId++;
+                empId++;
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -197,10 +196,10 @@ public class DatabaseShow {
     }
 
     //limiter for getEmployeeSales
-    public int showLastUserId(){
+    public int showLastEmployeeId(){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String showLastUserId = "SELECT userId AS lastId FROM user ORDER BY userId DESC LIMIT 1";
+            String showLastUserId = "SELECT empId AS lastId FROM employee ORDER BY empId DESC LIMIT 1";
             PreparedStatement preparedStatement = connection.prepareStatement(showLastUserId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
@@ -217,12 +216,12 @@ public class DatabaseShow {
     public String showName(int userId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String showName = "SELECT username FROM user WHERE userId = ?";
+            String showName = "SELECT empFullName FROM employee WHERE empId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showName);
             preparedStatement.setInt(1, userId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                String Name = result.getString("username");
+                String Name = result.getString("empFullName");
                 return Name;
             }
         }catch (SQLException e){

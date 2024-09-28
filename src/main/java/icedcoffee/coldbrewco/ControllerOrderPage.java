@@ -243,7 +243,7 @@ public class ControllerOrderPage {
         // Set the scene for the new stage
         Stage currentStage = (Stage) backButton.getScene().getWindow();
         currentStage.setScene(orderDetails);
-        currentStage.setTitle("Order Details Page");
+        currentStage.setTitle("Order Details");
         currentStage.centerOnScreen();
         currentStage.show();
     }

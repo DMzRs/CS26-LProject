@@ -37,7 +37,7 @@ public class ControllerAdminSalesPage {
     salesPerEmpCol.setCellValueFactory(new PropertyValueFactory<>("TotalSalesPerEmployee"));
 
     totalSold.setText(" "+show.showOverallSales());
-    SalesTable.setItems(show.getEmployeeSalesUser());
+    SalesTable.setItems(show.getEmployeeSales());
     }
 
     @FXML

@@ -41,8 +41,8 @@ public class ControllerOrderList {
         previousDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         previousSubTotalColumn.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
 
-        totalSold.setText(" "+show.totalSaleOnSpecificUser(LoginId.getLoginId()));
-        previousOrderTable.setItems(show.getPreviousOrdersUser(LoginId.getLoginId()));
+        totalSold.setText(" "+show.totalSaleOnSpecificEmployee(LoginId.getLoginId()));
+        previousOrderTable.setItems(show.getPreviousOrdersEmployee(LoginId.getLoginId()));
     }
 
 

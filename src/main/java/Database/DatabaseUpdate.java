@@ -12,12 +12,12 @@ public class DatabaseUpdate {
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
     //to update specific user sale per transaction made
-    public void updateUserSales(int userId, int totalPrice){
+    public void updateEmployeeSales(int empId, int totalPrice){
         try{
             Connection con = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            PreparedStatement ps = con.prepareStatement("update user set userSales = (userSales + ?) where userid = ?");
+            PreparedStatement ps = con.prepareStatement("update employee set empSales = (empSales + ?) where empid = ?");
             ps.setInt(1, totalPrice);
-            ps.setInt(2, userId);
+            ps.setInt(2, empId);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

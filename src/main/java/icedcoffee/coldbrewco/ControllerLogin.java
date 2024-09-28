@@ -4,12 +4,9 @@ import ForEnkeepingLoginId.AdminId;
 import ForEnkeepingLoginId.LoginId;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -36,7 +33,7 @@ public class ControllerLogin {
         DatabaseLogin login = new DatabaseLogin();
         String username = usernameField.getText();
         String password = passwordField.getText();
-        int currentLoginID = login.ReturnLoginUser(username,password);
+        int currentLoginID = login.ReturnLoginEmployee(username,password);
         if(currentLoginID > 0){
             LoginId.setLoginId(currentLoginID);
             JOptionPane.showMessageDialog(null,"Login Successful");
@@ -62,23 +59,6 @@ public class ControllerLogin {
         }
     }
 
-    //to create new user account
-    @FXML
-    protected void onCreateAccountButtonClick() {
-        String NewUsername = newUserField.getText();
-        String NewPassword = newPassField.getText();
-        if (NewUsername.equals("") && NewPassword.equals("")) {
-            JOptionPane.showMessageDialog(null, "Invalid Username or Password");
-        } else {
-            DatabaseLogin login = new DatabaseLogin();
-            boolean isCreated = login.RegisterUser(NewUsername, NewPassword);
-            if (isCreated) {
-                JOptionPane.showMessageDialog(null, "User Created");
-            } else {
-                JOptionPane.showMessageDialog(null, "User Not Created");
-            }
-        }
-    }
 
     //to switch to admin login Page
     @FXML
@@ -86,22 +66,12 @@ public class ControllerLogin {
         switchtoAdminLogin();
     }
 
-    //button to switch to register account
-    @FXML
-    protected void onSignUpHereButtonClick() throws IOException {
-        switchtoRegisterAccount();
-    }
 
     //button to switch back to log in account from admin login page
     @FXML
     protected void onHiddenLoginButtonClick() throws IOException {
         switchtoLoginAccount(usernameAdmin);
 
-    }
-    //button to switch back to log in account from create new user
-    @FXML
-    protected void onLogInHereButtonClick() throws IOException {
-        switchtoLoginAccount(newUserField);
     }
 
 
@@ -118,16 +88,6 @@ public class ControllerLogin {
     }
 
 
-    //to switch stage to register account
-    private void switchtoRegisterAccount() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("createAcc.fxml"));
-        Scene registerAccount = new Scene(fxmlLoader.load(), 600, 400);
-
-        Stage currentStage = (Stage) usernameField.getScene().getWindow();
-        currentStage.setScene(registerAccount);
-        currentStage.setTitle("Register Page");
-        currentStage.show();
-    }
 
     //to switch stage to log in account again
     private void switchtoLoginAccount(TextField textField) throws IOException {
