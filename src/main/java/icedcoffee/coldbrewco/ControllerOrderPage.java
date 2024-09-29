@@ -65,7 +65,7 @@ public class ControllerOrderPage {
         currentStage.show();
     }
 
-    //to order page caramel macchiato
+    //to order to a specific coffee
     @FXML
     protected void onCaramelMachClick() throws IOException {
         onCoffeeClick(1);
@@ -96,8 +96,6 @@ public class ControllerOrderPage {
     protected void onBackButton1Click() throws IOException {
         BacktoOrderPage();
     }
-
-
 
     @FXML
     private void BacktoOrderPage() throws IOException {
@@ -215,15 +213,21 @@ public class ControllerOrderPage {
         ObservableList<OrderItem> currentItems = OrderItemStorage.getInstance().getSelectedItems();
 
         // Check if the item already exists in the storage
+        boolean itemExists = false;
         for (OrderItem existingItem : currentItems) {
             if (existingItem.getName().equals(coffeeName)) {
                 existingItem.setQuantity(existingItem.getQuantity() + orderQuantity);
-                return;
+                itemExists = true; // Mark that the item exists
+                break; // Exit the loop once found
             }
         }
 
         // If the item does not exist, add the new order to the storage
-        OrderItemStorage.getInstance().addItem(newOrder);
+        if (!itemExists) {
+            OrderItemStorage.getInstance().addItem(newOrder);
+        }
+
+        // Always return to the order page
         BacktoOrderPage();
     }
 
