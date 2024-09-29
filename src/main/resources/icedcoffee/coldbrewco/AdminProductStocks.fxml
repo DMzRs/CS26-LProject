@@ -53,11 +53,17 @@
                                  <font>
                                     <Font name="Franklin Gothic Medium" size="13.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <Button fx:id="removeButton" layoutX="491.0" layoutY="71.0" mnemonicParsing="false" text="Remove Quantity">
                                  <font>
                                     <Font name="Franklin Gothic Medium" size="13.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                         </Pane>

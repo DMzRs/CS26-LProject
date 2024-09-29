@@ -34,7 +34,7 @@ public class ControllerAdminSalesPage {
         DatabaseShow show = new DatabaseShow();
     empNameCol.setCellValueFactory(new PropertyValueFactory<>("EmpName"));
     coffeeSoldCol.setCellValueFactory(new PropertyValueFactory<>("TotalCoffeeSold"));
-    salesPerEmpCol.setCellValueFactory(new PropertyValueFactory<>("TotalSalesPerEmployee"));
+    salesPerEmpCol.setCellValueFactory(new PropertyValueFactory<>("SalesPerEmployee"));
 
     totalSold.setText(" "+show.showOverallSales());
     SalesTable.setItems(show.getEmployeeSales());

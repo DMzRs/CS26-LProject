@@ -27,7 +27,7 @@
                <columns>
                   <TableColumn fx:id="empNameCol" prefWidth="441.0" text="Employee Name" />
                   <TableColumn fx:id="coffeeSoldCol" minWidth="0.0" prefWidth="171.0" text="Total Coffee Sold" />
-                  <TableColumn fx:id="salesPerEmpCol" prefWidth="160.0" text="Total Sales per Employee" />
+                  <TableColumn fx:id="salesPerEmpCol" prefWidth="160.0" text="Sales per Employee" />
                </columns>
             </TableView>
             <ImageView fx:id="backToAdminMain" fitHeight="75.0" fitWidth="74.0" layoutX="42.0" layoutY="14.0" onMouseClicked="#switchToAdminMainButton" pickOnBounds="true" preserveRatio="true">

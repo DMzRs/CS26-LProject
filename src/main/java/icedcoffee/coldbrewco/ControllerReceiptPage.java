@@ -1,89 +1,83 @@
 package icedcoffee.coldbrewco;
 
-import java.time.LocalDate;
-import Database.DatabaseShow;
+
 import Database.OrderItem;
-import ForEnkeepingLoginId.LoginId;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.print.PrinterJob;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.List;
 
 public class ControllerReceiptPage {
 
-    // Labels for receipt details
-    @FXML
-    private Label receiptAddress;
+
     @FXML
     private Label receiptContactNumber;
     @FXML
-    private Label receiptDate;
-    @FXML
-    private Label BalanceLabelR;
-    @FXML
-    private Label TotalLabel;
-    @FXML
-    private Label ChangeLabel;
+    private TextArea receiptTextArea;
 
-    // TableView and columns for order items
-    @FXML
-    private TableView<OrderItem> ReceiptTable;
-    @FXML
-    private TableColumn<OrderItem, String> CoffeeName;
-    @FXML
-    private TableColumn<OrderItem, Integer> PriceCoffee;
-    @FXML
-    private TableColumn<OrderItem, Integer> QuantityCoffee;
-    @FXML
-    private TableColumn<OrderItem, Integer> SubTotalCoffee;
 
-    // Method to set order items in the TableView
-    public void setOrderItems(ObservableList<OrderItem> items,int receivedMoney) {
-        if (ReceiptTable != null) {
-            ReceiptTable.setItems(items);
-            updateReceiptDetails(receivedMoney);
-        } else {
-            System.out.println("ReceiptTable is null!");
+    // Method to set order items and display in the TextArea
+    public void setOrderItems(List<OrderItem> orderItems, int moneyReceived) {
+        StringBuilder receiptContent = new StringBuilder();
+        int totalPrice = 0;
+
+        // Add the current date
+        receiptContent.append("\n\n");
+        receiptContent.append(String.format("%50s%n", "COLD BREW CORP"));
+        receiptContent.append("\n\n");
+        receiptContent.append(String.format("%70s%n", "Contect Number: 0967215052"));
+        receiptContent.append(String.format("%80s%n", "Date: " + java.time.LocalDate.now()));
+
+        // Header separator
+        receiptContent.append("__________________________________________________\n");
+
+        // Header formatting with consistent widths
+        receiptContent.append("|        COFFEE NAME         |        QUANTITY       |    PRICE   |\n");
+        receiptContent.append("|________________________________________________|\n");
+
+        // Loop through the order items and format each line
+        for (OrderItem item : orderItems) {
+            receiptContent.append(String.format("| %-35s  %-10d  %-10d |\n",
+                    item.getName(),
+                    item.getQuantity(),
+                    item.getSubTotal()));
+            totalPrice += item.getSubTotal();
+        }
+
+        // Footer separator
+        receiptContent.append("|________________________________________________|\n");
+        // Total, Money Received, and Change aligned to the right
+        receiptContent.append(String.format("                                                             %s %d%n", "Total Price:", totalPrice));
+        receiptContent.append(String.format("                                                             %s %d%n", "Money Received:", moneyReceived));
+        receiptContent.append(String.format("                                                             %s %d%n", "Change:", moneyReceived - totalPrice));
+
+        // Set the content in the TextArea
+        receiptTextArea.setText(receiptContent.toString());
+    }
+
+
+
+    // Method to print the content of the TextArea
+    @FXML
+    public void onPrintButtonClick() {
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+        if (printerJob != null && printerJob.showPrintDialog(receiptTextArea.getScene().getWindow())) {
+            boolean success = printerJob.printPage(receiptTextArea);
+            if (success) {
+                printerJob.endJob();
+                JOptionPane.showMessageDialog(null,"DONE PRINTING");
+            }
         }
     }
 
-    // Initialize method to configure the TableView columns
-    @FXML
-    public void initialize() {
-        // Set up the cell value factories
-        CoffeeName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        PriceCoffee.setCellValueFactory(new PropertyValueFactory<>("price"));
-        QuantityCoffee.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        SubTotalCoffee.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
-    }
-
-
-    private void updateReceiptDetails(int moneyReceived) {
-        ObservableList<OrderItem> allItems = ReceiptTable.getItems();
-
-
-        int total = 0;
-        for (OrderItem item : allItems) {
-            int subTotal = item.getSubTotal(); // Ensure this returns the expected value
-            total += subTotal;
-        }
-
-        BalanceLabelR.setText("Money Received: " + moneyReceived);
-        TotalLabel.setText("Total: " + total);
-        ChangeLabel.setText("Change: " + (moneyReceived - total));
-        LocalDate date = LocalDate.now();
-        int day = date.getDayOfMonth();
-        int month = date.getMonthValue();
-        int year = date.getYear();
-        receiptDate.setText("Date: "+day+"/"+month+"/"+year);
-    }
 
     //Close Event to go Back to Main Page
     @FXML
@@ -91,16 +85,11 @@ public class ControllerReceiptPage {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
         Scene mainPage = new Scene(fxmlLoader.load(), 900, 700);
 
-        Stage currentStage = (Stage) BalanceLabelR.getScene().getWindow();
+        Stage currentStage = (Stage) receiptContactNumber.getScene().getWindow();
         currentStage.setScene(mainPage);
         currentStage.setTitle("Main Page");
         currentStage.centerOnScreen();
         currentStage.show();
     }
 
-    //
-    @FXML
-    protected void onPrintButtonClicked() throws IOException{
-
-    }
 }

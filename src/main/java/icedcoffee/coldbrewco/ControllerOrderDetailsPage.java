@@ -96,14 +96,11 @@ public class ControllerOrderDetailsPage {
         DatabaseInsert insert = new DatabaseInsert();
         DatabaseUpdate update = new DatabaseUpdate();
 
-        // Get all items from the TableView
         ObservableList<OrderItem> allItems = orderCoffeeTable.getItems();
         int totalPrice = 0;
 
-        // Create a StringBuilder to collect the names
         StringBuilder coffeeNames = new StringBuilder("All Selected Coffee:\n");
 
-        // Iterate through the items to retrieve coffee names and calculate total price
         for (OrderItem item : allItems) {
             coffeeNames.append(item.getName())
                     .append(" (Quantity: ").append(item.getQuantity())
@@ -111,7 +108,6 @@ public class ControllerOrderDetailsPage {
             totalPrice += item.getSubTotal();
         }
 
-        // Show confirmation dialog
         int confirmation = JOptionPane.showConfirmDialog(
                 null,
                 coffeeNames.toString() + "Total Price: " + totalPrice,
@@ -119,18 +115,14 @@ public class ControllerOrderDetailsPage {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
         );
-        // Handle the user's response
+
         if (confirmation == JOptionPane.YES_OPTION) {
-            // Proceed with the checkout
             ObservableList<OrderItem> receiptItems = FXCollections.observableArrayList(allItems);
-
             String moneyReceivedStr = JOptionPane.showInputDialog(null, "Enter Money Received:", "Money Received", JOptionPane.QUESTION_MESSAGE);
-
 
             if (moneyReceivedStr != null) {
                 try {
                     int moneyReceived = Integer.parseInt(moneyReceivedStr);
-
                     if (moneyReceived >= totalPrice) {
                         for (OrderItem itemToRemove : allItems) {
                             String coffeeName = itemToRemove.getName();
@@ -142,13 +134,15 @@ public class ControllerOrderDetailsPage {
                         update.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
                         allItems.clear();
 
-
+                        // Load the ReceiptPage scene
                         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
                         Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
-                        ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController(); // Get the controller
-                        controllerReceiptPage.setOrderItems(receiptItems, moneyReceived);
 
+                        // Get the controller and pass data
+                        ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController();
+                        controllerReceiptPage.setOrderItems(receiptItems, moneyReceived); // Pass data here
 
+                        // Set the new scene
                         Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
                         currentStage.setScene(receiptPage);
                         currentStage.setTitle("Receipt Page");

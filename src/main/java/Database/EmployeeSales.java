@@ -3,11 +3,11 @@ package Database;
 public class EmployeeSales {
     private String EmpName;
     private int TotalCoffeeSold;
-    private int TotalSalesPerEmployee;
-    public EmployeeSales(String EmpName, int TotalCoffeeSold, int TotalSalesPerEmployee) {
+    private int SalesPerEmployee;
+    public EmployeeSales(String EmpName, int TotalCoffeeSold, int SalesPerEmployee) {
         this.EmpName = EmpName;
         this.TotalCoffeeSold = TotalCoffeeSold;
-        this.TotalSalesPerEmployee = TotalSalesPerEmployee;
+        this.SalesPerEmployee = SalesPerEmployee;
     }
     public String getEmpName() {
         return EmpName;
@@ -21,10 +21,10 @@ public class EmployeeSales {
     public void setTotalCoffeeSold(int TotalCoffeeSold) {
         this.TotalCoffeeSold = TotalCoffeeSold;
     }
-    public int getTotalSalesPerEmployee() {
-        return TotalSalesPerEmployee;
+    public int getSalesPerEmployee() {
+        return SalesPerEmployee;
     }
-    public void setTotalSalesPerEmployee(int TotalSalesPerEmployee) {
-        this.TotalSalesPerEmployee = TotalSalesPerEmployee;
+    public void setSalesPerEmployee(int SalesPerEmployee) {
+        this.SalesPerEmployee = SalesPerEmployee;
     }
 }
