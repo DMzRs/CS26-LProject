@@ -32,28 +32,25 @@ public class ControllerReceiptPage {
         // Add the current date
         receiptContent.append("\n\n");
         receiptContent.append(String.format("%50s%n", "COLD BREW CORP"));
+        receiptContent.append("\t\tMatina, PS Building, Davao City, Philippines");
         receiptContent.append("\n\n");
         receiptContent.append(String.format("%70s%n", "Contect Number: 0967215052"));
         receiptContent.append(String.format("%80s%n", "Date: " + java.time.LocalDate.now()));
 
-        // Header separator
-        receiptContent.append("__________________________________________________\n");
 
-        // Header formatting with consistent widths
-        receiptContent.append("|        COFFEE NAME         |        QUANTITY       |    PRICE   |\n");
-        receiptContent.append("|________________________________________________|\n");
+        receiptContent.append("__________________________________________________\n");
 
         // Loop through the order items and format each line
         for (OrderItem item : orderItems) {
-            receiptContent.append(String.format("| %-35s  %-10d  %-10d |\n",
-                    item.getName(),
-                    item.getQuantity(),
-                    item.getSubTotal()));
+            receiptContent.append(""+
+                    item.getName() +
+                    "\nQuantity: " + item.getQuantity() +
+                    "\nSubTotal: " + item.getSubTotal() + "\n");
             totalPrice += item.getSubTotal();
         }
 
         // Footer separator
-        receiptContent.append("|________________________________________________|\n");
+        receiptContent.append("__________________________________________________\n");
         // Total, Money Received, and Change aligned to the right
         receiptContent.append(String.format("                                                             %s %d%n", "Total Price:", totalPrice));
         receiptContent.append(String.format("                                                             %s %d%n", "Money Received:", moneyReceived));
@@ -69,14 +66,19 @@ public class ControllerReceiptPage {
     @FXML
     public void onPrintButtonClick() {
         PrinterJob printerJob = PrinterJob.createPrinterJob();
+
         if (printerJob != null && printerJob.showPrintDialog(receiptTextArea.getScene().getWindow())) {
-            boolean success = printerJob.printPage(receiptTextArea);
+            // Create a label with the same content but no scroll bars or borders
+            Label printableLabel = new Label(receiptTextArea.getText());
+            printableLabel.setStyle("-fx-border-color: transparent; -fx-background-color: white;");
+
+            boolean success = printerJob.printPage(printableLabel); // Print the label
             if (success) {
                 printerJob.endJob();
-                JOptionPane.showMessageDialog(null,"DONE PRINTING");
             }
         }
     }
+
 
 
     //Close Event to go Back to Main Page
