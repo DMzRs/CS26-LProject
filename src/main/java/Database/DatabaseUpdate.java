@@ -11,14 +11,27 @@ public class DatabaseUpdate {
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
+    //to update employee password
+    public void updateEmpPassword(int employeeId, String password){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            PreparedStatement updateEmpPassword = connection.prepareStatement("UPDATE employee SET password=? WHERE empId=?");
+            updateEmpPassword.setString(1, password);
+            updateEmpPassword.setInt(2, employeeId);
+            updateEmpPassword.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     //to update specific user sale per transaction made
     public void updateEmployeeSales(int empId, int totalPrice){
         try{
-            Connection con = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            PreparedStatement ps = con.prepareStatement("update employee set empSales = (empSales + ?) where empid = ?");
-            ps.setInt(1, totalPrice);
-            ps.setInt(2, empId);
-            ps.executeUpdate();
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            PreparedStatement updateEmployeeSales = connection.prepareStatement("update employee set empSales = (empSales + ?) where empId = ?");
+            updateEmployeeSales.setInt(1, totalPrice);
+            updateEmployeeSales.setInt(2, empId);
+            updateEmployeeSales.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -27,23 +40,14 @@ public class DatabaseUpdate {
     //to remove quantity in admin control
     public void deductProductQuantity(int productId, int quantityRemoved) {
         try {
-            // Establish connection
+
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-
-            // Correct SQL query to update balance
             String updateBalanceQuery = "UPDATE product SET productQuantity = ? WHERE productId = ?";
-
-            // Prepare the statement
             PreparedStatement preparedStatement = connection.prepareStatement(updateBalanceQuery);
-            preparedStatement.setInt(1, quantityRemoved); // Set the amount to add
-            preparedStatement.setInt(2, productId);       // Set the user ID
+            preparedStatement.setInt(1, quantityRemoved);
+            preparedStatement.setInt(2, productId);
 
-            // Execute the update
-            int affectedRows = preparedStatement.executeUpdate();
-
-            // Close resources
-            preparedStatement.close();
-            connection.close();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,23 +57,15 @@ public class DatabaseUpdate {
     //to add product quantity in admin control
     public void addProductQuantity(int productId, int quantityAdded) {
         try {
-            // Establish connection
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
-            // Correct SQL query to update balance
             String updateBalanceQuery = "UPDATE product SET productQuantity = ? WHERE productId = ?";
-
-            // Prepare the statement
             PreparedStatement preparedStatement = connection.prepareStatement(updateBalanceQuery);
             preparedStatement.setInt(1, quantityAdded); // Set the amount to add
             preparedStatement.setInt(2, productId);       // Set the user ID
 
-            // Execute the update
-            int affectedRows = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-            // Close resources
-            preparedStatement.close();
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,20 +77,13 @@ public class DatabaseUpdate {
             // Establish connection
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
-            // Correct SQL query to update balance
             String updateBalanceQuery = "UPDATE product SET productQuantity = (productQuantity - ?) WHERE productId = ?";
-
-            // Prepare the statement
             PreparedStatement preparedStatement = connection.prepareStatement(updateBalanceQuery);
-            preparedStatement.setInt(1, quantityBought); // Set the amount to add
-            preparedStatement.setInt(2, productId);       // Set the user ID
+            preparedStatement.setInt(1, quantityBought);
+            preparedStatement.setInt(2, productId);
 
-            // Execute the update
-            int affectedRows = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-            // Close resources
-            preparedStatement.close();
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

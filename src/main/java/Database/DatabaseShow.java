@@ -213,12 +213,12 @@ public class DatabaseShow {
     }
 
     //to show the name of a user
-    public String showName(int userId){
+    public String showName(int employeeId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String showName = "SELECT empFullName FROM employee WHERE empId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showName);
-            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 String Name = result.getString("empFullName");
@@ -230,6 +230,42 @@ public class DatabaseShow {
         return "";
     }
 
+    //to get employee username
+    public String showUserName(int employeeId){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showUserName = "SELECT username FROM employee WHERE empId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showUserName);
+            preparedStatement.setInt(1, employeeId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                String username = result.getString("username");
+                return username;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //to get currentPassword
+    public String showPassword(int employeeId){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showPass = "SELECT password FROM employee WHERE empId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(showPass);
+            preparedStatement.setInt(1, employeeId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                String Password = result.getString("password");
+                return Password;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+    //to get overall sales
     public int showOverallSales(){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
