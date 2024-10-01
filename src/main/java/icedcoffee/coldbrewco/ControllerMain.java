@@ -105,8 +105,11 @@ public class ControllerMain {
         }else {
             update.updateEmpPassword(LoginId.getLoginId(), newpassword);
             JOptionPane.showMessageDialog(null, "Password updated successfully");
-            curpassfield.setText("");
-            newpassfield.setText("");
+            curpass.setVisible(false);
+            newpass.setVisible(false);
+            curpassfield.setVisible(false);
+            newpassfield.setVisible(false);
+            confirmButton.setVisible(false);
         }
     }
     //to go to select order page
