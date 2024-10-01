@@ -93,15 +93,20 @@ public class ControllerMain {
         DatabaseUpdate update = new DatabaseUpdate();
         String currpassword = curpassfield.getText();
         String newpassword = newpassfield.getText();
-        if(currpassword.equals(newpassword)){
-            JOptionPane.showMessageDialog(null, "It is the same password");
-        } else if (!currpassword.equals(show.showPassword(LoginId.getLoginId()))) {
+
+        if (!currpassword.equals(show.showPassword(LoginId.getLoginId()))) {
             JOptionPane.showMessageDialog(null, "The current password is incorrect");
-        } else if (newpassword.length()<5||newpassword.length()>10) {
+        } else if(currpassword.equals(newpassword)){
+            JOptionPane.showMessageDialog(null, "It is the same password");
+        }else if (newpassword.length()<5||newpassword.length()>10) {
             JOptionPane.showMessageDialog(null, "The new password must be 5-10 characters long");
-        } else {
+        } else if (currpassword.equals("")||newpassword.equals("")) {
+            JOptionPane.showMessageDialog(null, "Input valid password");
+        }else {
             update.updateEmpPassword(LoginId.getLoginId(), newpassword);
             JOptionPane.showMessageDialog(null, "Password updated successfully");
+            curpassfield.setText("");
+            newpassfield.setText("");
         }
     }
     //to go to select order page
