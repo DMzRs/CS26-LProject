@@ -45,6 +45,9 @@ public class ControllerAdminCreateEmployeeAcc {
         }else {
             DatabaseLogin login = new DatabaseLogin();
             boolean isCreated = login.RegisterEmployee( EmpFullName, NewUsername, NewPassword);
+            fullNameField.setText("");
+            newUserField.setText("");
+            newPassField.setText("");
             if (isCreated) {
                 JOptionPane.showMessageDialog(null, "User Created");
             } else {
