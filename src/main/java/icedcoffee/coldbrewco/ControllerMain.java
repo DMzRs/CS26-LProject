@@ -55,7 +55,6 @@ public class ControllerMain {
         rootPane.getChildren().add(viewAccountDetails);
     }
 
-
     //to set up profile details content
     @FXML
     private void showProfileDetails() throws IOException{
@@ -64,6 +63,7 @@ public class ControllerMain {
         EmpName.setText(""+show.showName(LoginId.getLoginId()));
         empUsername.setText(""+show.showUserName(LoginId.getLoginId()));
     }
+
     //to go back to main page
     @FXML
     protected void backButtonClick() throws IOException{
@@ -76,6 +76,7 @@ public class ControllerMain {
         currentStage.centerOnScreen();
         currentStage.show();
     }
+
     //when changePassword is click makes change password field visible
     @FXML
     protected void changePassClick(){
@@ -104,6 +105,7 @@ public class ControllerMain {
             JOptionPane.showMessageDialog(null, "Password updated successfully");
         }
     }
+
     //to go to select order page
     @FXML
     protected void onSelectOrderButtonClick() throws IOException {
