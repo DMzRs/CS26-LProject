@@ -136,12 +136,13 @@ public class ControllerOrderDetailsPage {
                         update.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
                         allItems.clear();
 
+                        String costumerNameStr = JOptionPane.showInputDialog(null,"Customer Name","Customer Name:",JOptionPane.QUESTION_MESSAGE);
                         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
                         Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
 
                         // Get the controller and pass data
                         ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController();
-                        controllerReceiptPage.setOrderItems(receiptItems, moneyReceived); // Pass data here
+                        controllerReceiptPage.setOrderItems(receiptItems, moneyReceived,costumerNameStr); // Pass data here
 
 
                         Stage currentStage = (Stage) removeItemButton.getScene().getWindow();

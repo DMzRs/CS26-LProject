@@ -23,9 +23,8 @@ public class ControllerReceiptPage {
     @FXML
     private TextArea receiptTextArea;
 
-
     // Method to set order items and display in the TextArea
-    public void setOrderItems(List<OrderItem> orderItems, int moneyReceived) {
+    public void setOrderItems(List<OrderItem> orderItems, int moneyReceived, String CustomerName) {
         StringBuilder receiptContent = new StringBuilder();
         int totalPrice = 0;
 
@@ -35,7 +34,8 @@ public class ControllerReceiptPage {
         receiptContent.append("\t\tMatina, PS Building, Davao City, Philippines");
         receiptContent.append("\n\n");
         receiptContent.append(String.format("%70s%n", "Contect Number: 0967215052"));
-        receiptContent.append(String.format("%80s%n", "Date: " + java.time.LocalDate.now()));
+        receiptContent.append(String.format("%80s%n%n", "Date: " + java.time.LocalDate.now()));
+        receiptContent.append(String.format("%s%n", "Customer Name: " + CustomerName));
 
 
         receiptContent.append("__________________________________________________\n");
