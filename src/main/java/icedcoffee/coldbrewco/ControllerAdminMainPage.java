@@ -28,6 +28,7 @@ public class ControllerAdminMainPage {
         Stage currentStage = (Stage) greetLabel.getScene().getWindow();
         currentStage.setScene(createAcc);
         currentStage.setTitle("Create New Employee Account");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }
@@ -40,6 +41,7 @@ public class ControllerAdminMainPage {
         Stage currentStage = (Stage) greetLabel.getScene().getWindow();
         currentStage.setScene(salesPage);
         currentStage.setTitle("Admin Sales");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }
@@ -51,6 +53,7 @@ public class ControllerAdminMainPage {
         Stage currentStage = (Stage) greetLabel.getScene().getWindow();
         currentStage.setScene(productPage);
         currentStage.setTitle("Coffee Stocks");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }
@@ -62,6 +65,7 @@ public class ControllerAdminMainPage {
         Stage currentStage = (Stage) greetLabel.getScene().getWindow();
         currentStage.setScene(adminLogin);
         currentStage.setTitle("Admin Login");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }

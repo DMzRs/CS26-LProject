@@ -68,6 +68,7 @@ public class ControllerOrderDetailsPage {
         currentStage.setScene(selectAgain);
         currentStage.setTitle("Order Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 
@@ -100,70 +101,74 @@ public class ControllerOrderDetailsPage {
         DatabaseUpdate update = new DatabaseUpdate();
 
         ObservableList<OrderItem> allItems = orderCoffeeTable.getItems();
-        int totalPrice = 0;
+        if (allItems.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please select an item to check out");
+        } else {
+            int totalPrice = 0;
 
-        StringBuilder coffeeNames = new StringBuilder("All Selected Coffee:\n");
+            StringBuilder coffeeNames = new StringBuilder("All Selected Coffee:\n");
 
-        for (OrderItem item : allItems) {
-            coffeeNames.append(item.getName())
-                    .append(" (Quantity: ").append(item.getQuantity())
-                    .append(")\n");
-            totalPrice += item.getSubTotal();
-        }
+            for (OrderItem item : allItems) {
+                coffeeNames.append(item.getName())
+                        .append(" (Quantity: ").append(item.getQuantity())
+                        .append(")\n");
+                totalPrice += item.getSubTotal();
+            }
 
-        int confirmation = JOptionPane.showConfirmDialog(
-                null,
-                coffeeNames.toString() + "Total Price: " + totalPrice,
-                "Confirm Your Order",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-        );
+            int confirmation = JOptionPane.showConfirmDialog(
+                    null,
+                    coffeeNames.toString() + "Total Price: " + totalPrice,
+                    "Confirm Your Order",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
 
-        if (confirmation == JOptionPane.YES_OPTION) {
-            ObservableList<OrderItem> receiptItems = FXCollections.observableArrayList(allItems);
-            String moneyReceivedStr = JOptionPane.showInputDialog(null, "Enter Money Received:", "Money Received", JOptionPane.QUESTION_MESSAGE);
+            if (confirmation == JOptionPane.YES_OPTION) {
+                ObservableList<OrderItem> receiptItems = FXCollections.observableArrayList(allItems);
+                String moneyReceivedStr = JOptionPane.showInputDialog(null, "Enter Money Received:", "Money Received", JOptionPane.QUESTION_MESSAGE);
 
-            if (moneyReceivedStr != null) {
-                try {
-                    int moneyReceived = Integer.parseInt(moneyReceivedStr);
-                    if (moneyReceived >= totalPrice) {
-                        for (OrderItem itemToRemove : allItems) {
-                            String coffeeName = itemToRemove.getName();
-                            int itemQuantity = itemToRemove.getQuantity();
-                            int subTotal = itemToRemove.getSubTotal();
-                            insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
+                if (moneyReceivedStr != null) {
+                    try {
+                        int moneyReceived = Integer.parseInt(moneyReceivedStr);
+                        if (moneyReceived >= totalPrice) {
+                            for (OrderItem itemToRemove : allItems) {
+                                String coffeeName = itemToRemove.getName();
+                                int itemQuantity = itemToRemove.getQuantity();
+                                int subTotal = itemToRemove.getSubTotal();
+                                insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
+                            }
+                            update.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
+                            allItems.clear();
+
+                            String costumerNameStr = JOptionPane.showInputDialog(null, "Customer Name", "Customer Name:", JOptionPane.QUESTION_MESSAGE);
+                            FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
+                            Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
+
+                            // Get the controller and pass data
+                            ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController();
+                            controllerReceiptPage.setOrderItems(receiptItems, moneyReceived, costumerNameStr); // Pass data here
+
+
+                            Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
+                            currentStage.setScene(receiptPage);
+                            currentStage.setTitle("Receipt Page");
+                            currentStage.setResizable(false);
+                            currentStage.centerOnScreen();
+                            currentStage.show();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Received amount is less than the total price!");
                         }
-                        update.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
-                        allItems.clear();
-
-                        String costumerNameStr = JOptionPane.showInputDialog(null,"Customer Name","Customer Name:",JOptionPane.QUESTION_MESSAGE);
-                        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
-                        Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
-
-                        // Get the controller and pass data
-                        ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController();
-                        controllerReceiptPage.setOrderItems(receiptItems, moneyReceived,costumerNameStr); // Pass data here
-
-
-                        Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
-                        currentStage.setScene(receiptPage);
-                        currentStage.setTitle("Receipt Page");
-                        currentStage.centerOnScreen();
-                        currentStage.show();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Received amount is less than the total price!");
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Please enter a valid number for the money received!");
                     }
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid number for the money received!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Transaction was canceled.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Transaction was canceled.");
+                System.out.println("Canceled");
             }
-        } else {
-            System.out.println("Canceled");
         }
     }
-
 
 
 }

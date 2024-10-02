@@ -74,6 +74,7 @@ public class ControllerMain {
         currentStage.setScene(mainAccount);
         currentStage.setTitle("Main Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 
@@ -124,6 +125,7 @@ public class ControllerMain {
         currentStage.setScene(Orderselect);
         currentStage.setTitle("Order Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 
@@ -137,6 +139,7 @@ public class ControllerMain {
         currentStage.setScene(userSales);
         currentStage.setTitle("User Sales Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 
@@ -151,6 +154,7 @@ public class ControllerMain {
         currentStage.setScene(loginAccount);
         currentStage.setTitle("Login Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 

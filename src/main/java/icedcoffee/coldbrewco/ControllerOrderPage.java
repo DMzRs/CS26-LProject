@@ -76,6 +76,7 @@ public class ControllerOrderPage {
         Stage currentStage = (Stage) backButton.getScene().getWindow();
         currentStage.setScene(mainAccount);
         currentStage.setTitle("Main Page");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }
@@ -122,6 +123,7 @@ public class ControllerOrderPage {
         currentStage.setScene(gobackOrderselect);
         currentStage.setTitle("Order Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 
@@ -269,6 +271,7 @@ public class ControllerOrderPage {
         currentStage.setScene(orderDetails);
         currentStage.setTitle("Order Details");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 }
