@@ -91,6 +91,7 @@ public class ControllerReceiptPage {
         currentStage.setScene(mainPage);
         currentStage.setTitle("Main Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 

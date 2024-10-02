@@ -29,6 +29,7 @@ public class ControllerAdminCreateEmployeeAcc {
         Stage currentStage = (Stage) backToAdminMain.getScene().getWindow();
         currentStage.setScene(adminPage);
         currentStage.setTitle("Admin Main Page");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }

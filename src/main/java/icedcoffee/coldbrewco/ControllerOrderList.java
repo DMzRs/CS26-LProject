@@ -54,6 +54,7 @@ public class ControllerOrderList {
         Stage currentStage = (Stage) backToMain.getScene().getWindow();
         currentStage.setScene(mainPage);
         currentStage.setTitle("Main Page");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }

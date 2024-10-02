@@ -52,6 +52,7 @@ public class ControllerAdminSalesPage {
         currentStage.setScene(adminPage);
         currentStage.setTitle("Admin Main Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 }

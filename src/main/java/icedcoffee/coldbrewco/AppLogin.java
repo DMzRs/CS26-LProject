@@ -19,6 +19,7 @@ public class AppLogin extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Login Page");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }

@@ -83,6 +83,7 @@ public class ControllerLogin {
         Stage currentStage = (Stage) usernameField.getScene().getWindow();
         currentStage.setScene(adminLogin);
         currentStage.setTitle("Admin Login Page");
+        currentStage.setResizable(false);
         currentStage.centerOnScreen();
         currentStage.show();
     }
@@ -97,6 +98,8 @@ public class ControllerLogin {
         Stage currentStage = (Stage) textField.getScene().getWindow();
         currentStage.setScene(loginAccount);
         currentStage.setTitle("Login Page");
+        currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
 
     }
@@ -110,6 +113,7 @@ public class ControllerLogin {
         currentStage.setScene(mainAccount);
         currentStage.setTitle("Main Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 
@@ -121,6 +125,7 @@ public class ControllerLogin {
         currentStage.setScene(adminPage);
         currentStage.setTitle("Admin Main Page");
         currentStage.centerOnScreen();
+        currentStage.setResizable(false);
         currentStage.show();
     }
 }
