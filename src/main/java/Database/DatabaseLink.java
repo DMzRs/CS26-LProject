@@ -10,7 +10,7 @@ public class DatabaseLink {
         return sqluser;
     }
     public static String getsqlpassword(){
-        String sqlpassword = "nicholasbalodo06";
+        String sqlpassword = "alamkoangpass";
         return sqlpassword;
     }
 }

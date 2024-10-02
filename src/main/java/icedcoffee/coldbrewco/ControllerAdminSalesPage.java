@@ -23,6 +23,8 @@ public class ControllerAdminSalesPage {
     @FXML
     private TableColumn <EmployeeSales, String> empNameCol;
     @FXML
+    private TableColumn <EmployeeSales, String> dateCol;
+    @FXML
     private TableColumn <EmployeeSales, Integer> coffeeSoldCol;
     @FXML
     private TableColumn<EmployeeSales, Integer> salesPerEmpCol;
@@ -33,6 +35,7 @@ public class ControllerAdminSalesPage {
     private void initialize(){
         DatabaseShow show = new DatabaseShow();
     empNameCol.setCellValueFactory(new PropertyValueFactory<>("EmpName"));
+    dateCol.setCellValueFactory(new PropertyValueFactory<>("Date"));
     coffeeSoldCol.setCellValueFactory(new PropertyValueFactory<>("TotalCoffeeSold"));
     salesPerEmpCol.setCellValueFactory(new PropertyValueFactory<>("SalesPerEmployee"));
 

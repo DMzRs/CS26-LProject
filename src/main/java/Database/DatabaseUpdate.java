@@ -71,15 +71,33 @@ public class DatabaseUpdate {
         }
     }
 
-    //when a product is bought
-    public void productBought(int productId, int quantityBought) {
+    //product quantity will temporarily be deducted when transferred from order page to order details
+    public void productTemporaryDeductionQuantity(int productId, int quantityBought) {
         try {
             // Establish connection
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
-            String updateBalanceQuery = "UPDATE product SET productQuantity = (productQuantity - ?) WHERE productId = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(updateBalanceQuery);
+            String updateQuantityQuery = "UPDATE product SET productQuantity = (productQuantity - ?) WHERE productId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuantityQuery);
             preparedStatement.setInt(1, quantityBought);
+            preparedStatement.setInt(2, productId);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //product quantity will be added back if removed from order details
+    public void productAddedBack(int productId, int quantityAdded) {
+        try {
+            // Establish connection
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+
+            String updateQuantityQuery = "UPDATE product SET productQuantity = (productQuantity + ?) WHERE productId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuantityQuery);
+            preparedStatement.setInt(1, quantityAdded);
             preparedStatement.setInt(2, productId);
 
             preparedStatement.executeUpdate();

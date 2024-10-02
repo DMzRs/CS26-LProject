@@ -1,5 +1,6 @@
 package icedcoffee.coldbrewco;
 
+
 import Database.DatabaseShow;
 import Database.DatabaseUpdate;
 import Database.OrderItem;
@@ -52,9 +53,23 @@ public class ControllerOrderPage {
     private Label NotAvailable;
 
 
-    //to go back to main Page
+    //to go back to main Page and clear the table on order details before going back to the Order Page
     @FXML
     protected void onBackButtonClick() throws IOException {
+        DatabaseUpdate update = new DatabaseUpdate();
+        DatabaseShow show = new DatabaseShow();
+
+        ObservableList<OrderItem> selectedItems = OrderItemStorage.getInstance().getSelectedItems();
+
+        for (OrderItem item : selectedItems) {
+            String itemName = item.getName();
+            int itemQuantity = item.getQuantity();
+
+            update.productAddedBack(show.showProductId(itemName), itemQuantity);
+        }
+        // Clear the order items before going back to the Order Page
+        OrderItemStorage.getInstance().clearItems();
+
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
         Scene mainAccount = new Scene(fxmlLoader.load(), 900, 700);
 
@@ -99,6 +114,7 @@ public class ControllerOrderPage {
 
     @FXML
     private void BacktoOrderPage() throws IOException {
+        // Load the order page FXML and display it
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Order Page.fxml"));
         Scene gobackOrderselect = new Scene(fxmlLoader.load(), 900, 700);
 
@@ -108,6 +124,7 @@ public class ControllerOrderPage {
         currentStage.centerOnScreen();
         currentStage.show();
     }
+
 
 
     //to switch to select coffee window
@@ -202,9 +219,12 @@ public class ControllerOrderPage {
     //to add Order to Order Details
     @FXML
     protected void addOrderButton() throws IOException {
+        DatabaseUpdate update = new DatabaseUpdate();
+        DatabaseShow show = new DatabaseShow();
         String coffeeName = nameBox.getText();
         int coffeePriceInt = Integer.parseInt(priceBox.getText());
         int orderQuantity = Integer.parseInt(orderQuantityLabel.getText());
+        update.productTemporaryDeductionQuantity(show.showProductId(coffeeName), orderQuantity);
 
         // Create the new OrderItem
         OrderItem newOrder = new OrderItem(coffeeName, coffeePriceInt, orderQuantity);

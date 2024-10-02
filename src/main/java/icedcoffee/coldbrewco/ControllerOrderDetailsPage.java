@@ -74,17 +74,20 @@ public class ControllerOrderDetailsPage {
     //to Remove Items
     @FXML
     private void onRemoveItemButtonClick() {
+        DatabaseShow show = new DatabaseShow();
+        DatabaseUpdate update = new DatabaseUpdate();
+        // Get the selected item
         OrderItem selectedItem = orderCoffeeTable.getSelectionModel().getSelectedItem();
 
-        // to Check if an item is selected
+        // Check if an item is selected
         if (selectedItem != null) {
-            ObservableList<OrderItem> items = orderCoffeeTable.getItems();
-            items.remove(selectedItem);
+            int selectedQuantity = selectedItem.getQuantity();
 
-            //Just For Logs
-            System.out.println("Removed item: " + selectedItem.getName());
+            ObservableList<OrderItem> items = orderCoffeeTable.getItems();
+            update.productAddedBack(show.showProductId(selectedItem.getName()), selectedQuantity);
+            items.remove(selectedItem);
         } else {
-            JOptionPane.showMessageDialog(null,"Please select an item to remove");
+            JOptionPane.showMessageDialog(null, "Please select an item to remove");
         }
     }
 
@@ -128,13 +131,11 @@ public class ControllerOrderDetailsPage {
                             String coffeeName = itemToRemove.getName();
                             int itemQuantity = itemToRemove.getQuantity();
                             int subTotal = itemToRemove.getSubTotal();
-                            update.productBought(show.showProductId(coffeeName), itemQuantity);
                             insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
                         }
                         update.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
                         allItems.clear();
 
-                        // Load the ReceiptPage scene
                         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
                         Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
 
@@ -142,7 +143,7 @@ public class ControllerOrderDetailsPage {
                         ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController();
                         controllerReceiptPage.setOrderItems(receiptItems, moneyReceived); // Pass data here
 
-                        // Set the new scene
+
                         Stage currentStage = (Stage) removeItemButton.getScene().getWindow();
                         currentStage.setScene(receiptPage);
                         currentStage.setTitle("Receipt Page");
@@ -158,7 +159,7 @@ public class ControllerOrderDetailsPage {
                 JOptionPane.showMessageDialog(null, "Transaction was canceled.");
             }
         } else {
-            System.out.println("Order Canceled");
+            System.out.println("Canceled");
         }
     }
 

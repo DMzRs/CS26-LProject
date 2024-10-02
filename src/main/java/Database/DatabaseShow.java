@@ -175,17 +175,18 @@ public class DatabaseShow {
             int empId = 1;
             while(empId <= empIdLimit) {
                 Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
-                String showEmpListSales = "SELECT SUM(orderQuantity) AS totalCoffeeSold, SUM(subTotal) AS TotalSales FROM orders WHERE empId = ? ";
+                String showEmpListSales = "SELECT SUM(orderQuantity) AS totalCoffeeSold, SUM(subTotal) AS TotalSales, date AS Date FROM orders WHERE empId = ? GROUP BY date";
                 PreparedStatement preparedStatement = connection.prepareStatement(showEmpListSales);
                 preparedStatement.setInt(1, empId);
                 ResultSet result = preparedStatement.executeQuery();
                 while (result.next()) {
                     int totalCoffeeSold = result.getInt("totalCoffeeSold");
+                    String dateStr = result.getDate("Date").toString();
                     int totalSales = result.getInt("TotalSales");
 
                     String userName = showName(empId);
 
-                    employeeSalesList.add(new EmployeeSales(userName, totalCoffeeSold, totalSales));
+                    employeeSalesList.add(new EmployeeSales(userName, dateStr, totalCoffeeSold, totalSales));
                 }
                 empId++;
             }
