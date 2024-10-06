@@ -85,7 +85,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="27.0" layoutY="490.0" nodeOrientation="LEFT_TO_RIGHT" text="Available Stocks:">
+            <Label fx:id="AvailableStocksLabel" layoutX="27.0" layoutY="490.0" nodeOrientation="LEFT_TO_RIGHT" text="Available Stocks:">
                <font>
                   <Font name="Franklin Gothic Heavy" size="20.0" />
                </font>

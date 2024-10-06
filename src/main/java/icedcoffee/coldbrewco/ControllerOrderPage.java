@@ -47,6 +47,8 @@ public class ControllerOrderPage {
     @FXML
     private ImageView plusButton;
     @FXML
+    private Label AvailableStocksLabel;
+    @FXML
     private ImageView specificImageBox;
     @FXML
     private Label nameBox;
@@ -163,6 +165,7 @@ public class ControllerOrderPage {
         descriptionBox.setText(Description);
         priceBox.setText(String.valueOf(price));
         if(availableQuantityInt != 0) {
+
             availableQuantity.setText(String.valueOf(availableQuantityInt));
             addOrderButton.setVisible(true);
             plusButton.setVisible(true);
@@ -175,7 +178,7 @@ public class ControllerOrderPage {
             minusButton.setVisible(false);
             quantLabel.setVisible(false);
             orderQuantityLabel.setVisible(false);
-            availableQuantity.setText("Out of Stock");
+            AvailableStocksLabel.setText("Out of Stock");
         }
 
         String imagePath = ""; // Initialize image path
