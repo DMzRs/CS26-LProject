@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import java.io.InputStream;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class ControllerOrderPage {
@@ -38,6 +39,16 @@ public class ControllerOrderPage {
     @FXML
     private ImageView StrawberryLatteImage;
     @FXML
+    private Label addOrderButton;
+    @FXML
+    private Label quantLabel;
+    @FXML
+    private ImageView minusButton;
+    @FXML
+    private ImageView plusButton;
+    @FXML
+    private Label AvailableStocksLabel;
+    @FXML
     private ImageView specificImageBox;
     @FXML
     private Label nameBox;
@@ -49,8 +60,6 @@ public class ControllerOrderPage {
     private Label orderQuantityLabel;
     @FXML
     private Label availableQuantity;
-    @FXML
-    private Label NotAvailable;
 
 
     //to go back to main Page and clear the table on order details before going back to the Order Page
@@ -155,8 +164,22 @@ public class ControllerOrderPage {
         nameBox.setText(Name);
         descriptionBox.setText(Description);
         priceBox.setText(String.valueOf(price));
-        availableQuantity.setText(String.valueOf(availableQuantityInt));
-        NotAvailable.setVisible(availableQuantityInt <= 0);
+        if(availableQuantityInt != 0) {
+
+            availableQuantity.setText(String.valueOf(availableQuantityInt));
+            addOrderButton.setVisible(true);
+            plusButton.setVisible(true);
+            minusButton.setVisible(true);
+            quantLabel.setVisible(true);
+            orderQuantityLabel.setVisible(true);
+        } else {
+            addOrderButton.setVisible(false);
+            plusButton.setVisible(false);
+            minusButton.setVisible(false);
+            quantLabel.setVisible(false);
+            orderQuantityLabel.setVisible(false);
+            AvailableStocksLabel.setText("Out of Stock");
+        }
 
         String imagePath = ""; // Initialize image path
 
@@ -199,23 +222,24 @@ public class ControllerOrderPage {
     //increase number of orders
     @FXML
     protected void addQuantityButton() {
-        int availableQuantityInt = Integer.parseInt(availableQuantity.getText());
         String quantityString = orderQuantityLabel.getText();
+        int availableQuantityInt = Integer.parseInt(availableQuantity.getText());
         int quantity = Integer.parseInt(quantityString);
-        if(quantity<availableQuantityInt) {
-            quantity = quantity + 1;
-            orderQuantityLabel.setText(String.valueOf(quantity));
-        }
+            if (quantity < availableQuantityInt) {
+                quantity = quantity + 1;
+                orderQuantityLabel.setText(String.valueOf(quantity));
+            }
     }
 
     //decrease number of orders
     @FXML
     protected void reduceQuantityButton(){
-        int quantity = Integer.parseInt(orderQuantityLabel.getText());
-        if(quantity>1) {
-            quantity = quantity - 1;
-            orderQuantityLabel.setText(String.valueOf(quantity));
-        }
+            int quantity = Integer.parseInt(orderQuantityLabel.getText());
+            if (quantity > 1) {
+                quantity = quantity - 1;
+                orderQuantityLabel.setText(String.valueOf(quantity));
+            }
+
     }
 
     //to add Order to Order Details

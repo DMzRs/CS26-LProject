@@ -51,7 +51,7 @@
                   <Font name="Franklin Gothic Heavy" size="25.0" />
                </font>
             </Label>
-            <Label layoutX="27.0" layoutY="591.0" text="Quantity">
+            <Label fx:id="quantLabel" layoutX="27.0" layoutY="591.0" text="Quantity">
                <font>
                   <Font name="Franklin Gothic Heavy" size="20.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Font name="Franklin Gothic Heavy" size="16.0" />
                </font>
             </Label>
-            <ImageView accessibleRole="DECREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="124.0" layoutY="597.0" onMouseClicked="#reduceQuantityButton" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="minusButton" accessibleRole="DECREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="124.0" layoutY="597.0" onMouseClicked="#reduceQuantityButton" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/minus-sign.png" />
                </image>
@@ -69,7 +69,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView accessibleRole="INCREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="194.0" layoutY="597.0" onMouseClicked="#addQuantityButton" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="plusButton" accessibleRole="INCREMENT_BUTTON" fitHeight="17.0" fitWidth="16.0" layoutX="194.0" layoutY="597.0" onMouseClicked="#addQuantityButton" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/plus.png" />
                </image>
@@ -77,7 +77,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="266.0" layoutY="591.0" onMouseClicked="#addOrderButton" prefHeight="28.0" prefWidth="98.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text=" Add Order">
+            <Label fx:id="addOrderButton" layoutX="266.0" layoutY="591.0" onMouseClicked="#addOrderButton" prefHeight="28.0" prefWidth="98.0" style="-fx-background-color: #FFD875; -fx-border-color: #000000;" text=" Add Order">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="23.0" />
                </font>
@@ -85,19 +85,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="27.0" layoutY="490.0" nodeOrientation="LEFT_TO_RIGHT" text="Available Stocks:">
+            <Label fx:id="AvailableStocksLabel" layoutX="27.0" layoutY="490.0" nodeOrientation="LEFT_TO_RIGHT" text="Available Stocks:">
                <font>
                   <Font name="Franklin Gothic Heavy" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="availableQuantity" layoutX="202.0" layoutY="490.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="41.0">
+            <Label fx:id="availableQuantity" layoutX="202.0" layoutY="490.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="162.0">
                <font>
                   <Font name="Franklin Gothic Heavy" size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="NotAvailable" alignment="CENTER" layoutX="6.0" layoutY="85.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="576.0" prefWidth="392.0" style="-fx-background-color: #F4F4D5;" text="NOT AVAILABLE" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Franklin Gothic Medium" size="78.0" />
                </font>
             </Label>
          </children>
