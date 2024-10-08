@@ -56,22 +56,6 @@
                   <Font name="Franklin Gothic Heavy" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="50.0" layoutY="605.0" prefHeight="33.0" prefWidth="204.0" text="Most Popular Iced Coffee:">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="mostPopular" layoutX="255.0" layoutY="608.0" prefHeight="27.0" prefWidth="232.0" style="-fx-border-color: #000000; -fx-background-color: FFFFFF;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="16.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
    </children>
