@@ -2,13 +2,15 @@ package Database;
 
 public class EmployeeSales {
     private String EmpName;
-    private int TotalCoffeeSold;
+    private int SoldQuantity;
+    private String CoffeeName;
     private int SalesPerEmployee;
     private String date;
-    public EmployeeSales(String EmpName,String date, int TotalCoffeeSold, int SalesPerEmployee) {
+    public EmployeeSales(String EmpName, String CoffeeName, String date, int SoldQuantity, int SalesPerEmployee) {
         this.EmpName = EmpName;
+        this.CoffeeName = CoffeeName;
         this.date = date;
-        this.TotalCoffeeSold = TotalCoffeeSold;
+        this.SoldQuantity = SoldQuantity;
         this.SalesPerEmployee = SalesPerEmployee;
     }
     public String getEmpName() {
@@ -17,17 +19,19 @@ public class EmployeeSales {
     public void setEmpName(String EmpName) {
         this.EmpName = EmpName;
     }
+    public String getCoffeeName() {return CoffeeName;}
+    public void setCoffeeName(String CoffeeName) {this.CoffeeName = CoffeeName;}
     public String getDate() {
         return date;
     }
     public void setDate(String date) {
         this.date = date;
     }
-    public int getTotalCoffeeSold() {
-        return TotalCoffeeSold;
+    public int getSoldQuantity() {
+        return SoldQuantity;
     }
-    public void setTotalCoffeeSold(int TotalCoffeeSold) {
-        this.TotalCoffeeSold = TotalCoffeeSold;
+    public void setSoldQuantity(int SoldQuantity) {
+        this.SoldQuantity = SoldQuantity;
     }
     public int getSalesPerEmployee() {
         return SalesPerEmployee;
