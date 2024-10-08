@@ -38,7 +38,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Caramel Macchiato',10,'Milk, Espresso, Caramel Sauce, and Ice',99),(2,'Spanish Latte',10,'Coffee, Milk, Sweetener, and Cinnamon',99),(3,'Vanilla Latte',10,'Espresso, Vanilla Syrup, and Milk',99),(4,'Iced Americano',10,'Espresso, Water, Ice, and Sweetener',120),(5,'Matcha Latte',10,'Match powder, Milk, Water, and Sweetener',120),(6,'Strawberry Matcha Latte',25,'Match powder, Strawberry, Milk, Water, and Sweetener',120);
+INSERT INTO `product` VALUES (1,'Caramel Macchiato',43,'Milk, Espresso, Caramel Sauce, and Ice',99),(2,'Spanish Latte',50,'Coffee, Milk, Sweetener, and Cinnamon',99),(3,'Vanilla Latte',43,'Espresso, Vanilla Syrup, and Milk',99),(4,'Iced Americano',44,'Espresso, Water, Ice, and Sweetener',120),(5,'Matcha Latte',46,'Match powder, Milk, Water, and Sweetener',120),(6,'Strawberry Matcha Latte',47,'Match powder, Strawberry, Milk, Water, and Sweetener',120);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29  6:30:37
+-- Dump completed on 2024-10-08  8:37:44

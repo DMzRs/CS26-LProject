@@ -29,7 +29,7 @@ CREATE TABLE `employee` (
   `password` varchar(10) NOT NULL,
   `empSales` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`empId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'DM Rashid Ferrer','DM','123',6486),(2,'James Oliver Mendoza','Oliver','123',0),(3,'Seth Darell Delos Reyes','Seth','1234',0),(4,'Paulo Espada','Pegf','1234',1950);
+INSERT INTO `employee` VALUES (1,'Anthony Davis','davis1','12345',855),(2,'Chris Brown','chrisB','12345',1533);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29  6:30:37
+-- Dump completed on 2024-10-08  8:37:44

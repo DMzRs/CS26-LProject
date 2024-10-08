@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class ControllerOrderList {
+public class ControllerEmployeeSales {
     @FXML
     private ImageView backToMain;
     @FXML
