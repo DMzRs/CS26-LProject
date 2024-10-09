@@ -13,12 +13,8 @@ public class EmployeeSales {
         this.SoldQuantity = SoldQuantity;
         this.SalesPerEmployee = SalesPerEmployee;
     }
-    public String getEmpName() {
-        return EmpName;
-    }
-    public void setEmpName(String EmpName) {
-        this.EmpName = EmpName;
-    }
+    public String getEmpName() {return EmpName;}
+    public void setEmpName(String EmpName) {this.EmpName = EmpName;}
     public String getCoffeeName() {return CoffeeName;}
     public void setCoffeeName(String CoffeeName) {this.CoffeeName = CoffeeName;}
     public String getDate() {

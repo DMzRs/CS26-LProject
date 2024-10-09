@@ -23,6 +23,7 @@ public class DatabaseUpdate {
             e.printStackTrace();
         }
     }
+
     //to update specific user sale per transaction made
     public void updateEmployeeSales(int empId, int totalPrice){
         try{
@@ -74,7 +75,7 @@ public class DatabaseUpdate {
     //product quantity will temporarily be deducted when transferred from order page to order details
     public void productTemporaryDeductionQuantity(int productId, int quantityBought) {
         try {
-            // Establish connection
+
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
             String updateQuantityQuery = "UPDATE product SET productQuantity = (productQuantity - ?) WHERE productId = ?";
@@ -92,7 +93,7 @@ public class DatabaseUpdate {
     //product quantity will be added back if removed from order details
     public void productAddedBack(int productId, int quantityAdded) {
         try {
-            // Establish connection
+
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
 
             String updateQuantityQuery = "UPDATE product SET productQuantity = (productQuantity + ?) WHERE productId = ?";

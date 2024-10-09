@@ -8,9 +8,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerLogin">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerAdminLogin">
    <children>
       <Pane layoutX="13.0" layoutY="13.0" prefHeight="375.0" prefWidth="625.0" style="-fx-background-color: F4F4D5;">
          <children>
@@ -19,41 +20,47 @@
                   <Font name="Franklin Gothic Demi Cond" size="34.0" />
                </font>
             </Label>
-            <Pane layoutX="75.0" layoutY="93.0" prefHeight="250.0" prefWidth="475.0" style="-fx-background-color: FFFFFF;">
+            <VBox layoutX="72.0" layoutY="93.0" prefHeight="259.0" prefWidth="481.0">
                <children>
-                  <Label fx:id="loginlabel" layoutX="155.0" layoutY="14.0" style="-fx-background-color: White;" text="Login as admin">
-                     <font>
-                        <Font name="Franklin Gothic Demi" size="25.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="usernameAdmin" layoutX="139.0" layoutY="75.0" prefHeight="25.0" prefWidth="229.0">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor></TextField>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="107.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/user%201.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="107.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/padlock%201.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="210.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#onLoginAdminButtonClick" text="LOGIN">
-                     <font>
-                        <Font name="Franklin Gothic Medium Cond" size="15.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <PasswordField fx:id="passwordAdmin" layoutX="139.0" layoutY="151.0" prefHeight="25.0" prefWidth="229.0">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor></PasswordField>
+                  <Pane prefHeight="250.0" prefWidth="475.0" style="-fx-background-color: FFFFFF;">
+                     <children>
+                        <Label fx:id="loginlabel" layoutX="155.0" layoutY="14.0" style="-fx-background-color: White;" text="Login as admin">
+                           <font>
+                              <Font name="Franklin Gothic Demi" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="usernameAdmin" layoutX="139.0" layoutY="75.0" prefHeight="25.0" prefWidth="229.0">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <PasswordField fx:id="passwordAdmin" layoutX="139.0" layoutY="151.0" prefHeight="25.0" prefWidth="229.0">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </PasswordField>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="107.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/user%201.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="107.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/padlock%201.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="adminLoginButton" layoutX="210.0" layoutY="208.0" mnemonicParsing="false" onKeyPressed="#initialize" onMouseClicked="#onLoginAdminButtonClick" text="LOGIN">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
-            </Pane>
+            </VBox>
          </children>
       </Pane>
       <ImageView fx:id="logo" fitHeight="79.0" fitWidth="102.0" layoutX="170.0" layoutY="14.0" onMouseClicked="#onHiddenLoginButtonClick" pickOnBounds="true" preserveRatio="true">

@@ -167,7 +167,7 @@ public class DatabaseShow {
         return orderList;
     }
 
-    //to get all user sales one by one
+    //to get all employee sales
     public ObservableList<EmployeeSales> getEmployeeSales(){
         ObservableList<EmployeeSales> employeeSalesList = FXCollections.observableArrayList();
         try{

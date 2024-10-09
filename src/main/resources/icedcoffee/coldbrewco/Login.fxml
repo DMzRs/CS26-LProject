@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #966216;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerLogin">
@@ -28,41 +29,47 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-         </children>
-      </Pane>
-      <Pane layoutX="354.0" layoutY="51.0" prefHeight="299.0" prefWidth="200.0" style="-fx-background-color: white;">
-         <children>
-            <Label layoutX="58.0" layoutY="84.0" style="-fx-background-color: White;" text="Username">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="60.0" layoutY="155.0" style="-fx-background-color: White;" text="Password">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="usernameField" layoutX="26.0" layoutY="116.0">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></TextField>
-            <Label fx:id="loginlabel" layoutX="58.0" layoutY="24.0" style="-fx-background-color: White;" text="LOGIN">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="31.0" />
-               </font>
-            </Label>
-            <Button fx:id="loginButton" layoutX="72.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#onLoginButtonClick" text="Login">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="15.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="188.0">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor></PasswordField>
+            <VBox layoutX="336.0" layoutY="38.0" prefHeight="299.0" prefWidth="200.0">
+               <children>
+                  <Pane prefHeight="299.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label layoutX="58.0" layoutY="84.0" style="-fx-background-color: White;" text="Username">
+                           <font>
+                              <Font name="Franklin Gothic Demi" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="60.0" layoutY="155.0" style="-fx-background-color: White;" text="Password">
+                           <font>
+                              <Font name="Franklin Gothic Demi" size="19.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="usernameField" layoutX="26.0" layoutY="116.0">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Label fx:id="loginlabel" layoutX="58.0" layoutY="24.0" style="-fx-background-color: White;" text="LOGIN">
+                           <font>
+                              <Font name="Franklin Gothic Demi" size="31.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="188.0">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </PasswordField>
+                        <Button fx:id="loginButton" layoutX="72.0" layoutY="235.0" mnemonicParsing="false" onKeyPressed="#initialize" onMouseClicked="#onLoginButtonClick" text="Login">
+                           <font>
+                              <Font name="Franklin Gothic Demi" size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
          </children>
       </Pane>
    </children>

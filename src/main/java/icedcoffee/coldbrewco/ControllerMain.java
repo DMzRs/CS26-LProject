@@ -38,6 +38,7 @@ public class ControllerMain {
     @FXML
     private ImageView selectOrder;
 
+
     //to go to profile details
     @FXML
     protected void ProfileDetailsButtonClick() throws IOException {
@@ -77,6 +78,7 @@ public class ControllerMain {
         currentStage.setResizable(false);
         currentStage.show();
     }
+
 
     //when changePassword is click makes change password field visible
     @FXML
