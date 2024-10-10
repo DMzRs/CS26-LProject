@@ -50,6 +50,7 @@ public class ControllerAdminSalesPage {
     private void switchToAdminMainButton() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("AdminMainPage.fxml"));
         Scene adminPage = new Scene(fxmlLoader.load(), 900, 700);
+        SalesTable.getItems().clear();
 
         Stage currentStage = (Stage) backToAdminMain.getScene().getWindow();
         currentStage.setScene(adminPage);

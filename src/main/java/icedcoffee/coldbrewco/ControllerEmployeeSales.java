@@ -51,6 +51,7 @@ public class ControllerEmployeeSales {
     protected void onSwitchToMainButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
         Scene mainPage = new Scene(fxmlLoader.load(), 900, 700);
+        previousOrderTable.getItems().clear();
 
         Stage currentStage = (Stage) backToMain.getScene().getWindow();
         currentStage.setScene(mainPage);
