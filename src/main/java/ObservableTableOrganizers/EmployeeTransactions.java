@@ -1,12 +1,12 @@
 package ObservableTableOrganizers;
 
-public class EmployeeSales {
+public class EmployeeTransactions {
     private String EmpName;
     private int SoldQuantity;
     private String CoffeeName;
     private int SalesPerEmployee;
     private String date;
-    public EmployeeSales(String EmpName, String CoffeeName, String date, int SoldQuantity, int SalesPerEmployee) {
+    public EmployeeTransactions(String EmpName, String CoffeeName, String date, int SoldQuantity, int SalesPerEmployee) {
         this.EmpName = EmpName;
         this.CoffeeName = CoffeeName;
         this.date = date;
