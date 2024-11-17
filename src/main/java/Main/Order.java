@@ -1,13 +1,18 @@
-package Database;
+package Main;
 
-import java.sql.*;
+import Database.DatabaseLink;
 
-public class DatabaseInsert {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Order {
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
-    public void newOrderUser(int empId, int productId, int orderQuantity, int subTotal){
+    public void addOrder(int empId, int productId, int orderQuantity, int subTotal){
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String insertOrderQuery = "INSERT INTO orders (empId,productId,orderQuantity,date,subTotal)VALUES(?,?,?,CURRENT_DATE,?)";

@@ -1,4 +1,4 @@
-package Database;
+package ObservableTableOrganizers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

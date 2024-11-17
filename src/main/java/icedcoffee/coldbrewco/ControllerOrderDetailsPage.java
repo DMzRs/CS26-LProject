@@ -1,7 +1,12 @@
 package icedcoffee.coldbrewco;
 
-import Database.*;
 import ForEnkeepingLoginId.LoginId;
+import Main.Admin;
+import Main.Employee;
+import Main.Order;
+import Main.Product;
+import ObservableTableOrganizers.OrderItem;
+import ObservableTableOrganizers.OrderItemStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -75,8 +80,8 @@ public class ControllerOrderDetailsPage {
     //to Remove Items
     @FXML
     private void onRemoveItemButtonClick() {
-        DatabaseShow show = new DatabaseShow();
-        DatabaseUpdate update = new DatabaseUpdate();
+        Product product = new Product();
+        Admin admin = new Admin();
         // Get the selected item
         OrderItem selectedItem = orderCoffeeTable.getSelectionModel().getSelectedItem();
 
@@ -85,7 +90,7 @@ public class ControllerOrderDetailsPage {
             int selectedQuantity = selectedItem.getQuantity();
 
             ObservableList<OrderItem> items = orderCoffeeTable.getItems();
-            update.productAddedBack(show.showProductId(selectedItem.getName()), selectedQuantity);
+            admin.productAddedBackFromTemporaryRemovedItems(product.showProductId(selectedItem.getName()), selectedQuantity);
             items.remove(selectedItem);
         } else {
             JOptionPane.showMessageDialog(null, "Please select an item to remove");
@@ -96,9 +101,9 @@ public class ControllerOrderDetailsPage {
     //to Check Out Orders
     @FXML
     private void onCheckOutButtonClick() throws IOException {
-        DatabaseShow show = new DatabaseShow();
-        DatabaseInsert insert = new DatabaseInsert();
-        DatabaseUpdate update = new DatabaseUpdate();
+        Product product = new Product();
+        Order order = new Order();
+        Employee employee = new Employee();
 
         ObservableList<OrderItem> allItems = orderCoffeeTable.getItems();
         if (allItems.isEmpty()) {
@@ -135,9 +140,9 @@ public class ControllerOrderDetailsPage {
                                 String coffeeName = itemToRemove.getName();
                                 int itemQuantity = itemToRemove.getQuantity();
                                 int subTotal = itemToRemove.getSubTotal();
-                                insert.newOrderUser(LoginId.getLoginId(), show.showProductId(coffeeName), itemQuantity, subTotal);
+                                order.addOrder(LoginId.getLoginId(), product.showProductId(coffeeName), itemQuantity, subTotal);
                             }
-                            update.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
+                            employee.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
                             allItems.clear();
 
                             String costumerNameStr = JOptionPane.showInputDialog(null, "Customer Name", "Customer Name:", JOptionPane.QUESTION_MESSAGE);

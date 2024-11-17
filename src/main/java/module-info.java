@@ -14,4 +14,5 @@ module icedcoffee.coldbrewco {
     opens Database to javafx.base;
 
     exports icedcoffee.coldbrewco;
+    opens ObservableTableOrganizers to javafx.base;
 }

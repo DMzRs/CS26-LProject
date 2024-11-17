@@ -1,12 +1,10 @@
 package icedcoffee.coldbrewco;
 
 
-import Database.DatabaseShow;
-import Database.DatabaseUpdate;
-import Database.OrderItem;
-import Database.OrderItemStorage;
-import icedcoffee.coldbrewco.ControllerOrderDetailsPage;
-import javafx.collections.FXCollections;
+import ObservableTableOrganizers.OrderItem;
+import ObservableTableOrganizers.OrderItemStorage;
+import Main.Admin;
+import Main.Product;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +16,6 @@ import javafx.scene.layout.Pane;
 import java.io.InputStream;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class ControllerOrderPage {
@@ -65,8 +62,8 @@ public class ControllerOrderPage {
     //to go back to main Page and clear the table on order details before going back to the Order Page
     @FXML
     protected void onBackButtonClick() throws IOException {
-        DatabaseUpdate update = new DatabaseUpdate();
-        DatabaseShow show = new DatabaseShow();
+        Admin admin = new Admin();
+        Product product = new Product();
 
         ObservableList<OrderItem> selectedItems = OrderItemStorage.getInstance().getSelectedItems();
 
@@ -74,7 +71,7 @@ public class ControllerOrderPage {
             String itemName = item.getName();
             int itemQuantity = item.getQuantity();
 
-            update.productAddedBack(show.showProductId(itemName), itemQuantity);
+            admin.productAddedBackFromTemporaryRemovedItems(product.showProductId(itemName), itemQuantity);
         }
         // Clear the order items before going back to the Order Page
         OrderItemStorage.getInstance().clearItems();
@@ -155,11 +152,12 @@ public class ControllerOrderPage {
     //to show product details when clicked in order page
     @FXML
     private void showProductDetails(int productId) throws IOException {
-        DatabaseShow show = new DatabaseShow();
-        String Name = show.showProductName(productId);
-        String Description = show.showProductDescription(productId);
-        int price = show.showProductPrice(productId);
-        int availableQuantityInt = show.getProductQuantity(productId);
+        Product product = new Product();
+
+        String Name = product.showProductName(productId);
+        String Description = product.showProductDescription(productId);
+        int price = product.showProductPrice(productId);
+        int availableQuantityInt = product.getProductQuantity(productId);
 
         nameBox.setText(Name);
         descriptionBox.setText(Description);
@@ -245,12 +243,13 @@ public class ControllerOrderPage {
     //to add Order to Order Details
     @FXML
     protected void addOrderButton() throws IOException {
-        DatabaseUpdate update = new DatabaseUpdate();
-        DatabaseShow show = new DatabaseShow();
+        Admin admin = new Admin();
+        Product product = new Product();
+
         String coffeeName = nameBox.getText();
         int coffeePriceInt = Integer.parseInt(priceBox.getText());
         int orderQuantity = Integer.parseInt(orderQuantityLabel.getText());
-        update.productTemporaryDeductionQuantity(show.showProductId(coffeeName), orderQuantity);
+        admin.productTemporaryDeductionQuantity(product.showProductId(coffeeName), orderQuantity);
 
         // Create the new OrderItem
         OrderItem newOrder = new OrderItem(coffeeName, coffeePriceInt, orderQuantity);

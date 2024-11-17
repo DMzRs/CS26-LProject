@@ -1,6 +1,6 @@
 package icedcoffee.coldbrewco;
-import Database.DatabaseShow;
-import Database.DatabaseUpdate;
+import Main.Admin;
+import Main.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,15 +40,16 @@ public class ControllerAdminProductPage {
     // Method to initialize the controller (called after FXML file is loaded)
     @FXML
     public void initialize() {
-        DatabaseShow show = new DatabaseShow();
+        Product product = new Product();
+
         // Sample data for products
         String[][] products = {
-                {"Caramel Macchiato", "Current Quantity: " + show.getProductQuantity(1), getClass().getResource("/images/CaramelMacchiato.jpg").toExternalForm()},
-                {"Spanish Latte", "Current Quantity: " + show.getProductQuantity(2), getClass().getResource("/images/SpanishLatte.jpg").toExternalForm()},
-                {"Vanilla Latte", "Current Quantity: " + show.getProductQuantity(3), getClass().getResource("/images/VanillaLatte.jpg").toExternalForm()},
-                {"Iced Americano", "Current Quantity: " + show.getProductQuantity(4), getClass().getResource("/images/IcedAmericano.jpg").toExternalForm()},
-                {"Matcha Latte", "Current Quantity: " + show.getProductQuantity(5), getClass().getResource("/images/MatchaLatte.jpg").toExternalForm()},
-                {"Strawberry Matcha Latte", "Current Quantity: " + show.getProductQuantity(6), getClass().getResource("/images/StrawberryMatchaLatte.jpg").toExternalForm()}
+                {"Caramel Macchiato", "Current Quantity: " + product.getProductQuantity(1), getClass().getResource("/images/CaramelMacchiato.jpg").toExternalForm()},
+                {"Spanish Latte", "Current Quantity: " + product.getProductQuantity(2), getClass().getResource("/images/SpanishLatte.jpg").toExternalForm()},
+                {"Vanilla Latte", "Current Quantity: " + product.getProductQuantity(3), getClass().getResource("/images/VanillaLatte.jpg").toExternalForm()},
+                {"Iced Americano", "Current Quantity: " + product.getProductQuantity(4), getClass().getResource("/images/IcedAmericano.jpg").toExternalForm()},
+                {"Matcha Latte", "Current Quantity: " + product.getProductQuantity(5), getClass().getResource("/images/MatchaLatte.jpg").toExternalForm()},
+                {"Strawberry Matcha Latte", "Current Quantity: " + product.getProductQuantity(6), getClass().getResource("/images/StrawberryMatchaLatte.jpg").toExternalForm()}
 
         };
 
@@ -60,8 +61,8 @@ public class ControllerAdminProductPage {
 
     // Method to add a product dynamically
     private void addProduct(String name, String quantity, String imagePath, int index) {
-        DatabaseUpdate update = new DatabaseUpdate();
-        DatabaseShow show = new DatabaseShow();
+        Product product = new Product();
+        Admin admin = new Admin();
         // Clone the productContainer
         Pane newProductContainer = new Pane();
         newProductContainer.setPrefHeight(productContainer.getPrefHeight());
@@ -98,12 +99,12 @@ public class ControllerAdminProductPage {
         newAddButton.setUserData(index); // Store the product index
         newAddButton.setOnAction(event -> {
             int productIndex = (int) newAddButton.getUserData(); // Retrieve the index
-            int currentQuantity = show.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
+            int currentQuantity = product.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
             String addedQuantityStr = JOptionPane.showInputDialog(null,"Enter Quantity to Add:","Add Quantity",JOptionPane.QUESTION_MESSAGE);
             if (addedQuantityStr != null) {
                 try {
                     int addedQuantity = Integer.parseInt(addedQuantityStr);
-                    update.addProductQuantity(productIndex + 1, currentQuantity + addedQuantity); // Update quantity in database
+                    admin.addProductQuantity(productIndex + 1, currentQuantity + addedQuantity); // Update quantity in database
                     newQuantityLabel.setText("Current Quantity: " + (currentQuantity + addedQuantity)); // Update label
                     System.out.println("Add button for product " + productIndex + " clicked.");
                 }catch (NumberFormatException e) {
@@ -123,14 +124,14 @@ public class ControllerAdminProductPage {
         newRemoveButton.setUserData(index); // Store the product index
         newRemoveButton.setOnAction(event -> {
             int productIndex = (int) newRemoveButton.getUserData(); // Retrieve the index
-            int currentQuantity = show.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
+            int currentQuantity = product.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
             if (currentQuantity > 0) {
                 String deductedQuantityStr = JOptionPane.showInputDialog(null,"Enter Quantity to Remove:","Remove Quantity",JOptionPane.QUESTION_MESSAGE);
                 if(deductedQuantityStr != null) {
                     try {
                         int deductedQuantity = Integer.parseInt(deductedQuantityStr);
                         if (deductedQuantity <= currentQuantity) {
-                            update.deductProductQuantity(productIndex + 1, currentQuantity - deductedQuantity); // Update quantity in database
+                            admin.removeProductQuantity(productIndex + 1, currentQuantity - deductedQuantity); // Update quantity in database
                             newQuantityLabel.setText("Current Quantity: " + (currentQuantity - deductedQuantity)); // Update label
                         } else {
                             JOptionPane.showMessageDialog(null,"You can't remove more than the current quantity!");

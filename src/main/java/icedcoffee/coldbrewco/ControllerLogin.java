@@ -1,7 +1,6 @@
 package icedcoffee.coldbrewco;
-import Database.DatabaseLogin;
-import ForEnkeepingLoginId.AdminId;
 import ForEnkeepingLoginId.LoginId;
+import Main.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -43,10 +41,10 @@ public class ControllerLogin {
     //for normal user login
     @FXML
     protected void onLoginButtonClick() throws IOException {
-        DatabaseLogin login = new DatabaseLogin();
+        Employee employee = new Employee();
         String username = usernameField.getText();
         String password = passwordField.getText();
-        int currentLoginID = login.ReturnLoginEmployee(username,password);
+        int currentLoginID = employee.ReturnLoginEmployee(username,password);
         if(currentLoginID > 0){
             LoginId.setLoginId(currentLoginID);
             JOptionPane.showMessageDialog(null,"Login Successful");

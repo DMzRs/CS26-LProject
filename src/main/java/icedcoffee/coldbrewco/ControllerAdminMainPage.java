@@ -1,7 +1,7 @@
 package icedcoffee.coldbrewco;
 
-import Database.DatabaseShow;
 import ForEnkeepingLoginId.AdminId;
+import Main.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,8 +16,8 @@ public class ControllerAdminMainPage {
 
     @FXML
     private void initialize() {
-        DatabaseShow show = new DatabaseShow();
-        greetLabel.setText(show.showAdminName(AdminId.getAdminId()));
+        Admin admin = new Admin();
+        greetLabel.setText(admin.showAdminName(AdminId.getAdminId()));
     }
 
     @FXML

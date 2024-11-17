@@ -1,4 +1,4 @@
-package Database;
+package ObservableTableOrganizers;
 
 public class EmployeeSales {
     private String EmpName;

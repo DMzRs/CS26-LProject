@@ -1,17 +1,15 @@
 package icedcoffee.coldbrewco;
 
 
-import Database.OrderItem;
+import ObservableTableOrganizers.OrderItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.print.PrinterJob;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 

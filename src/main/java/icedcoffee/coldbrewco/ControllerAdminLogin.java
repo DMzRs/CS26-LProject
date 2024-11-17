@@ -1,7 +1,7 @@
 package icedcoffee.coldbrewco;
 
-import Database.DatabaseLogin;
 import ForEnkeepingLoginId.AdminId;
+import Main.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -45,10 +45,10 @@ public class ControllerAdminLogin {
     //for admin login
     @FXML
     protected void onLoginAdminButtonClick() throws IOException {
-        DatabaseLogin login = new DatabaseLogin();
+        Admin admin = new Admin();
         String username = usernameAdmin.getText();
         String password = passwordAdmin.getText();
-        int currentAdminId = login.ReturnLoginAdmin(username,password);
+        int currentAdminId = admin.returnLoginAdmin(username,password);
         if(currentAdminId > 0){
             AdminId.setAdminId(currentAdminId);
             JOptionPane.showMessageDialog(null,"Admin Login Successful");

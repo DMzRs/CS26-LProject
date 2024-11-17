@@ -1,9 +1,8 @@
 package icedcoffee.coldbrewco;
 
-import Database.DatabaseShow;
-import Database.OrderItemStorage;
-import Database.PreviousOrders;
+import ObservableTableOrganizers.PreviousOrders;
 import ForEnkeepingLoginId.LoginId;
+import Main.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -35,15 +34,15 @@ public class ControllerEmployeeSales {
 
     @FXML
     private void initialize() {
-        DatabaseShow show = new DatabaseShow();
+        Employee employee = new Employee();
         previousProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         previousPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
         previousQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("productQuantity"));
         previousDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         previousSubTotalColumn.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
 
-        totalSold.setText(" "+show.totalSaleOnSpecificEmployee(LoginId.getLoginId()));
-        previousOrderTable.setItems(show.getPreviousOrdersEmployee(LoginId.getLoginId()));
+        totalSold.setText(" "+employee.Sales(LoginId.getLoginId()));
+        previousOrderTable.setItems(employee.showPreviousOrdersEmployee(LoginId.getLoginId()));
     }
 
 

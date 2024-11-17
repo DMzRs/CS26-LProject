@@ -1,7 +1,6 @@
 package icedcoffee.coldbrewco;
-import Database.DatabaseShow;
-import Database.DatabaseUpdate;
 import ForEnkeepingLoginId.LoginId;
+import Main.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -59,10 +58,10 @@ public class ControllerMain {
     //to set up profile details content
     @FXML
     private void showProfileDetails() throws IOException{
-        DatabaseShow show = new DatabaseShow();
+        Employee employee = new Employee();
         EmpId.setText(""+LoginId.getLoginId());
-        EmpName.setText(""+show.showName(LoginId.getLoginId()));
-        empUsername.setText(""+show.showUserName(LoginId.getLoginId()));
+        EmpName.setText(""+employee.showName(LoginId.getLoginId()));
+        empUsername.setText(""+employee.showUserName(LoginId.getLoginId()));
     }
 
     //to go back to main page
@@ -93,12 +92,12 @@ public class ControllerMain {
     //when confirm button in change pass is clicked
     @FXML
     protected void confirmButtonClick(){
-        DatabaseShow show = new DatabaseShow();
-        DatabaseUpdate update = new DatabaseUpdate();
+        Employee employee = new Employee();
+
         String currpassword = curpassfield.getText();
         String newpassword = newpassfield.getText();
 
-        if (!currpassword.equals(show.showPassword(LoginId.getLoginId()))) {
+        if (!currpassword.equals(employee.showPassword(LoginId.getLoginId()))) {
             JOptionPane.showMessageDialog(null, "The current password is incorrect");
         } else if(currpassword.equals(newpassword)){
             JOptionPane.showMessageDialog(null, "It is the same password");
@@ -107,7 +106,7 @@ public class ControllerMain {
         } else if (currpassword.equals("")||newpassword.equals("")) {
             JOptionPane.showMessageDialog(null, "Input valid password");
         }else {
-            update.updateEmpPassword(LoginId.getLoginId(), newpassword);
+            employee.changePassword(LoginId.getLoginId(), newpassword);
             JOptionPane.showMessageDialog(null, "Password updated successfully");
             curpass.setVisible(false);
             newpass.setVisible(false);

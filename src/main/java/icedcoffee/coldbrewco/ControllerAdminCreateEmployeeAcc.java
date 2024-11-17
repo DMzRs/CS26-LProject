@@ -1,6 +1,6 @@
 package icedcoffee.coldbrewco;
 
-import Database.DatabaseLogin;
+import Main.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -44,8 +44,8 @@ public class ControllerAdminCreateEmployeeAcc {
         } else if(NewUsername.length()<5 || NewPassword.length()<5 || NewUsername.length()>10 || NewPassword.length()>10) {
             JOptionPane.showMessageDialog(null, "Username and Password must be 5-10 characters long");
         }else {
-            DatabaseLogin login = new DatabaseLogin();
-            boolean isCreated = login.RegisterEmployee( EmpFullName, NewUsername, NewPassword);
+            Admin admin = new Admin();
+            boolean isCreated = admin.addEmployeeAccount(EmpFullName, NewUsername, NewPassword);
             fullNameField.setText("");
             newUserField.setText("");
             newPassField.setText("");

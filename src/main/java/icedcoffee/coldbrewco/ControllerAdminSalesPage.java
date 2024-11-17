@@ -1,7 +1,7 @@
 package icedcoffee.coldbrewco;
 
-import Database.DatabaseShow;
-import Database.EmployeeSales;
+import ObservableTableOrganizers.EmployeeSales;
+import Main.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -35,15 +35,16 @@ public class ControllerAdminSalesPage {
 
     @FXML
     private void initialize(){
-        DatabaseShow show = new DatabaseShow();
+        Admin admin = new Admin();
+
     empNameCol.setCellValueFactory(new PropertyValueFactory<>("EmpName"));
     coffeeNameCol.setCellValueFactory(new PropertyValueFactory<>("CoffeeName"));
     dateCol.setCellValueFactory(new PropertyValueFactory<>("Date"));
     coffeeSoldCol.setCellValueFactory(new PropertyValueFactory<>("SoldQuantity"));
     salesPerEmpCol.setCellValueFactory(new PropertyValueFactory<>("SalesPerEmployee"));
 
-    totalSold.setText(" "+show.showOverallSales());
-    SalesTable.setItems(show.getEmployeeSales());
+    totalSold.setText(" "+admin.showOverallSales());
+    SalesTable.setItems(admin.getEmployeeSales());
     }
 
     @FXML
