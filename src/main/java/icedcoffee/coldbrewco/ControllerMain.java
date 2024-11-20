@@ -1,5 +1,4 @@
 package icedcoffee.coldbrewco;
-import ForEnkeepingLoginId.LoginId;
 import Main.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,9 +58,9 @@ public class ControllerMain {
     @FXML
     private void showProfileDetails() throws IOException{
         Employee employee = new Employee();
-        EmpId.setText(""+LoginId.getLoginId());
-        EmpName.setText(""+employee.showName(LoginId.getLoginId()));
-        empUsername.setText(""+employee.showUserName(LoginId.getLoginId()));
+        EmpId.setText(""+ employee.getEmployeeId());
+        EmpName.setText(""+employee.showName(employee.getEmployeeId()));
+        empUsername.setText(""+employee.showUserName(employee.getEmployeeId()));
     }
 
     //to go back to main page
@@ -97,7 +96,7 @@ public class ControllerMain {
         String currpassword = curpassfield.getText();
         String newpassword = newpassfield.getText();
 
-        if (!currpassword.equals(employee.showPassword(LoginId.getLoginId()))) {
+        if (!currpassword.equals(employee.showPassword(employee.getEmployeeId()))) {
             JOptionPane.showMessageDialog(null, "The current password is incorrect");
         } else if(currpassword.equals(newpassword)){
             JOptionPane.showMessageDialog(null, "It is the same password");
@@ -106,7 +105,7 @@ public class ControllerMain {
         } else if (currpassword.equals("")||newpassword.equals("")) {
             JOptionPane.showMessageDialog(null, "Input valid password");
         }else {
-            employee.changePassword(LoginId.getLoginId(), newpassword);
+            employee.changePassword(employee.getEmployeeId(), newpassword);
             JOptionPane.showMessageDialog(null, "Password updated successfully");
             curpass.setVisible(false);
             newpass.setVisible(false);

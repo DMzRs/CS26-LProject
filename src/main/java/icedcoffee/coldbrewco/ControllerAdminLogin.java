@@ -1,6 +1,5 @@
 package icedcoffee.coldbrewco;
 
-import ForEnkeepingLoginId.AdminId;
 import Main.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +49,7 @@ public class ControllerAdminLogin {
         String password = passwordAdmin.getText();
         int currentAdminId = admin.returnLoginAdmin(username,password);
         if(currentAdminId > 0){
-            AdminId.setAdminId(currentAdminId);
+            Admin.setAdminId(currentAdminId);
             JOptionPane.showMessageDialog(null,"Admin Login Successful");
             switchtoAdminMainPage();
         } else {

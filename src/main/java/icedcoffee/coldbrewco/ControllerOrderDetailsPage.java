@@ -1,6 +1,5 @@
 package icedcoffee.coldbrewco;
 
-import ForEnkeepingLoginId.LoginId;
 import Main.Admin;
 import Main.Employee;
 import Main.Order;
@@ -42,7 +41,7 @@ public class ControllerOrderDetailsPage {
     private TableColumn<OrderItem, String> subTotalColumn;
 
 
-    private ObservableList<OrderItem> selectedItems = FXCollections.observableArrayList();
+    private final ObservableList<OrderItem> selectedItems = FXCollections.observableArrayList();
 
     public void setOrderItems(ObservableList<OrderItem> items) {
         selectedItems.setAll(items); // Populate the ObservableList with the passed items
@@ -122,7 +121,7 @@ public class ControllerOrderDetailsPage {
 
             int confirmation = JOptionPane.showConfirmDialog(
                     null,
-                    coffeeNames.toString() + "Total Price: " + totalPrice,
+                    coffeeNames + "Total Price: " + totalPrice,
                     "Confirm Your Order",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE
@@ -140,9 +139,9 @@ public class ControllerOrderDetailsPage {
                                 String coffeeName = itemToRemove.getName();
                                 int itemQuantity = itemToRemove.getQuantity();
                                 int subTotal = itemToRemove.getSubTotal();
-                                order.addOrder(LoginId.getLoginId(), product.showProductId(coffeeName), itemQuantity, subTotal);
+                                order.addOrder(Employee.getEmployeeId(), product.showProductId(coffeeName), itemQuantity, subTotal);
                             }
-                            employee.updateEmployeeSales(LoginId.getLoginId(), totalPrice);
+                            employee.updateEmployeeSales(Employee.getEmployeeId(), totalPrice);
                             allItems.clear();
 
                             String costumerNameStr = JOptionPane.showInputDialog(null, "Customer Name", "Customer Name:", JOptionPane.QUESTION_MESSAGE);

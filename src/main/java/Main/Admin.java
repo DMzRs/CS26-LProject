@@ -1,7 +1,7 @@
 package Main;
 
 import Database.DatabaseLink;
-import ObservableTableOrganizers.EmployeeSales;
+import ObservableTableOrganizers.EmployeeTransactions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,6 +11,14 @@ public class Admin {
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
+
+    public static int adminId;
+    public static void setAdminId(int id) {
+        adminId = id;
+    }
+    public static int getAdminId() {
+        return adminId;
+    }
 
     //to return admin user and pass
     public int returnLoginAdmin(String username, String password) {
@@ -46,11 +54,11 @@ public class Admin {
             preparedStatement.setInt(1, AdminId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                String Name = result.getString("username");
-                preparedStatement.close();
-                connection.close();
-                return Name;
+                return result.getString("username");
             }
+            preparedStatement.close();
+            result.close();
+            connection.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -156,9 +164,9 @@ public class Admin {
         }
     }
 
-    //to get all employee sales
-    public ObservableList<EmployeeSales> getEmployeeSales(){
-        ObservableList<EmployeeSales> employeeSalesList = FXCollections.observableArrayList();
+    //to get all transaction with employees' names
+    public ObservableList<EmployeeTransactions> showEmployeeTransactions(){
+        ObservableList<EmployeeTransactions> employeeSalesList = FXCollections.observableArrayList();
         Employee employee = new Employee();
         Product product = new Product();
         try{
@@ -179,10 +187,11 @@ public class Admin {
                     String coffeeName = product.showProductName(coffeesId);
                     String userName = employee.showName(empId);
 
-                    employeeSalesList.add(new EmployeeSales(userName, coffeeName, dateStr, soldQuantity, totalSales));
+                    employeeSalesList.add(new EmployeeTransactions(userName, coffeeName, dateStr, soldQuantity, totalSales));
                 }
                 empId++;
                 connection.close();
+                result.close();
                 preparedStatement.close();
             }
         } catch (SQLException e){
@@ -192,18 +201,18 @@ public class Admin {
     }
 
     //to get overall sales
-    public int showOverallSales(){
+    public int totalSales(){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String showTotalSales = "Select SUM(subTotal) AS OverallSales FROM orders";
             PreparedStatement preparedStatement = connection.prepareStatement(showTotalSales);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                int overallSales = result.getInt("OverallSales");
-                connection.close();
-                preparedStatement.close();
-                return overallSales;
+                return result.getInt("OverallSales");
             }
+            connection.close();
+            result.close();
+            preparedStatement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }

@@ -1,13 +1,13 @@
 package ObservableTableOrganizers;
 
-public class PreviousTransactionOfSpecificEmployee {
+public class PreviousTransactionsOfSpecificEmployee {
     private String productName;
     private int productPrice;
     private int productQuantity;
     private String date;
     private int subTotal;
 
-    public PreviousTransactionOfSpecificEmployee(String productName, int productPrice, int productQuantity, String date, int subTotal) {
+    public PreviousTransactionsOfSpecificEmployee(String productName, int productPrice, int productQuantity, String date, int subTotal) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;

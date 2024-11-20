@@ -1,6 +1,6 @@
 package icedcoffee.coldbrewco;
 
-import ObservableTableOrganizers.EmployeeSales;
+import ObservableTableOrganizers.EmployeeTransactions;
 import Main.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,17 +19,17 @@ public class ControllerAdminSalesPage {
     @FXML
     private ImageView backToAdminMain;
     @FXML
-    private TableView <EmployeeSales> SalesTable;
+    private TableView <EmployeeTransactions> SalesTable;
     @FXML
-    private TableColumn <EmployeeSales, String> empNameCol;
+    private TableColumn <EmployeeTransactions, String> empNameCol;
     @FXML
-    private TableColumn <EmployeeSales, String> coffeeNameCol;
+    private TableColumn <EmployeeTransactions, String> coffeeNameCol;
     @FXML
-    private TableColumn <EmployeeSales, String> dateCol;
+    private TableColumn <EmployeeTransactions, String> dateCol;
     @FXML
-    private TableColumn <EmployeeSales, Integer> coffeeSoldCol;
+    private TableColumn <EmployeeTransactions, Integer> coffeeSoldCol;
     @FXML
-    private TableColumn<EmployeeSales, Integer> salesPerEmpCol;
+    private TableColumn<EmployeeTransactions, Integer> salesPerEmpCol;
     @FXML
     private Label totalSold;
 
@@ -43,8 +43,8 @@ public class ControllerAdminSalesPage {
     coffeeSoldCol.setCellValueFactory(new PropertyValueFactory<>("SoldQuantity"));
     salesPerEmpCol.setCellValueFactory(new PropertyValueFactory<>("SalesPerEmployee"));
 
-    totalSold.setText(" "+admin.showOverallSales());
-    SalesTable.setItems(admin.getEmployeeSales());
+    totalSold.setText(" "+admin.totalSales());
+    SalesTable.setItems(admin.showEmployeeTransactions());
     }
 
     @FXML

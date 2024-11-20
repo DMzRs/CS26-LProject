@@ -1,7 +1,6 @@
 package icedcoffee.coldbrewco;
 
-import ObservableTableOrganizers.PreviousOrders;
-import ForEnkeepingLoginId.LoginId;
+import ObservableTableOrganizers.PreviousTransactionsOfSpecificEmployee;
 import Main.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,17 +19,17 @@ public class ControllerEmployeeSales {
     @FXML
     private Label totalSold;
     @FXML
-    private TableView<PreviousOrders> previousOrderTable;
+    private TableView<PreviousTransactionsOfSpecificEmployee> previousOrderTable;
     @FXML
-    private TableColumn<PreviousOrders, String> previousProductNameColumn;
+    private TableColumn<PreviousTransactionsOfSpecificEmployee, String> previousProductNameColumn;
     @FXML
-    private TableColumn<PreviousOrders, Integer> previousPriceColumn;
+    private TableColumn<PreviousTransactionsOfSpecificEmployee, Integer> previousPriceColumn;
     @FXML
-    private TableColumn<PreviousOrders, Integer> previousQuantityColumn;
+    private TableColumn<PreviousTransactionsOfSpecificEmployee, Integer> previousQuantityColumn;
     @FXML
-    private TableColumn<PreviousOrders, String> previousDateColumn;
+    private TableColumn<PreviousTransactionsOfSpecificEmployee, String> previousDateColumn;
     @FXML
-    private TableColumn<PreviousOrders, Integer> previousSubTotalColumn;
+    private TableColumn<PreviousTransactionsOfSpecificEmployee, Integer> previousSubTotalColumn;
 
     @FXML
     private void initialize() {
@@ -41,8 +40,8 @@ public class ControllerEmployeeSales {
         previousDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         previousSubTotalColumn.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
 
-        totalSold.setText(" "+employee.Sales(LoginId.getLoginId()));
-        previousOrderTable.setItems(employee.showPreviousOrdersEmployee(LoginId.getLoginId()));
+        totalSold.setText(" "+employee.Sales(employee.getEmployeeId()));
+        previousOrderTable.setItems(employee.showPreviousOrdersEmployee(employee.getEmployeeId()));
     }
 
 

@@ -18,11 +18,11 @@ public class Product {
             preparedStatement.setString(1, productName);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                int productId = result.getInt("productId");
-                preparedStatement.close();
-                connection.close();
-                return productId;
+                return result.getInt("productId");
             }
+            preparedStatement.close();
+            result.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,18 +37,17 @@ public class Product {
             String showName = "SELECT * FROM product WHERE productId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showName);
             preparedStatement.setInt(1, productId);
-
-            // Execute query
             ResultSet result = preparedStatement.executeQuery();
 
-            // Process result
             if (result.next()) {
                 String Name = result.getString("productName");
                 preparedStatement.close();
+                result.close();
                 connection.close();
                 return Name;
             } else {
                 preparedStatement.close();
+                result.close();
                 connection.close();
                 return "No product found with productId: " + productId;
             }
@@ -68,11 +67,11 @@ public class Product {
             preparedStatement.setInt(1, productId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                int productQuantity = result.getInt("productQuantity");
-                preparedStatement.close();
-                connection.close();
-                return productQuantity;
+                return result.getInt("productQuantity");
             }
+            preparedStatement.close();
+            result.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,18 +86,17 @@ public class Product {
             String showDescription = "SELECT productDescription FROM product WHERE productId = ?";
             PreparedStatement Description = connection.prepareStatement(showDescription);
             Description.setInt(1, productId);
-
-            // Execute query
             ResultSet result = Description.executeQuery();
 
-            // Process result
             if (result.next()) {
                 String description = result.getString("productDescription");
                 Description.close();
+                result.close();
                 connection.close();
                 return description;
             } else {
                 Description.close();
+                result.close();
                 connection.close();
                 return "No product found with productId: " + productId;
             }
@@ -127,10 +125,12 @@ public class Product {
             if (result.next()) {
                 price = result.getInt("price");
                 preparedStatement.close();
+                result.close();
                 connection.close();
                 return price;
             }   else   {
                 preparedStatement.close();
+                result.close();
                 connection.close();
                 System.out.println("No product found with productId: " + productId);
             }

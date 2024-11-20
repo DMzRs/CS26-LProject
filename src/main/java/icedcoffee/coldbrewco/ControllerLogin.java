@@ -1,5 +1,4 @@
 package icedcoffee.coldbrewco;
-import ForEnkeepingLoginId.LoginId;
 import Main.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +45,7 @@ public class ControllerLogin {
         String password = passwordField.getText();
         int currentLoginID = employee.ReturnLoginEmployee(username,password);
         if(currentLoginID > 0){
-            LoginId.setLoginId(currentLoginID);
+            employee.setEmployeeId(currentLoginID);
             JOptionPane.showMessageDialog(null,"Login Successful");
             switchtoMain();
         } else {

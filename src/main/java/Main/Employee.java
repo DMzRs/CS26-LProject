@@ -1,13 +1,18 @@
 package Main;
 
 import Database.DatabaseLink;
-import ObservableTableOrganizers.PreviousOrders;
+import ObservableTableOrganizers.PreviousTransactionsOfSpecificEmployee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
 
 public class Employee {
+
+    private static int employeeId;
+    public static void setEmployeeId(int userId) {employeeId = userId;}
+    public static int getEmployeeId() {return employeeId;}
+
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
@@ -23,7 +28,7 @@ public class Employee {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                int user= resultSet.getInt("empId");
+                int user = resultSet.getInt("empId");
                 return user;
             }
             resultSet.close();
@@ -75,11 +80,11 @@ public class Employee {
             preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                int totalSale = result.getInt("empSales");
-                preparedStatement.close();
-                connection.close();
-                return totalSale;
+                return result.getInt("empSales");
             }
+            preparedStatement.close();
+            result.close();
+            connection.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -96,10 +101,11 @@ public class Employee {
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 String Name = result.getString("empFullName");
-                preparedStatement.close();
-                connection.close();
                 return Name;
             }
+            preparedStatement.close();
+            result.close();
+            connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -116,10 +122,12 @@ public class Employee {
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 String username = result.getString("username");
-                preparedStatement.close();
-                connection.close();
                 return username;
             }
+            preparedStatement.close();
+            result.close();
+            connection.close();
+
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -136,17 +144,20 @@ public class Employee {
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 String Password = result.getString("password");
-                preparedStatement.close();
-                connection.close();
                 return Password;
             }
+
+            preparedStatement.close();
+            result.close();
+            connection.close();
+
         }catch (SQLException e){
             e.printStackTrace();
         }
         return "";
     }
 
-    //limiter for getEmployeeSales in admin class
+    //limiter for showEmployeeTransactions in admin class
     public int showLastEmployeeId(){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
@@ -155,10 +166,11 @@ public class Employee {
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 int userId = result.getInt("lastId");
-                preparedStatement.close();
-                connection.close();
                 return userId;
             }
+            preparedStatement.close();
+            result.close();
+            connection.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -166,8 +178,8 @@ public class Employee {
     }
 
     // to show the table for previous orders made on specific userId
-    public ObservableList<PreviousOrders> showPreviousOrdersEmployee(int employeeId){
-        ObservableList<PreviousOrders> orderList = FXCollections.observableArrayList();
+    public ObservableList<PreviousTransactionsOfSpecificEmployee> showPreviousOrdersEmployee(int employeeId){
+        ObservableList<PreviousTransactionsOfSpecificEmployee> orderList = FXCollections.observableArrayList();
         Product product = new Product();
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
@@ -184,9 +196,10 @@ public class Employee {
                 String name = product.showProductName(productId);
                 int price = product.showProductPrice(productId);
                 String dateStr = date.toString();
-                orderList.add(new PreviousOrders(name,price,orderQuantity,dateStr,subTotal));
+                orderList.add(new PreviousTransactionsOfSpecificEmployee(name,price,orderQuantity,dateStr,subTotal));
             }
             preparedStatement.close();
+            result.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
