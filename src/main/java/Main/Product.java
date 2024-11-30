@@ -10,9 +10,9 @@ public class Product {
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
     // to show product id using product name
-    public int showProductId(String productName){
-        try{
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+    public int showProductId(String productName) {
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
             String showId = "SELECT * FROM product WHERE productName = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showId);
             preparedStatement.setString(1, productName);
@@ -30,9 +30,9 @@ public class Product {
     }
 
     //to show product name using product id
-    public String showProductName(int productId)    {
+    public String showProductName(int productId) {
         try {
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
 
             String showName = "SELECT * FROM product WHERE productId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showName);
@@ -59,9 +59,9 @@ public class Product {
     }
 
     //to get the product quantity using product id
-    public int getProductQuantity(int productId){
-        try{
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+    public int getProductQuantity(int productId) {
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
             String showId = "SELECT * FROM product WHERE productId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showId);
             preparedStatement.setInt(1, productId);
@@ -79,9 +79,9 @@ public class Product {
     }
 
     //to show product description using product id
-    public String showProductDescription(int productId)    {
+    public String showProductDescription(int productId) {
         try {
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
 
             String showDescription = "SELECT productDescription FROM product WHERE productId = ?";
             PreparedStatement Description = connection.prepareStatement(showDescription);
@@ -109,26 +109,26 @@ public class Product {
     }
 
     //to show price of a product using product id
-    public int showProductPrice(int productId)    {
+    public int showProductPrice(int productId) {
         try {
             int price;
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
 
             String showPrice = "SELECT * FROM product WHERE productId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showPrice);
             preparedStatement.setInt(1, productId);
 
-            // Execute query
+
             ResultSet result = preparedStatement.executeQuery();
 
-            // Process result
+
             if (result.next()) {
                 price = result.getInt("price");
                 preparedStatement.close();
                 result.close();
                 connection.close();
                 return price;
-            }   else   {
+            } else {
                 preparedStatement.close();
                 result.close();
                 connection.close();
@@ -139,4 +139,25 @@ public class Product {
         }
         return 0;
     }
+
+    //for logic
+    public int lastProductId(){
+        try{
+            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
+            String showLastProductId = "SELECT productId AS lastId FROM product ORDER BY productId DESC LIMIT 1";
+            PreparedStatement preparedStatement = connection.prepareStatement(showLastProductId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int productId = result.getInt("lastId");
+                return productId;
+            }
+            preparedStatement.close();
+            result.close();
+            connection.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
+

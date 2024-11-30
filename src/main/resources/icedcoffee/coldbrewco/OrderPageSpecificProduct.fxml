@@ -26,7 +26,7 @@
                <children>
                   <ImageView fx:id="specificImageBox" cache="true" cacheHint="QUALITY" fitHeight="119.0" fitWidth="98.0" layoutX="33.0" layoutY="28.0" nodeOrientation="INHERIT" pickOnBounds="true">
                      <image>
-                        <Image url="@../../images/CaramelMacchiato.jpg" />
+                        <Image url="@../../ProductImages/Caramel Macchiato.jpg" />
                      </image>
                   </ImageView>
                </children>

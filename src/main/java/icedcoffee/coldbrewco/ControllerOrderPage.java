@@ -184,22 +184,22 @@ public class ControllerOrderPage {
         // Determine the correct image path based on productId
         switch (productId) {
             case 1:
-                imagePath = "/images/CaramelMacchiato.jpg";
+                imagePath = "/ProductImages/Caramel Macchiato.jpg";
                 break;
             case 2:
-                imagePath = "/images/SpanishLatte.jpg";
+                imagePath = "/ProductImages/Spanish Latte.jpg";
                 break;
             case 3:
-                imagePath = "/images/VanillaLatte.jpg";
+                imagePath = "/ProductImages/Vanilla Latte.jpg";
                 break;
             case 4:
-                imagePath = "/images/IcedAmericano.jpg";
+                imagePath = "/ProductImages/Iced Americano.jpg";
                 break;
             case 5:
-                imagePath = "/images/MatchaLatte.jpg";
+                imagePath = "/ProductImages/Matcha Latte.jpg";
                 break;
             case 6:
-                imagePath = "/images/StrawberryMatchaLatte.jpg";
+                imagePath = "/ProductImages/Strawberry MatchaLatte.jpg";
                 break;
             default:
                 System.out.println("Invalid product ID");

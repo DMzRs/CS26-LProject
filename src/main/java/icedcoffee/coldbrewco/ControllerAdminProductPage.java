@@ -1,75 +1,74 @@
 package icedcoffee.coldbrewco;
 import Main.Admin;
 import Main.Product;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 
 public class ControllerAdminProductPage {
     @FXML
     private ImageView backToAdminMain;
     @FXML
     private AnchorPane scrollAnchor;
-
     @FXML
     private Pane productContainer;
-
     @FXML
     private Label nameContainer;
-
     @FXML
     private Label quantityContainer;
-
     @FXML
     private Button addButton;
-
     @FXML
     private Button removeButton;
-
     @FXML
     private ImageView imageContainer;
-    // Method to initialize the controller (called after FXML file is loaded)
+    @FXML
+    private ImageView add;
+
+
+    // Method to initialize the controller
     @FXML
     public void initialize() {
         Product product = new Product();
+        for (int i = 0; i < product.lastProductId(); i++) {
+            String productName = product.showProductName(i+1);
 
-        // Sample data for products
-        String[][] products = {
-                {"Caramel Macchiato", "Current Quantity: " + product.getProductQuantity(1), getClass().getResource("/images/CaramelMacchiato.jpg").toExternalForm()},
-                {"Spanish Latte", "Current Quantity: " + product.getProductQuantity(2), getClass().getResource("/images/SpanishLatte.jpg").toExternalForm()},
-                {"Vanilla Latte", "Current Quantity: " + product.getProductQuantity(3), getClass().getResource("/images/VanillaLatte.jpg").toExternalForm()},
-                {"Iced Americano", "Current Quantity: " + product.getProductQuantity(4), getClass().getResource("/images/IcedAmericano.jpg").toExternalForm()},
-                {"Matcha Latte", "Current Quantity: " + product.getProductQuantity(5), getClass().getResource("/images/MatchaLatte.jpg").toExternalForm()},
-                {"Strawberry Matcha Latte", "Current Quantity: " + product.getProductQuantity(6), getClass().getResource("/images/StrawberryMatchaLatte.jpg").toExternalForm()}
 
-        };
+            if (productName == null || productName.isEmpty()) {
+                continue;
+            }
 
-        // Add product containers dynamically
-        for (int i = 0; i < products.length; i++) {
-            addProduct(products[i][0], products[i][1], products[i][2], i);
+            listProducts(productName, "Current Quantity: "+ product.getProductQuantity(i+1), getClass().getResource("/ProductImages/" + productName + ".jpg").toExternalForm(), i);
         }
     }
 
     // Method to add a product dynamically
-    private void addProduct(String name, String quantity, String imagePath, int index) {
+    private void listProducts(String name, String quantity, String imagePath, int index) {
         Product product = new Product();
         Admin admin = new Admin();
+
         // Clone the productContainer
         Pane newProductContainer = new Pane();
         newProductContainer.setPrefHeight(productContainer.getPrefHeight());
         newProductContainer.setPrefWidth(productContainer.getPrefWidth());
         newProductContainer.setStyle(productContainer.getStyle());
 
-        // Create and set ImageView for the product
         ImageView newImageView = new ImageView(imagePath);
         newImageView.setFitHeight(imageContainer.getFitHeight());
         newImageView.setFitWidth(imageContainer.getFitWidth());
@@ -100,18 +99,15 @@ public class ControllerAdminProductPage {
         newAddButton.setOnAction(event -> {
             int productIndex = (int) newAddButton.getUserData(); // Retrieve the index
             int currentQuantity = product.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
-            String addedQuantityStr = JOptionPane.showInputDialog(null,"Enter Quantity to Add:","Add Quantity",JOptionPane.QUESTION_MESSAGE);
+            String addedQuantityStr = JOptionPane.showInputDialog(null, "Enter Quantity to Add:", "Add Quantity", JOptionPane.QUESTION_MESSAGE);
             if (addedQuantityStr != null) {
                 try {
                     int addedQuantity = Integer.parseInt(addedQuantityStr);
                     admin.addProductQuantity(productIndex + 1, currentQuantity + addedQuantity); // Update quantity in database
                     newQuantityLabel.setText("Current Quantity: " + (currentQuantity + addedQuantity)); // Update label
-                    System.out.println("Add button for product " + productIndex + " clicked.");
-                }catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null,"Enter valid number!","Error",JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Enter valid number!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                System.out.println("Cancelled");
             }
         });
         newProductContainer.getChildren().add(newAddButton);
@@ -126,39 +122,43 @@ public class ControllerAdminProductPage {
             int productIndex = (int) newRemoveButton.getUserData(); // Retrieve the index
             int currentQuantity = product.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
             if (currentQuantity > 0) {
-                String deductedQuantityStr = JOptionPane.showInputDialog(null,"Enter Quantity to Remove:","Remove Quantity",JOptionPane.QUESTION_MESSAGE);
-                if(deductedQuantityStr != null) {
+                String deductedQuantityStr = JOptionPane.showInputDialog(null, "Enter Quantity to Remove:", "Remove Quantity", JOptionPane.QUESTION_MESSAGE);
+                if (deductedQuantityStr != null) {
                     try {
                         int deductedQuantity = Integer.parseInt(deductedQuantityStr);
                         if (deductedQuantity <= currentQuantity) {
                             admin.removeProductQuantity(productIndex + 1, currentQuantity - deductedQuantity); // Update quantity in database
                             newQuantityLabel.setText("Current Quantity: " + (currentQuantity - deductedQuantity)); // Update label
                         } else {
-                            JOptionPane.showMessageDialog(null,"You can't remove more than the current quantity!");
+                            JOptionPane.showMessageDialog(null, "You can't remove more than the current quantity!");
                         }
-                    }catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null,"Enter valid number!","Error",JOptionPane.ERROR_MESSAGE);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Enter valid number!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                } else{
-                System.out.println("Cancelled");
                 }
-            } else {
-                System.out.println("Cannot remove quantity. Current quantity is 0.");
             }
-            System.out.println("Remove button for product " + productIndex + " clicked.");
         });
         newProductContainer.getChildren().add(newRemoveButton);
 
         // Calculate vertical placement: Each pane's Y-coordinate is the index multiplied by pane height + margin
-        double spacing = 10.0;  // Space between each product container
+        double spacing = 20.0;  // Increased spacing between product containers
         double containerHeight = productContainer.getPrefHeight();
+
+        // Update the layout for the new product container
         newProductContainer.setLayoutX(productContainer.getLayoutX());
         newProductContainer.setLayoutY(productContainer.getLayoutY() + index * (containerHeight + spacing));
 
         // Add the new product container to the scrollAnchor
         scrollAnchor.getChildren().add(newProductContainer);
-        scrollAnchor.setPrefHeight(scrollAnchor.getPrefHeight() + containerHeight + spacing);
+
+        // Increase the spacing for the empty container
+        Pane emptyContainer = (Pane) scrollAnchor.lookup("#emptyContainer");
+        emptyContainer.setLayoutY((index + 1) * (containerHeight + spacing) + 30);  // Added extra margin for empty container
+        scrollAnchor.setPrefHeight(scrollAnchor.getPrefHeight() + containerHeight + spacing + 30);  // Adjusted the scrollAnchor height
     }
+
+
+
 
     @FXML
     private void backtoMainPage() throws IOException {
@@ -173,8 +173,18 @@ public class ControllerAdminProductPage {
         currentStage.show();
     }
 
-    @FXML
-    private void AddQuantityButton(){
 
+    @FXML
+    private void onAddProductClicked() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("addProductPage.fxml"));
+        Scene adminPage = new Scene(fxmlLoader.load(), 900, 700);
+        Stage currentStage = (Stage) add.getScene().getWindow();
+        currentStage.setScene(adminPage);
+        currentStage.setTitle("Add Product");
+        currentStage.setResizable(false);
+        currentStage.centerOnScreen();
+        currentStage.show();
     }
+
 }
+

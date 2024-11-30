@@ -25,7 +25,7 @@
                <children>
                   <ImageView fx:id="CaraMachImage" fitHeight="119.0" fitWidth="98.0" layoutX="51.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/CaramelMacchiato.jpg" />
+                        <Image url="@../../ProductImages/Caramel Macchiato.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="157.0" layoutY="162.0" text="99">
@@ -47,7 +47,7 @@
                <children>
                   <ImageView fx:id="SpanishLatImage" fitHeight="137.0" fitWidth="141.0" layoutX="52.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/SpanishLatte.jpg" />
+                        <Image url="@../../ProductImages/Spanish Latte.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="42.0" layoutY="14.0" text="Spanish Latte">
@@ -69,7 +69,7 @@
                <children>
                   <ImageView fx:id="VanillaLatImage" fitHeight="129.0" fitWidth="108.0" layoutX="46.0" layoutY="42.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../../images/VanillaLatte.jpg" />
+                        <Image url="@../../ProductImages/Vanilla Latte.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -91,7 +91,7 @@
                <children>
                   <ImageView fx:id="IcedAmericanoImage" fitHeight="119.0" fitWidth="98.0" layoutX="57.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/IcedAmericano.jpg" />
+                        <Image url="@../../ProductImages/Iced Americano.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="34.0" layoutY="14.0" text="Iced Americano">
@@ -113,7 +113,7 @@
                <children>
                   <ImageView fx:id="MatchaLatteImage" fitHeight="129.0" fitWidth="98.0" layoutX="53.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/MatchaLatte.jpg" />
+                        <Image url="@../../ProductImages/Matcha Latte.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="44.0" layoutY="14.0" text="Matcha Latte">
@@ -135,7 +135,7 @@
                <children>
                   <ImageView fx:id="StrawberryLatteImage" fitHeight="137.0" fitWidth="132.0" layoutX="62.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/StrawberryMatchaLatte.jpg" />
+                        <Image url="@../../ProductImages/Strawberry MatchaLatte.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="7.0" layoutY="14.0" prefHeight="22.0" prefWidth="200.0" text="Straberry Matcha Latte ">

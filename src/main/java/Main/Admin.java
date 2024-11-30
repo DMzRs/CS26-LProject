@@ -88,42 +88,6 @@ public class Admin {
         }
     }
 
-    //to remove quantity in admin control
-    public void removeProductQuantity(int productId, int quantityRemoved) {
-        try {
-
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String updateProductQuantity = "UPDATE product SET productQuantity = ? WHERE productId = ?";
-            PreparedStatement deductQuantity = connection.prepareStatement(updateProductQuantity);
-            deductQuantity.setInt(1, quantityRemoved);
-            deductQuantity.setInt(2, productId);
-
-            deductQuantity.executeUpdate();
-            deductQuantity.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //to add product quantity in admin control
-    public void addProductQuantity(int productId, int quantityAdded) {
-        try {
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-
-            String addProductQuantity = "UPDATE product SET productQuantity = ? WHERE productId = ?";
-            PreparedStatement addQuantity = connection.prepareStatement(addProductQuantity);
-            addQuantity.setInt(1, quantityAdded); // Set the amount to add
-            addQuantity.setInt(2, productId);       // Set the user ID
-
-            addQuantity.executeUpdate();
-            addQuantity.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     //product quantity will temporarily be deducted when transferred from order page to order details
     public void productTemporaryDeductionQuantity(int productId, int quantityBought) {
         try {
@@ -218,5 +182,82 @@ public class Admin {
         }
         return 0;
     }
+
+    // Method to add quantity to a product
+    public void addProductQuantity(int productId, int newQuantity) {
+
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+            String query = "UPDATE product SET productQuantity = ? WHERE productId = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, newQuantity);
+            statement.setInt(2, productId);
+            statement.executeUpdate();
+
+            statement.close();
+            connection.close();
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to remove quantity from a product
+    public void removeProductQuantity(int productId, int newQuantity) {
+        String query = "UPDATE product SET productQuantity = ? WHERE productId = ?";
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, newQuantity);
+            statement.setInt(2, productId);
+            statement.executeUpdate();
+
+            statement.close();
+            connection.close();
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to add a new product to the database
+    public void addProduct(String name, int quantity, String description, int price) {
+
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+            String query = "INSERT INTO product (productName, productQuantity, productDescription, price) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setInt(2, quantity);
+            statement.setString(3, description);
+            statement.setInt(4, price);
+            statement.executeUpdate();
+
+            statement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to remove a product from the database
+    public void removeProduct(int productId) {
+
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+            String query = "DELETE FROM product WHERE productId = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, productId);
+            statement.executeUpdate();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
 

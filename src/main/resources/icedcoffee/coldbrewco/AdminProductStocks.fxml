@@ -33,23 +33,25 @@
                </cursor>
             </ImageView>
             <ScrollPane layoutX="64.0" layoutY="112.0" prefHeight="490.0" prefWidth="745.0" style="-fx-border-color: #966216;">
-              <content>
-                <AnchorPane fx:id="scrollAnchor" minHeight="0.0" minWidth="0.0" prefHeight="488.0" prefWidth="742.0">
+               <content>
+                  <AnchorPane fx:id="scrollAnchor" minHeight="0.0" minWidth="0.0" prefHeight="488.0" prefWidth="742.0">
                      <children>
                         <Pane fx:id="productContainer" layoutX="52.0" layoutY="22.0" prefHeight="126.0" prefWidth="638.0" style="-fx-background-color: #F4F4D5; -fx-border-color: #966216;">
                            <children>
                               <ImageView fx:id="imageContainer" fitHeight="92.0" fitWidth="98.0" layoutX="21.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="nameContainer" layoutX="135.0" layoutY="29.0" prefHeight="23.0" prefWidth="211.0" text="Name">
+                              <Label fx:id="nameContainer" layoutX="135.0" layoutY="29.0" prefHeight="23.0" prefWidth="211.0" text="Matcha Latte">
                                  <font>
                                     <Font name="Franklin Gothic Medium" size="19.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="quantityContainer" layoutX="129.0" layoutY="71.0" prefHeight="23.0" prefWidth="211.0" text="quantity">
+                              <Label fx:id="quantityContainer" layoutX="135.0" layoutY="71.0" prefHeight="23.0" prefWidth="211.0" text="Quantity: 5">
                                  <font>
                                     <Font name="Franklin Gothic Medium" size="19.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="addButton" layoutX="515.0" layoutY="29.0" mnemonicParsing="false" text="Add Quantity">
+
+                              <!-- Add Quantity Button -->
+                              <Button fx:id="addButton" layoutX="383.0" layoutY="29.0" mnemonicParsing="false" text="Add Quantity">
                                  <font>
                                     <Font name="Franklin Gothic Medium" size="13.0" />
                                  </font>
@@ -57,7 +59,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button fx:id="removeButton" layoutX="491.0" layoutY="71.0" mnemonicParsing="false" text="Remove Quantity">
+                              <Button fx:id="removeButton" layoutX="359.0" layoutY="71.0" mnemonicParsing="false" text="Remove Quantity">
                                  <font>
                                     <Font name="Franklin Gothic Medium" size="13.0" />
                                  </font>
@@ -65,11 +67,28 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
+                              <ImageView fx:id="delete" fitHeight="54.0" fitWidth="48.0" layoutX="561.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/remove.png" />
+                                 </image>
+                              </ImageView>
                            </children>
+                        </Pane>
+                        <Pane fx:id="emptyContainer" layoutX="52.0" layoutY="173.0" onMouseClicked="#onAddProductClicked" prefHeight="126.0" prefWidth="638.0" style="-fx-background-color: #F4F4D5; -fx-border-color: #966216;">
+                           <children>
+                              <ImageView fx:id="add" fitHeight="92.0" fitWidth="174.0" layoutX="273.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../ProductImages/add.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </ScrollPane>
          </children>
       </Pane>

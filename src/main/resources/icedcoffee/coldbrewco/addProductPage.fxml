@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="icedcoffee.coldbrewco.ControllerAdminAddProduct">
+   <children>
+      <Pane fx:id="specificOrderPane" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #F4F4D5; -fx-border-color: #966216; -fx-border-width: 10px;">
+         <children>
+            <ImageView fx:id="back" fitHeight="75.0" fitWidth="74.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#backToProductStocks" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/BackArrow.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="nameBox" alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="81.0" nodeOrientation="LEFT_TO_RIGHT">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="25.0" />
+               </font>
+            </Label>
+            <Pane fx:id="emptyImageOrder" layoutX="376.0" layoutY="72.0" onMouseClicked="#setImageUpload" prefHeight="141.0" prefWidth="149.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20px; -fx-border-color: #000000; -fx-border-radius: 20px;">
+               <children>
+                  <ImageView fx:id="attachImage" cache="true" cacheHint="QUALITY" fitHeight="94.0" fitWidth="111.0" layoutX="19.0" layoutY="24.0" nodeOrientation="INHERIT" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../ProductImages/add.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="281.0" layoutY="254.0" text="Product Name:">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="priceBox" alignment="CENTER" layoutX="101.0" layoutY="344.0">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="281.0" layoutY="391.0" text="Quantity:">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="281.0" layoutY="322.0" text="Price:">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newProductName" layoutX="281.0" layoutY="282.0" prefHeight="29.0" prefWidth="339.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="newPrice" layoutX="281.0" layoutY="350.0" prefHeight="29.0" prefWidth="339.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="newQuantity" layoutX="281.0" layoutY="420.0" prefHeight="29.0" prefWidth="339.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="281.0" layoutY="467.0" text="Product Ingredients:">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newIngredients" layoutX="281.0" layoutY="496.0" prefHeight="64.0" prefWidth="339.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label fx:id="addProduct" alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="612.0" onMouseClicked="#AddProduct" prefHeight="27.0" prefWidth="179.0" style="-fx-border-color: #000000; -fx-background-color: #FFD875;" text="ADD PRODUCT">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
