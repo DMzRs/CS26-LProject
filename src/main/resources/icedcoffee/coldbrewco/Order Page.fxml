@@ -135,7 +135,7 @@
                <children>
                   <ImageView fx:id="StrawberryLatteImage" fitHeight="137.0" fitWidth="132.0" layoutX="62.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../ProductImages/Strawberry MatchaLatte.jpg" />
+                        <Image url="@../../ProductImages/Strawberry Matcha Latte.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="7.0" layoutY="14.0" prefHeight="22.0" prefWidth="200.0" text="Straberry Matcha Latte ">

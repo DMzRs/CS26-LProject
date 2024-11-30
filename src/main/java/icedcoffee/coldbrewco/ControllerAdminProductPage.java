@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -40,23 +41,33 @@ public class ControllerAdminProductPage {
     private ImageView imageContainer;
     @FXML
     private ImageView add;
-
+    @FXML
+    private Button deleteButton;
 
     // Method to initialize the controller
     @FXML
     public void initialize() {
         Product product = new Product();
-        for (int i = 0; i < product.lastProductId(); i++) {
-            String productName = product.showProductName(i+1);
+        int lastId = product.lastProductId();
 
+        // Counter for valid products
+        int validProductIndex = 0;
+
+        for (int i = 0; i < lastId; i++) {
+            String productName = product.showProductName(i + 1);
 
             if (productName == null || productName.isEmpty()) {
-                continue;
+                continue; // Skip invalid products
             }
 
-            listProducts(productName, "Current Quantity: "+ product.getProductQuantity(i+1), getClass().getResource("/ProductImages/" + productName + ".jpg").toExternalForm(), i);
+            // Pass validProductIndex instead of loop index (i)
+            listProducts(productName, "Current Quantity: " + product.getProductQuantity(i + 1), getClass().getResource("/ProductImages/" + productName + ".jpg").toExternalForm(), validProductIndex);
+
+            // Increment the valid product index only for valid products
+            validProductIndex++;
         }
     }
+
 
     // Method to add a product dynamically
     private void listProducts(String name, String quantity, String imagePath, int index) {
@@ -97,13 +108,13 @@ public class ControllerAdminProductPage {
         newAddButton.setLayoutY(addButton.getLayoutY());
         newAddButton.setUserData(index); // Store the product index
         newAddButton.setOnAction(event -> {
-            int productIndex = (int) newAddButton.getUserData(); // Retrieve the index
-            int currentQuantity = product.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
+
+            int currentQuantity = product.getProductQuantity(product.showProductId(name));
             String addedQuantityStr = JOptionPane.showInputDialog(null, "Enter Quantity to Add:", "Add Quantity", JOptionPane.QUESTION_MESSAGE);
             if (addedQuantityStr != null) {
                 try {
                     int addedQuantity = Integer.parseInt(addedQuantityStr);
-                    admin.addProductQuantity(productIndex + 1, currentQuantity + addedQuantity); // Update quantity in database
+                    admin.addProductQuantity(product.showProductId(name), currentQuantity + addedQuantity); // Update quantity in database
                     newQuantityLabel.setText("Current Quantity: " + (currentQuantity + addedQuantity)); // Update label
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Enter valid number!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -119,15 +130,15 @@ public class ControllerAdminProductPage {
         newRemoveButton.setLayoutY(removeButton.getLayoutY());
         newRemoveButton.setUserData(index); // Store the product index
         newRemoveButton.setOnAction(event -> {
-            int productIndex = (int) newRemoveButton.getUserData(); // Retrieve the index
-            int currentQuantity = product.getProductQuantity(productIndex + 1); // Fetch current quantity (adjust for index)
+
+            int currentQuantity = product.getProductQuantity(product.showProductId(name));
             if (currentQuantity > 0) {
                 String deductedQuantityStr = JOptionPane.showInputDialog(null, "Enter Quantity to Remove:", "Remove Quantity", JOptionPane.QUESTION_MESSAGE);
                 if (deductedQuantityStr != null) {
                     try {
                         int deductedQuantity = Integer.parseInt(deductedQuantityStr);
                         if (deductedQuantity <= currentQuantity) {
-                            admin.removeProductQuantity(productIndex + 1, currentQuantity - deductedQuantity); // Update quantity in database
+                            admin.removeProductQuantity(product.showProductId(name), currentQuantity - deductedQuantity); // Update quantity in database
                             newQuantityLabel.setText("Current Quantity: " + (currentQuantity - deductedQuantity)); // Update label
                         } else {
                             JOptionPane.showMessageDialog(null, "You can't remove more than the current quantity!");
@@ -139,6 +150,57 @@ public class ControllerAdminProductPage {
             }
         });
         newProductContainer.getChildren().add(newRemoveButton);
+
+        Button newDeleteButton = new Button("X");
+        newDeleteButton.setFont(deleteButton.getFont());
+        newDeleteButton.setLayoutX(deleteButton.getLayoutX());
+        newDeleteButton.setLayoutY(deleteButton.getLayoutY());
+        newDeleteButton.setUserData(index);
+        newDeleteButton.setOnAction(event -> {
+
+            String productName = (String) newProductContainer.getUserData();
+
+            int productIndex = (int) newDeleteButton.getUserData(); // Retrieve the index of the product
+
+            // Ask for confirmation before deletion
+            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the product: " + productName + "?", "Delete Product", JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                try {
+                    // Fetch product data (e.g., image path and database ID)
+                    String productImagePath = getClass().getResource("/ProductImages/" + name + ".jpg").toExternalForm();  // You can modify this method to retrieve the image path
+
+                    // 1. Delete the product from the database
+                    admin.removeProduct(name);  // Method in Admin to delete the product from the database
+
+                    // 2. Delete the image from the file system (target and resource folder)
+                    File productImageFile = new File(productImagePath);
+                    if (productImageFile.exists()) {
+                        boolean imageDeleted = productImageFile.delete();
+                        if (!imageDeleted) {
+                            JOptionPane.showMessageDialog(null, "Failed to delete the image file.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Image file not found.");
+                    }
+
+                    // 3. Remove the product from the UI (from the scrollAnchor container)
+                    scrollAnchor.getChildren().remove(newProductContainer);
+
+                    // Optionally update the scrollAnchor's height if needed (similar to your existing code)
+
+                    // Adjust the height of the empty container to match the new number of products
+                    Pane emptyContainer = (Pane) scrollAnchor.lookup("#emptyContainer");
+                    emptyContainer.setLayoutY((index) * (productContainer.getPrefHeight() + 20.0) + 30);  // Adjusted positioning for empty container
+                    scrollAnchor.setPrefHeight(scrollAnchor.getPrefHeight() - productContainer.getPrefHeight() - 20.0);
+
+                    JOptionPane.showMessageDialog(null, "Product " + productName + " deleted successfully.");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error occurred while deleting the product: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        newProductContainer.getChildren().add(newDeleteButton);
 
         // Calculate vertical placement: Each pane's Y-coordinate is the index multiplied by pane height + margin
         double spacing = 20.0;  // Increased spacing between product containers
@@ -158,8 +220,7 @@ public class ControllerAdminProductPage {
     }
 
 
-
-
+    //go back to admin main page
     @FXML
     private void backtoMainPage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("AdminMainPage.fxml"));
@@ -173,11 +234,12 @@ public class ControllerAdminProductPage {
         currentStage.show();
     }
 
-
+    //go to add product page
     @FXML
     private void onAddProductClicked() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("addProductPage.fxml"));
         Scene adminPage = new Scene(fxmlLoader.load(), 900, 700);
+
         Stage currentStage = (Stage) add.getScene().getWindow();
         currentStage.setScene(adminPage);
         currentStage.setTitle("Add Product");
@@ -185,6 +247,7 @@ public class ControllerAdminProductPage {
         currentStage.centerOnScreen();
         currentStage.show();
     }
+
 
 }
 

@@ -49,13 +49,13 @@ public class Product {
                 preparedStatement.close();
                 result.close();
                 connection.close();
-                return "No product found with productId: " + productId;
+                return null;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "No description";
+        return null;
     }
 
     //to get the product quantity using product id

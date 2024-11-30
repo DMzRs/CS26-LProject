@@ -242,13 +242,13 @@ public class Admin {
     }
 
     // Method to remove a product from the database
-    public void removeProduct(int productId) {
+    public void removeProduct(String Name) {
 
         try {
             Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
-            String query = "DELETE FROM product WHERE productId = ?";
+            String query = "DELETE FROM product WHERE productName = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, productId);
+            statement.setString(1, Name);
             statement.executeUpdate();
             statement.close();
             connection.close();

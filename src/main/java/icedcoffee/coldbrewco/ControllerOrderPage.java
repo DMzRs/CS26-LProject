@@ -199,7 +199,7 @@ public class ControllerOrderPage {
                 imagePath = "/ProductImages/Matcha Latte.jpg";
                 break;
             case 6:
-                imagePath = "/ProductImages/Strawberry MatchaLatte.jpg";
+                imagePath = "/ProductImages/Strawberry Matcha Latte.jpg";
                 break;
             default:
                 System.out.println("Invalid product ID");
