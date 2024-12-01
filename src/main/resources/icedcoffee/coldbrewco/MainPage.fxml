@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -41,7 +43,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane layoutX="460.0" layoutY="187.0" onMouseClicked="#onCheckPreviousOrderButtonClick" prefHeight="177.0" prefWidth="182.0" style="-fx-border-color: #966216; -fx-background-color: FFFFFF; -fx-border-radius: 20px; -fx-background-radius: 20px;">
+            <Pane layoutX="460.0" layoutY="187.0" onMouseClicked="#onCheckSalesButtonClick" prefHeight="177.0" prefWidth="182.0" style="-fx-border-color: #966216; -fx-background-color: FFFFFF; -fx-border-radius: 20px; -fx-background-radius: 20px;">
                <children>
                   <ImageView fx:id="checkOrder" fitHeight="91.0" fitWidth="91.0" layoutX="52.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -101,14 +103,107 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <ImageView fitHeight="82.0" fitWidth="101.0" layoutX="766.0" layoutY="12.0" onMouseClicked="#ProfileDetailsButtonClick" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="empProfile" fitHeight="82.0" fitWidth="101.0" layoutX="749.0" layoutY="12.0" onMouseClicked="#ProfileDetailsButtonClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/ProfileButton.png" />
+                  <Image url="@../../EmployeeProfiles/ProfileButton.jpg" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <Pane fx:id="EmpAccView" layoutX="206.0" layoutY="181.0" prefHeight="330.0" prefWidth="450.0" style="-fx-background-color: #F4F4D5; -fx-background-radius: 20px; -fx-border-color: #966216; -fx-border-radius: 20px;">
+               <children>
+                  <Label layoutX="173.0" layoutY="14.0" text="Account Details">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="60.0" layoutY="56.0" text="Employee ID:">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="EmpId" layoutX="167.0" layoutY="56.0" text="Employee ID:">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="60.0" layoutY="80.0" text="Name:">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="EmpName" alignment="TOP_LEFT" layoutX="118.0" layoutY="80.0" prefHeight="49.0" prefWidth="169.0" text="Employee ID:" wrapText="true">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="empProfileMain" fitHeight="111.0" fitWidth="132.0" layoutX="305.0" layoutY="56.0" onMouseClicked="#ChangeProfile" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../EmployeeProfiles/ProfilePicture.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="60.0" layoutY="129.0" text="Username:">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="empUsername" layoutX="150.0" layoutY="129.0" text="Username:">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="165.0" layoutY="167.0" onMouseClicked="#changePassClick" text="Change Password" textFill="#7a4f16" underline="true">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="curpass" layoutX="81.0" layoutY="208.0" text="Current Password:" visible="false">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="newpass" layoutX="108.0" layoutY="241.0" text="New Password:" visible="false">
+                     <font>
+                        <Font name="Franklin Gothic Demi Cond" size="20.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="curpassfield" layoutX="228.0" layoutY="208.0" prefHeight="25.0" prefWidth="156.0" visible="false">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <PasswordField fx:id="newpassfield" layoutX="228.0" layoutY="240.0" prefHeight="25.0" prefWidth="156.0" visible="false">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <Button fx:id="confirmButton" layoutX="195.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClick" prefHeight="25.0" prefWidth="75.0" text="Confirm" visible="false">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="49.0" layoutX="20.0" layoutY="6.0" onMouseClicked="#backButtonClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/BackArrow.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label fx:id="EmpNameMain" alignment="CENTER" layoutX="722.0" layoutY="88.0" prefHeight="49.0" prefWidth="134.0" text="Employee ID:" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="20.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

@@ -1,6 +1,5 @@
 package icedcoffee.coldbrewco;
 
-
 import ObservableTableOrganizers.OrderItem;
 import ObservableTableOrganizers.OrderItemStorage;
 import Main.Admin;
@@ -10,13 +9,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import java.io.InputStream;
+import javafx.scene.layout.TilePane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class ControllerOrderPage {
     @FXML
@@ -24,17 +27,9 @@ public class ControllerOrderPage {
     @FXML
     private ImageView backButton1;
     @FXML
-    private ImageView CaraMacImage;
+    private TilePane productTilePane;
     @FXML
-    private ImageView SpanishLatImage;
-    @FXML
-    private ImageView VanillaLatImage;
-    @FXML
-    private ImageView IcedAmericanoImage;
-    @FXML
-    private ImageView MatchaLatteImage;
-    @FXML
-    private ImageView StrawberryLatteImage;
+    private Pane specificOrderPane;
     @FXML
     private Label addOrderButton;
     @FXML
@@ -58,8 +53,76 @@ public class ControllerOrderPage {
     @FXML
     private Label availableQuantity;
 
+    // Initialize the page with products dynamically
+    @FXML
+    public void initialize() {
+        specificOrderPane.setVisible(false);
+        if (productTilePane == null) {
+            System.out.println("productTilePane is null!");
+            return;
+        }
 
-    //to go back to main Page and clear the table on order details before going back to the Order Page
+        Product product = new Product();
+        for (int productId = 1; productId <= product.lastProductId(); productId++) {
+            String prodName = product.showProductName(productId);
+            if (prodName == null || prodName.isEmpty()) continue;
+
+
+            String imagePath = "/ProductImages/" + prodName + ".jpg";
+
+            // tile for each product
+            Pane tile = new Pane();
+            tile.setPrefWidth(150);
+            tile.setPrefHeight(200);
+            tile.setStyle("-fx-background-color: #F5F5F5; -fx-border-color: #CCCCCC; -fx-border-width: 1;");
+
+            // Create the product image
+            ImageView productImage = new ImageView();
+            productImage.setFitWidth(98);
+            productImage.setFitHeight(119);
+            productImage.setLayoutX(25);
+            productImage.setLayoutY(20);
+            InputStream imageStream = getClass().getResourceAsStream(imagePath);
+            if (imageStream != null) {
+                productImage.setImage(new Image(imageStream));
+            } else {
+                productImage.setImage(new Image(getClass().getResourceAsStream("/images/default.jpg"))); // Fallback image
+            }
+
+            // add product name
+            Label productNameLabel = new Label(prodName);
+            productNameLabel.setLayoutX(10);
+            productNameLabel.setLayoutY(150);
+            productNameLabel.setPrefWidth(130);
+            productNameLabel.setWrapText(true);
+            productNameLabel.setTextAlignment(TextAlignment.CENTER);
+            productNameLabel.setStyle("-fx-font-family: 'Franklin Gothic Medium'; -fx-font-size: 14; -fx-text-fill: #333333;");
+            productNameLabel.setAlignment(javafx.geometry.Pos.CENTER);
+
+
+            tile.getChildren().addAll(productImage, productNameLabel);
+
+
+            productTilePane.getChildren().add(tile);
+
+
+            tile.setOnMouseClicked(event -> {
+                try {
+                    onCoffeeClick(product.showProductId(prodName));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    // Go back to the main order page
+    @FXML
+    protected void onBackButton1Click(){
+        BacktoOrderPage();
+    }
+
+    // Go back to main page and clear the table on order details before going back
     @FXML
     protected void onBackButtonClick() throws IOException {
         Admin admin = new Admin();
@@ -73,7 +136,8 @@ public class ControllerOrderPage {
 
             admin.productAddedBackFromTemporaryRemovedItems(product.showProductId(itemName), itemQuantity);
         }
-        // Clear the order items before going back to the Order Page
+
+        // Clear the order items before going back
         OrderItemStorage.getInstance().clearItems();
 
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
@@ -87,72 +151,26 @@ public class ControllerOrderPage {
         currentStage.show();
     }
 
-    //to order to a specific coffee
     @FXML
-    protected void onCaramelMachClick() throws IOException {
-        onCoffeeClick(1);
-    }
-    @FXML
-    protected void onSpanishLatteClick() throws IOException {
-        onCoffeeClick(2);
-    }
-    @FXML
-    protected void onVanillaLatteClick() throws IOException {
-        onCoffeeClick(3);
-    }
-    @FXML
-    protected void onIcedAmeClick() throws IOException {
-        onCoffeeClick(4);
-    }
-    @FXML
-    protected void onMatchaLatteClick() throws IOException {
-        onCoffeeClick(5);
-    }
-    @FXML
-    protected void onStrawberryClick() throws IOException {
-        onCoffeeClick(6);
+    private void BacktoOrderPage(){
+        specificOrderPane.setVisible(false);
     }
 
-    //go back to main order page
-    @FXML
-    protected void onBackButton1Click() throws IOException {
-        BacktoOrderPage();
-    }
-
-    @FXML
-    private void BacktoOrderPage() throws IOException {
-        // Load the order page FXML and display it
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("Order Page.fxml"));
-        Scene gobackOrderselect = new Scene(fxmlLoader.load(), 900, 700);
-
-        Stage currentStage = (Stage) backButton1.getScene().getWindow();
-        currentStage.setScene(gobackOrderselect);
-        currentStage.setTitle("Order Page");
-        currentStage.centerOnScreen();
-        currentStage.setResizable(false);
-        currentStage.show();
-    }
-
-
-
-    //to switch to select coffee window
+    // Handle product selection to show details
     @FXML
     private void onCoffeeClick(int productId) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("OrderPageSpecificProduct.fxml"));
-        Pane orderPagePane = fxmlLoader.load();
-        ControllerOrderPage controller = fxmlLoader.getController();
-        controller.showProductDetails(productId);
-        Stage currentStage = (Stage) backButton.getScene().getWindow();
-        Pane rootPane = (Pane) currentStage.getScene().getRoot();
-        rootPane.getChildren().add(orderPagePane);
-        orderPagePane.setLayoutX(rootPane.getWidth() - orderPagePane.getPrefWidth());
+        specificOrderPane.setVisible(true);
+        showProductDetails(productId);
     }
 
 
-    //to show product details when clicked in order page
+
+    // Show product details when clicked in order page
     @FXML
     private void showProductDetails(int productId) throws IOException {
         Product product = new Product();
+        orderQuantityLabel.setText("1");
+        AvailableStocksLabel.setText("Available Stocks:");
 
         String Name = product.showProductName(productId);
         String Description = product.showProductDescription(productId);
@@ -162,8 +180,8 @@ public class ControllerOrderPage {
         nameBox.setText(Name);
         descriptionBox.setText(Description);
         priceBox.setText(String.valueOf(price));
-        if(availableQuantityInt != 0) {
-
+        if (availableQuantityInt != 0) {
+            availableQuantity.setVisible(true);
             availableQuantity.setText(String.valueOf(availableQuantityInt));
             addOrderButton.setVisible(true);
             plusButton.setVisible(true);
@@ -171,6 +189,7 @@ public class ControllerOrderPage {
             quantLabel.setVisible(true);
             orderQuantityLabel.setVisible(true);
         } else {
+            availableQuantity.setVisible(false);
             addOrderButton.setVisible(false);
             plusButton.setVisible(false);
             minusButton.setVisible(false);
@@ -179,32 +198,7 @@ public class ControllerOrderPage {
             AvailableStocksLabel.setText("Out of Stock");
         }
 
-        String imagePath = ""; // Initialize image path
-
-        // Determine the correct image path based on productId
-        switch (productId) {
-            case 1:
-                imagePath = "/ProductImages/Caramel Macchiato.jpg";
-                break;
-            case 2:
-                imagePath = "/ProductImages/Spanish Latte.jpg";
-                break;
-            case 3:
-                imagePath = "/ProductImages/Vanilla Latte.jpg";
-                break;
-            case 4:
-                imagePath = "/ProductImages/Iced Americano.jpg";
-                break;
-            case 5:
-                imagePath = "/ProductImages/Matcha Latte.jpg";
-                break;
-            case 6:
-                imagePath = "/ProductImages/Strawberry Matcha Latte.jpg";
-                break;
-            default:
-                System.out.println("Invalid product ID");
-                return; // Exit if product ID is invalid
-        }
+        String imagePath = "/ProductImages/" + product.showProductName(productId) + ".jpg"; // Initialize image path
 
         // Load the image
         InputStream imageStream = getClass().getResourceAsStream(imagePath);
@@ -217,30 +211,29 @@ public class ControllerOrderPage {
         }
     }
 
-    //increase number of orders
+    // Increase number of orders
     @FXML
     protected void addQuantityButton() {
         String quantityString = orderQuantityLabel.getText();
         int availableQuantityInt = Integer.parseInt(availableQuantity.getText());
         int quantity = Integer.parseInt(quantityString);
-            if (quantity < availableQuantityInt) {
-                quantity = quantity + 1;
-                orderQuantityLabel.setText(String.valueOf(quantity));
-            }
+        if (quantity < availableQuantityInt) {
+            quantity = quantity + 1;
+            orderQuantityLabel.setText(String.valueOf(quantity));
+        }
     }
 
-    //decrease number of orders
+    // Decrease number of orders
     @FXML
-    protected void reduceQuantityButton(){
-            int quantity = Integer.parseInt(orderQuantityLabel.getText());
-            if (quantity > 1) {
-                quantity = quantity - 1;
-                orderQuantityLabel.setText(String.valueOf(quantity));
-            }
-
+    protected void reduceQuantityButton() {
+        int quantity = Integer.parseInt(orderQuantityLabel.getText());
+        if (quantity > 1) {
+            quantity = quantity - 1;
+            orderQuantityLabel.setText(String.valueOf(quantity));
+        }
     }
 
-    //to add Order to Order Details
+    // Add order to Order Details
     @FXML
     protected void addOrderButton() throws IOException {
         Admin admin = new Admin();
@@ -276,8 +269,7 @@ public class ControllerOrderPage {
         BacktoOrderPage();
     }
 
-
-    //to switch to Order Details Page
+    // Switch to Order Details Page
     @FXML
     protected void proceedToOrderDetailsButton() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("OrderDetailsPage.fxml"));

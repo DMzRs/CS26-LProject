@@ -158,8 +158,8 @@ public class ControllerAdminProductPage {
         newDeleteButton.setUserData(index);
         newDeleteButton.setOnAction(event -> {
 
-            String productName = (String) newProductContainer.getUserData();
-
+            // Get the product name and index
+            String productName = name; // Name of the product
             int productIndex = (int) newDeleteButton.getUserData(); // Retrieve the index of the product
 
             // Ask for confirmation before deletion
@@ -167,31 +167,40 @@ public class ControllerAdminProductPage {
 
             if (confirm == JOptionPane.YES_OPTION) {
                 try {
-                    // Fetch product data (e.g., image path and database ID)
-                    String productImagePath = getClass().getResource("/ProductImages/" + name + ".jpg").toExternalForm();  // You can modify this method to retrieve the image path
-
                     // 1. Delete the product from the database
-                    admin.removeProduct(name);  // Method in Admin to delete the product from the database
+                    admin.removeProduct(productName); // Method in Admin to delete the product from the database
 
-                    // 2. Delete the image from the file system (target and resource folder)
-                    File productImageFile = new File(productImagePath);
-                    if (productImageFile.exists()) {
-                        boolean imageDeleted = productImageFile.delete();
-                        if (!imageDeleted) {
-                            JOptionPane.showMessageDialog(null, "Failed to delete the image file.");
+                    // 2. Delete the image from the file system (target and resource folders)
+                    String imageFileName = productName + ".jpg";
+
+                    // File paths in the target and resource folders
+                    File imageInTargetFolder = new File("target/classes/ProductImages/" + imageFileName);
+                    File imageInResourceFolder = new File("src/main/resources/ProductImages/" + imageFileName);
+
+                    // Delete the image from the target folder
+                    if (imageInTargetFolder.exists()) {
+                        if (!imageInTargetFolder.delete()) {
+                            JOptionPane.showMessageDialog(null, "Failed to delete the image file in the target folder.");
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Image file not found.");
+                        JOptionPane.showMessageDialog(null, "Image file not found in the target folder.");
                     }
 
-                    // 3. Remove the product from the UI (from the scrollAnchor container)
+                    // Delete the image from the resource folder
+                    if (imageInResourceFolder.exists()) {
+                        if (!imageInResourceFolder.delete()) {
+                            JOptionPane.showMessageDialog(null, "Failed to delete the image file in the resource folder.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Image file not found in the resource folder.");
+                    }
+
+                    // 3. Remove the product container from the UI
                     scrollAnchor.getChildren().remove(newProductContainer);
 
-                    // Optionally update the scrollAnchor's height if needed (similar to your existing code)
-
-                    // Adjust the height of the empty container to match the new number of products
+                    // Adjust the layout for the remaining product containers
                     Pane emptyContainer = (Pane) scrollAnchor.lookup("#emptyContainer");
-                    emptyContainer.setLayoutY((index) * (productContainer.getPrefHeight() + 20.0) + 30);  // Adjusted positioning for empty container
+                    emptyContainer.setLayoutY((productIndex) * (productContainer.getPrefHeight() + 20.0) + 30); // Adjust positioning
                     scrollAnchor.setPrefHeight(scrollAnchor.getPrefHeight() - productContainer.getPrefHeight() - 20.0);
 
                     JOptionPane.showMessageDialog(null, "Product " + productName + " deleted successfully.");

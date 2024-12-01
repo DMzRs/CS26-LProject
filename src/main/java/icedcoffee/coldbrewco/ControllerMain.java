@@ -2,15 +2,29 @@ package icedcoffee.coldbrewco;
 import Main.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
+import java.io.InputStream;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+
+import javax.swing.JOptionPane;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 public class ControllerMain {
     @FXML
@@ -32,26 +46,101 @@ public class ControllerMain {
     @FXML
     private ImageView backButton;
     @FXML
+    private Pane EmpAccView;
+    @FXML
     private ImageView logOut;
     @FXML
     private ImageView selectOrder;
+    @FXML
+    private ImageView empProfile;
+    @FXML
+    private ImageView empProfileMain;
+    @FXML
+    private Label EmpNameMain;
+
+    //intialize user details
+    @FXML
+    public void initialize() {
+        EmpAccView.setVisible(false);
+        Employee emp = new Employee();
+        setProfileImage(emp.getEmployeeId());
+        EmpNameMain.setText(""+emp.showName(emp.getEmployeeId()));
+    }
+
+    //to preload image profile
+    private void setProfileImage(int empId) {
+        InputStream imageStream = getClass().getResourceAsStream("/EmployeeProfiles/" + empId + ".jpg");
+
+        Image profileImage = null;
+        if (imageStream != null) {
+            profileImage = new Image(imageStream);
+        } else {
+            profileImage = new Image(getClass().getResourceAsStream("/EmployeeProfiles/ProfileButton.jpg")); // Default image
+        }
+
+        // Set the profile image to the ImageView
+        empProfile.setImage(profileImage);
+    }
+
+    //to change profile picture
+    @FXML
+    protected void ChangeProfile() {
+        // Open a file chooser dialog
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Picture");
+
+        // Restrict file types to images
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        Stage stage = (Stage) empProfileMain.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            try {
+                Employee employee = new Employee();
+                int empId = employee.getEmployeeId();
+
+                // Define a writable directory (e.g., user's home directory)
+                String writableDirectory = System.getProperty("user.home") + "/ColdBrewCorp/EmployeeProfiles";
+                File dir = new File(writableDirectory);
+
+                // Create the directory if it doesn't exist
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                // Define the target file in the writable directory
+                File targetFile = new File(dir, empId + ".jpg");
+
+                // Copy the selected file to the writable directory
+                Files.copy(selectedFile.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // Load the new profile image into the ImageView
+                try (InputStream imageStream = new FileInputStream(targetFile)) {
+                    Image newProfileImage = new Image(imageStream);
+                    empProfileMain.setImage(newProfileImage);
+                    empProfile.setImage(newProfileImage);
+                }
+
+                JOptionPane.showMessageDialog(null, "Profile picture updated successfully.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error updating profile picture: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No file selected.");
+        }
+    }
+
+
 
 
     //to go to profile details
     @FXML
     protected void ProfileDetailsButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("EmployeeViewAccount.fxml"));
-        Pane viewAccountDetails = fxmlLoader.load();
-        ControllerMain controller = fxmlLoader.getController();
-        controller.showProfileDetails();
-
-        Stage currentStage = (Stage) selectOrder.getScene().getWindow();
-        Pane rootPane = (Pane) currentStage.getScene().getRoot();
-        double centerX = (rootPane.getWidth() - viewAccountDetails.getPrefWidth()) / 2;
-        double centerY = (rootPane.getHeight() - viewAccountDetails.getPrefHeight()) / 2;
-        viewAccountDetails.setLayoutX(centerX);
-        viewAccountDetails.setLayoutY(centerY);
-        rootPane.getChildren().add(viewAccountDetails);
+        EmpAccView.setVisible(true);
+        showProfileDetails();
     }
 
     //to set up profile details content
@@ -61,20 +150,21 @@ public class ControllerMain {
         EmpId.setText(""+ employee.getEmployeeId());
         EmpName.setText(""+employee.showName(employee.getEmployeeId()));
         empUsername.setText(""+employee.showUserName(employee.getEmployeeId()));
+
+        InputStream imageStream = getClass().getResourceAsStream("/EmployeeProfiles/" + employee.getEmployeeId() + ".jpg");
+        Image profileImage = null;
+        if (imageStream != null) {
+            profileImage = new Image(imageStream);
+        } else {
+            profileImage = new Image(getClass().getResourceAsStream("/EmployeeProfiles/ProfilePicture.jpg")); // Default image
+        }
+        empProfileMain.setImage(profileImage);
     }
 
     //to go back to main page
     @FXML
     protected void backButtonClick() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
-        Scene mainAccount = new Scene(fxmlLoader.load(), 900, 700);
-
-        Stage currentStage = (Stage) backButton.getScene().getWindow();
-        currentStage.setScene(mainAccount);
-        currentStage.setTitle("Main Page");
-        currentStage.centerOnScreen();
-        currentStage.setResizable(false);
-        currentStage.show();
+        EmpAccView.setVisible(false);
     }
 
 
@@ -131,7 +221,7 @@ public class ControllerMain {
 
     //to check order history from current userId
     @FXML
-    protected void onCheckPreviousOrderButtonClick() throws IOException {
+    protected void onCheckSalesButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("SalesPage.fxml"));
         Scene userSales = new Scene(fxmlLoader.load(), 900, 700);
 

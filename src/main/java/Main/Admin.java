@@ -204,9 +204,10 @@ public class Admin {
 
     // Method to remove quantity from a product
     public void removeProductQuantity(int productId, int newQuantity) {
-        String query = "UPDATE product SET productQuantity = ? WHERE productId = ?";
+
         try {
             Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+            String query = "UPDATE product SET productQuantity = ? WHERE productId = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, newQuantity);
             statement.setInt(2, productId);
@@ -243,13 +244,19 @@ public class Admin {
 
     // Method to remove a product from the database
     public void removeProduct(String Name) {
-
+        Product product = new Product();
         try {
+            int id = product.showProductId(Name);
             Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
             String query = "DELETE FROM product WHERE productName = ?";
+            String query2 = "DELETE FROM orders WHERE productId = ?";
             PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement2 = connection.prepareStatement(query2);
             statement.setString(1, Name);
+            statement2.setInt(1, id);
             statement.executeUpdate();
+            statement2.executeUpdate();
+            statement2.close();
             statement.close();
             connection.close();
 

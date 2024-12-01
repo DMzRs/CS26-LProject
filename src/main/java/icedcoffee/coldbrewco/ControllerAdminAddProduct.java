@@ -94,7 +94,6 @@ public class ControllerAdminAddProduct {
                 BufferedImage bufferedImage = ImageIO.read(selectedImageFile);
                 File targetOutputFile = targetImagePath.toFile();
                 ImageIO.write(bufferedImage, "jpg", targetOutputFile);
-                System.out.println("Image saved successfully at: " + targetImagePath.toAbsolutePath());
 
                 // Save the image in the resources/ProductImages directory
                 Path resourcesImageDir = Paths.get("src/main/resources/ProductImages");
@@ -102,7 +101,6 @@ public class ControllerAdminAddProduct {
                 Path resourcesImagePath = resourcesImageDir.resolve(newImageName);
                 File resourcesOutputFile = resourcesImagePath.toFile();
                 ImageIO.write(bufferedImage, "jpg", resourcesOutputFile);
-                System.out.println("Image saved successfully at resources path: " + resourcesImagePath.toAbsolutePath());
 
                 // Add the product (assuming `admin.addProduct` handles adding the product to your data source)
                 admin.addProduct(productName, quantity, ingredients, price);
