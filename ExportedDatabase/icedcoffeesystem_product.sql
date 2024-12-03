@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `productId` int NOT NULL AUTO_INCREMENT,
   `productName` varchar(45) NOT NULL,
-  `productQuantity` int NOT NULL DEFAULT '0',
+  `productQuantity` int unsigned NOT NULL DEFAULT '0',
   `productDescription` varchar(500) NOT NULL,
   `price` int NOT NULL,
   PRIMARY KEY (`productId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Caramel Macchiato',39,'Milk, Espresso, Caramel Sauce, and Ice',99),(2,'Spanish Latte',21,'Coffee, Milk, Sweetener, and Cinnamon',99),(3,'Vanilla Latte',42,'Espresso, Vanilla Syrup, and Milk',99),(4,'Iced Americano',32,'Espresso, Water, Ice, and Sweetener',120),(5,'Matcha Latte',42,'Match powder, Milk, Water, and Sweetener',120),(6,'Strawberry Matcha Latte',49,'Match powder, Strawberry, Milk, Water, and Sweetener',120);
+INSERT INTO `product` VALUES (1,'Caramel Macchiato',15,'Milk, Espresso, Caramel Sauce, and Ice',99),(2,'Spanish Latte',0,'Coffee, Milk, Sweetener, and Cinnamon',99),(3,'Vanilla Latte',0,'Espresso, Vanilla Syrup, and Milk',99),(4,'Iced Americano',5,'Espresso, Water, Ice, and Sweetener',120),(5,'Matcha Latte',5,'Match powder, Milk, Water, and Sweetener',120),(6,'Strawberry Matcha Latte',11,'Match powder, Strawberry, Milk, Water, and Sweetener',120);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-09 13:37:51
+-- Dump completed on 2024-12-03 17:56:14

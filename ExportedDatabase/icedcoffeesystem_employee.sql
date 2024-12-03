@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `employee`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
   `empId` int NOT NULL AUTO_INCREMENT,
-  `empFullName` varchar(45) NOT NULL,
+  `empFullName` varchar(50) NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(10) NOT NULL,
   `empSales` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`empId`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Anthony Davis','davis1','12345',1173),(2,'Chris Brown','chrisB','12345',1533),(3,'Robroi Neo M. Dingal','robroi','12345678',1320),(4,'Jayrald Dionaldo','skibidi','skibidi',5619),(5,'Jorge Macabenta','jorge','12345',990),(6,'Joren Montejo','Joren','joren123',1200),(7,'Rexcel Jay Lusica','Rexceljay','Rexcel05',198),(8,'Angelo Lozano','angelo','12345',480),(9,'Brendan Ciano','Oskar','Wiggy',2022),(10,'Nicole Ednilan','nicole','123455',480),(11,'April Bordz Nerosa','bordz','12345',600),(12,'Eduard Pechico','jokilla','nggrkllr',240);
+INSERT INTO `employee` VALUES (1,'Anthony Davis','davis1','12345',3405),(2,'Chris Brown','chrisB','12345',1533),(3,'Robroi Neo M. Dingal','robroi','12345678',1320),(4,'Jayrald Dionaldo','skibidi','skibidi',5619),(5,'Jorge Macabenta','jorge','12345',990),(6,'Joren Montejo','Joren','joren123',1200),(7,'Rexcel Jay Lusica','Rexceljay','Rexcel05',198),(8,'Angelo Lozano','angelo','12345',480),(9,'Brendan Ciano','Oskar','Wiggy',2022),(10,'Nicole Ednilan','nicole','123455',480),(11,'April Bordz Nerosa','bordz','12345',600),(12,'Eduard Pechico','jokilla','nggrkllr',240),(13,'Mark','marky','12345',3375);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-09 13:37:52
+-- Dump completed on 2024-12-03 17:56:14
