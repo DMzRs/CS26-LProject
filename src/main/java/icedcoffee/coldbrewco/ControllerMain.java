@@ -24,6 +24,8 @@ import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class ControllerMain {
@@ -68,28 +70,10 @@ public class ControllerMain {
     }
 
     //to preload image profile
-    private void setProfileImage(int empId) {
-        InputStream imageStream = getClass().getResourceAsStream("/EmployeeProfiles/" + empId + ".jpg");
-
-        Image profileImage = null;
-        if (imageStream != null) {
-            profileImage = new Image(imageStream);
-        } else {
-            profileImage = new Image(getClass().getResourceAsStream("/EmployeeProfiles/ProfileButton.jpg")); // Default image
-        }
-
-        // Set the profile image to the ImageView
-        empProfile.setImage(profileImage);
-    }
-
-    //to change profile picture
     @FXML
     protected void ChangeProfile() {
-        // Open a file chooser dialog
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Profile Picture");
-
-        // Restrict file types to images
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
@@ -102,30 +86,26 @@ public class ControllerMain {
                 Employee employee = new Employee();
                 int empId = employee.getEmployeeId();
 
-                // Define a writable directory (e.g., user's home directory)
-                String writableDirectory = System.getProperty("user.home") + "/ColdBrewCorp/EmployeeProfiles";
-                File dir = new File(writableDirectory);
+                // Use target/classes for runtime changes during development
+                Path writableDir = Paths.get("target/classes/EmployeeProfiles");
+                Files.createDirectories(writableDir); // Create directories if they don't exist
 
-                // Create the directory if it doesn't exist
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
+                // Define the target file path
+                Path targetFile = writableDir.resolve(empId + ".jpg");
 
-                // Define the target file in the writable directory
-                File targetFile = new File(dir, empId + ".jpg");
-
-                // Copy the selected file to the writable directory
-                Files.copy(selectedFile.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                // Copy selected file to the target path
+                Files.copy(selectedFile.toPath(), targetFile, StandardCopyOption.REPLACE_EXISTING);
 
                 // Load the new profile image into the ImageView
-                try (InputStream imageStream = new FileInputStream(targetFile)) {
+                try (InputStream imageStream = Files.newInputStream(targetFile)) {
                     Image newProfileImage = new Image(imageStream);
                     empProfileMain.setImage(newProfileImage);
                     empProfile.setImage(newProfileImage);
                 }
 
                 JOptionPane.showMessageDialog(null, "Profile picture updated successfully.");
-            } catch (Exception e) {
+            } catch (IOException e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error updating profile picture: " + e.getMessage());
             }
         } else {
@@ -133,6 +113,24 @@ public class ControllerMain {
         }
     }
 
+
+    private void setProfileImage(int empId) {
+        // Path to runtime "resources"
+        Path imagePath = Paths.get("target/classes/EmployeeProfiles", empId + ".jpg");
+
+        Image profileImage;
+        if (Files.exists(imagePath)) {
+            try (InputStream imageStream = Files.newInputStream(imagePath)) {
+                profileImage = new Image(imageStream);
+            } catch (IOException e) {
+                profileImage = new Image(getClass().getResourceAsStream("/EmployeeProfiles/ProfileButton.jpg")); // Default image
+            }
+        } else {
+            profileImage = new Image(getClass().getResourceAsStream("/EmployeeProfiles/ProfileButton.jpg")); // Default image
+        }
+
+        empProfile.setImage(profileImage);
+    }
 
 
 
