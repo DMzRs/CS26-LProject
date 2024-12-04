@@ -75,12 +75,12 @@ public class Employee {
     public int Sales(int employeeId){
         try{
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            String showTotal = "SELECT empSales from employee where empId = ?";
+            String showTotal = "SELECT SUM(subTotal) AS Sales FROM orders WHERE empId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(showTotal);
             preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                return result.getInt("empSales");
+                return result.getInt("Sales");
             }
             preparedStatement.close();
             result.close();
@@ -206,4 +206,5 @@ public class Employee {
         }
         return orderList;
     }
+
 }
