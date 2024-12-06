@@ -84,28 +84,27 @@ public class ControllerAdminAddProduct {
                     return;
                 }
 
-                // Ensure the destination directory exists in `target/classes`
-                Path imageDir = Paths.get("target/classes/ProductImages");
-                Files.createDirectories(imageDir);
-
-                // Save the image in target/classes
-                String newImageName = productName + ".jpg";
-                Path targetImagePath = imageDir.resolve(newImageName);
-                BufferedImage bufferedImage = ImageIO.read(selectedImageFile);
-                File targetOutputFile = targetImagePath.toFile();
-                ImageIO.write(bufferedImage, "jpg", targetOutputFile);
-
-                // Save the image in the resources/ProductImages directory
+                // Ensure the destination directories exist
+                Path targetImageDir = Paths.get("target/classes/ProductImages");
                 Path resourcesImageDir = Paths.get("src/main/resources/ProductImages");
-                Files.createDirectories(resourcesImageDir);
-                Path resourcesImagePath = resourcesImageDir.resolve(newImageName);
-                File resourcesOutputFile = resourcesImagePath.toFile();
-                ImageIO.write(bufferedImage, "jpg", resourcesOutputFile);
+                Files.createDirectories(targetImageDir); // Ensure `target/classes` directory exists
+                Files.createDirectories(resourcesImageDir); // Ensure `resources` directory exists
 
-                // Add the product (assuming `admin.addProduct` handles adding the product to your data source)
+                // Save the image in both locations
+                String newImageName = productName + ".jpg";
+
+                // Save to `target/classes`
+                Path targetImagePath = targetImageDir.resolve(newImageName);
+                saveImageToFile(selectedImageFile, targetImagePath);
+
+                // Save to `src/main/resources`
+                Path resourcesImagePath = resourcesImageDir.resolve(newImageName);
+                saveImageToFile(selectedImageFile, resourcesImagePath);
+
+                // Add the product to the system (assuming `admin.addProduct` does this)
                 admin.addProduct(productName, quantity, ingredients, price);
 
-                // Clear the input fields and reset the ImageView
+                // Clear input fields and reset the ImageView
                 newProductName.clear();
                 newQuantity.clear();
                 newPrice.clear();
@@ -113,7 +112,7 @@ public class ControllerAdminAddProduct {
                 attachImage.setImage(null);
 
                 // Show success message
-                JOptionPane.showMessageDialog(null, "Product added successfully!",
+                JOptionPane.showMessageDialog(null, "Product added and image saved successfully!",
                         "Success", JOptionPane.INFORMATION_MESSAGE);
 
             } catch (IOException e) {
@@ -129,5 +128,18 @@ public class ControllerAdminAddProduct {
             JOptionPane.showMessageDialog(null, "You must select an image first!",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    /**
+     * Utility method to save an image file to a specified path.
+     *
+     * @param sourceFile      The source image file to be saved.
+     * @param destinationPath The path where the image should be saved.
+     * @throws IOException If an error occurs during file writing.
+     */
+    private void saveImageToFile(File sourceFile, Path destinationPath) throws IOException {
+        BufferedImage bufferedImage = ImageIO.read(sourceFile);
+        File destinationFile = destinationPath.toFile();
+        ImageIO.write(bufferedImage, "jpg", destinationFile);
     }
 }
