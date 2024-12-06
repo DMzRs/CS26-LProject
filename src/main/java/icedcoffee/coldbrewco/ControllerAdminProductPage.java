@@ -4,6 +4,7 @@ import Main.Product;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -157,13 +158,15 @@ public class ControllerAdminProductPage {
         newDeleteButton.setLayoutY(deleteButton.getLayoutY());
         newDeleteButton.setUserData(index);
         newDeleteButton.setOnAction(event -> {
-
             // Get the product name and index
             String productName = name; // Name of the product
             int productIndex = (int) newDeleteButton.getUserData(); // Retrieve the index of the product
 
             // Ask for confirmation before deletion
-            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the product: " + productName + "?", "Delete Product", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to delete the product: " + productName + "?",
+                    "Delete Product",
+                    JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
                 try {
@@ -198,10 +201,16 @@ public class ControllerAdminProductPage {
                     // 3. Remove the product container from the UI
                     scrollAnchor.getChildren().remove(newProductContainer);
 
-                    // Adjust the layout for the remaining product containers
-                    Pane emptyContainer = (Pane) scrollAnchor.lookup("#emptyContainer");
-                    emptyContainer.setLayoutY((productIndex) * (productContainer.getPrefHeight() + 20.0) + 30); // Adjust positioning
-                    scrollAnchor.setPrefHeight(scrollAnchor.getPrefHeight() - productContainer.getPrefHeight() - 20.0);
+                    // 4. Adjust the layout of all subsequent containers
+                    for (Node node : scrollAnchor.getChildren()) {
+                        if (node instanceof Pane && node.getLayoutY() > newProductContainer.getLayoutY()) {
+                            // Move the container up by the height of the deleted container + spacing (e.g., 20.0)
+                            node.setLayoutY(node.getLayoutY() - (newProductContainer.getPrefHeight() + 20.0));
+                        }
+                    }
+
+                    // Update the scrollAnchor's preferred height
+                    scrollAnchor.setPrefHeight(scrollAnchor.getPrefHeight() - newProductContainer.getPrefHeight() - 20.0);
 
                     JOptionPane.showMessageDialog(null, "Product " + productName + " deleted successfully.");
                 } catch (Exception e) {
@@ -209,6 +218,7 @@ public class ControllerAdminProductPage {
                 }
             }
         });
+
         newProductContainer.getChildren().add(newDeleteButton);
 
         // Calculate vertical placement: Each pane's Y-coordinate is the index multiplied by pane height + margin
