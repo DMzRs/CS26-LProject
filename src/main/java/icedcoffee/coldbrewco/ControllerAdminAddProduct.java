@@ -50,6 +50,7 @@ public class ControllerAdminAddProduct {
         currentStage.show();
     }
 
+    //method to select Image to assign in new product
     @FXML
     private void setImageUpload() {
         // Open a file chooser to allow the user to select an image
@@ -66,6 +67,7 @@ public class ControllerAdminAddProduct {
         }
     }
 
+    //to add the new product
     @FXML
     private void AddProduct() {
         Admin admin = new Admin();
@@ -131,9 +133,9 @@ public class ControllerAdminAddProduct {
     }
 
     /**
-     * Utility method to save an image file to a specified path.
+     * Utility method to ensure the image is saved on the file destination
      *
-     * @param sourceFile      The source image file to be saved.
+     * @param sourceFile The source image file to be saved.
      * @param destinationPath The path where the image should be saved.
      * @throws IOException If an error occurs during file writing.
      */
