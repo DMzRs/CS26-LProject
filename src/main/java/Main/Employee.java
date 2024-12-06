@@ -56,21 +56,6 @@ public class Employee {
         }
     }
 
-    //to update specific user sale per transaction made
-    public void updateEmployeeSales(int empId, int totalPrice){
-        try{
-            Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
-            PreparedStatement updateEmployeeSales = connection.prepareStatement("update employee set empSales = (empSales + ?) where empId = ?");
-            updateEmployeeSales.setInt(1, totalPrice);
-            updateEmployeeSales.setInt(2, empId);
-            updateEmployeeSales.executeUpdate();
-            updateEmployeeSales.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     //to get sale on specific employee id
     public int Sales(int employeeId){
         try{

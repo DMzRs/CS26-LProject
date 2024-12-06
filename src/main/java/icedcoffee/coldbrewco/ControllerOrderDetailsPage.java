@@ -141,7 +141,6 @@ public class ControllerOrderDetailsPage {
                                 int subTotal = itemToRemove.getSubTotal();
                                 order.addOrder(Employee.getEmployeeId(), product.showProductId(coffeeName), itemQuantity, subTotal);
                             }
-                            employee.updateEmployeeSales(Employee.getEmployeeId(), totalPrice);
                             allItems.clear();
 
                             String costumerNameStr = JOptionPane.showInputDialog(null, "Customer Name", "Customer Name:", JOptionPane.QUESTION_MESSAGE);
