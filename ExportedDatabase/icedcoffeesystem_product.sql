@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: icedcoffeesystem
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	8.0.40
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,7 +29,7 @@ CREATE TABLE `product` (
   `productDescription` varchar(500) NOT NULL,
   `price` int NOT NULL,
   PRIMARY KEY (`productId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Caramel Macchiato',15,'Milk, Espresso, Caramel Sauce, and Ice',99),(2,'Spanish Latte',0,'Coffee, Milk, Sweetener, and Cinnamon',99),(3,'Vanilla Latte',0,'Espresso, Vanilla Syrup, and Milk',99),(4,'Iced Americano',5,'Espresso, Water, Ice, and Sweetener',120),(5,'Matcha Latte',5,'Match powder, Milk, Water, and Sweetener',120),(6,'Strawberry Matcha Latte',11,'Match powder, Strawberry, Milk, Water, and Sweetener',120);
+INSERT INTO `product` VALUES (1,'Mocha Latte',14,'Mocha Powder, Milk, Sugar, Sweeteners',99),(2,'Caramel-Chocolate Mix',15,'Caramel Syrup, Chocolate Powder, Chocolate Syrup, Sugar, Milk, Sweeteners',120),(3,'Dark Mocha',15,'Mocha, Dark Chocolate, Cocoa Powder',120),(4,'Cold Brew',15,'Secret',100),(5,'Spanish Caramel Latte',15,'Espresso, Condensed Milk, Caramel Syrup, Milk',130),(6,'Salted Caramel Frappe',15,'Kahlúa Salted Caramel, Coffee Cream, Sweeteners, Milk',150);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-03 17:56:14
+-- Dump completed on 2024-12-15 13:00:00
