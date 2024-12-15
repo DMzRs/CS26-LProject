@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class ControllerEmployeeSales {
+public class ControllerEmployeeSales extends ControllerLogin {
     @FXML
     private ImageView backToMain;
     @FXML
@@ -32,7 +32,7 @@ public class ControllerEmployeeSales {
     private TableColumn<PreviousTransactionsOfSpecificEmployee, Integer> previousSubTotalColumn;
 
     @FXML
-    private void initialize() {
+    private void initialize(){
         Employee employee = new Employee();
         previousProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         previousPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
@@ -46,7 +46,7 @@ public class ControllerEmployeeSales {
 
 
     @FXML
-    protected void onSwitchToMainButtonClick() throws IOException {
+    protected void switchtoMain() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("MainPage.fxml"));
         Scene mainPage = new Scene(fxmlLoader.load(), 900, 700);
         previousOrderTable.getItems().clear();

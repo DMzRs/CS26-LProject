@@ -20,19 +20,20 @@ public class ControllerAdminLogin {
     private PasswordField passwordAdmin;
     @FXML
     private Button adminLoginButton;
+
     @FXML
     private void initialize() {
-        // Add key press listener to the admin login button
-        adminLoginButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    onLoginAdminButtonClick();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        adminLoginButton.setDefaultButton(true);
+
+        adminLoginButton.setOnAction(event -> {
+            try {
+                onLoginAdminButtonClick();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
+
 
     //button to switch back to log in account from admin login page
     @FXML

@@ -7,7 +7,12 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class Admin {
+abstract class AdminIdentificationFunctions{
+    public abstract int returnLoginAdmin(String username, String password);
+    public abstract String showAdminName(int AdminId);
+}
+
+public class Admin extends AdminIdentificationFunctions{
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();

@@ -4,6 +4,7 @@ import Main.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -20,6 +21,17 @@ public class ControllerAdminCreateEmployeeAcc {
     private TextField fullNameField;
     @FXML
     private ImageView backToAdminMain;
+    @FXML
+    private Button createEmployeeButton;
+
+    @FXML
+    private void initialize() {
+        createEmployeeButton.setDefaultButton(true);
+
+        createEmployeeButton.setOnAction(event -> {
+            onCreateAccountButtonClick();
+        });
+    }
 
     @FXML
     private void backtoMainPage() throws IOException {

@@ -58,7 +58,7 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </PasswordField>
-                        <Button fx:id="loginButton" layoutX="72.0" layoutY="235.0" mnemonicParsing="false" onKeyPressed="#initialize" onMouseClicked="#onLoginButtonClick" text="Login">
+                        <Button fx:id="loginButton" layoutX="72.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#onLoginButtonClick" style="-fx-background-color: F4F4D5; -fx-border-color: #000000; -fx-background-radius: 8px; -fx-border-radius: 7px;" text="Login">
                            <font>
                               <Font name="Franklin Gothic Demi" size="15.0" />
                            </font>

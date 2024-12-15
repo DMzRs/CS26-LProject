@@ -32,7 +32,7 @@
                   <TableColumn fx:id="previousSubTotalColumn" prefWidth="198.0" text="SubTotal" />
               </columns>
             </TableView>
-            <ImageView fx:id="backToMain" fitHeight="75.0" fitWidth="74.0" layoutX="42.0" layoutY="14.0" onMouseClicked="#onSwitchToMainButtonClick" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="backToMain" fitHeight="75.0" fitWidth="74.0" layoutX="42.0" layoutY="14.0" onMouseClicked="#switchtoMain" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/BackArrow.png" />
                </image>

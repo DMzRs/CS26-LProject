@@ -25,14 +25,13 @@ public class ControllerLogin {
 
     @FXML
     private void initialize() {
-        // Add key press listener to the login button for normal users
-        loginButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    onLoginButtonClick();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        loginButton.setDefaultButton(true);
+
+        loginButton.setOnAction(event -> {
+            try {
+                onLoginButtonClick();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

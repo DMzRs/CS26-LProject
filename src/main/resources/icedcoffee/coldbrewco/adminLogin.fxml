@@ -49,7 +49,7 @@
                               <Image url="@../../images/padlock%201.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="adminLoginButton" layoutX="210.0" layoutY="208.0" mnemonicParsing="false" onKeyPressed="#initialize" onMouseClicked="#onLoginAdminButtonClick" text="LOGIN">
+                        <Button fx:id="adminLoginButton" layoutX="210.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#onLoginAdminButtonClick" style="-fx-background-color: F4F4D5; -fx-border-color: #000000; -fx-background-radius: 8px; -fx-border-radius: 7px;" text="LOGIN">
                            <font>
                               <Font name="Franklin Gothic Medium Cond" size="15.0" />
                            </font>

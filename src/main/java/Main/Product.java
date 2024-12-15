@@ -3,8 +3,15 @@ package Main;
 import Database.DatabaseLink;
 
 import java.sql.*;
+abstract class ProductIdentificationFunctions{
+    public abstract int showProductId(String productName);
+    public abstract String showProductName(int productId);
+    public abstract String showProductDescription(int productId);
+    public abstract int showProductPrice(int productId);
+    public abstract int getProductQuantity(int productId);
+}
 
-public class Product {
+public class Product extends ProductIdentificationFunctions{
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();

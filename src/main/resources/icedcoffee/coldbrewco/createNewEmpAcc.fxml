@@ -70,7 +70,7 @@
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <Button fx:id="createButton" layoutX="234.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#onCreateAccountButtonClick" text="Create Account">
+                  <Button fx:id="createEmployeeButton" layoutX="234.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#onCreateAccountButtonClick" style="-fx-background-color: F4F4D5; -fx-border-color: #000000; -fx-background-radius: 8px; -fx-border-radius: 7px;" text="Create Account">
                      <font>
                         <Font name="Franklin Gothic Demi" size="15.0" />
                      </font>

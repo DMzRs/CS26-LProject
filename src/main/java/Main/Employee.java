@@ -7,7 +7,13 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class Employee {
+abstract class EmployeeIdentificationFunctions{
+    public abstract String showName(int employeeId);
+    public abstract String showUserName(int employeeId);
+    public abstract String showPassword(int employeeId);
+}
+
+public class Employee extends EmployeeIdentificationFunctions{
 
     private static int employeeId;
     public static void setEmployeeId(int userId) {employeeId = userId;}

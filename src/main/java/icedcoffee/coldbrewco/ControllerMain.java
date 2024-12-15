@@ -1,5 +1,6 @@
 package icedcoffee.coldbrewco;
 import Main.Employee;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +29,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-public class ControllerMain {
+public class ControllerMain{
     @FXML
     private Label EmpId;
     @FXML
