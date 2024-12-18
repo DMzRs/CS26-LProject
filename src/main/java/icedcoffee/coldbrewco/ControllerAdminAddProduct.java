@@ -84,42 +84,46 @@ public class ControllerAdminAddProduct {
                     JOptionPane.showMessageDialog(null, "Product name cannot be empty!",
                             "Invalid Input", JOptionPane.ERROR_MESSAGE);
                     return;
-                }
-
-                if (admin.isProductNameExisting(productName)) {
-                    JOptionPane.showMessageDialog(null, "Product name is already existing!");
+                } else if (ingredients.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingredients cannot be empty!",
+                            "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 } else {
 
-                    // Ensure the destination directories exist
-                    Path targetImageDir = Paths.get("target/classes/ProductImages");
-                    Path resourcesImageDir = Paths.get("src/main/resources/ProductImages");
-                    Files.createDirectories(targetImageDir); // Ensure `target/classes` directory exists
-                    Files.createDirectories(resourcesImageDir); // Ensure `resources` directory exists
+                    if (admin.isProductNameExisting(productName)) {
+                        JOptionPane.showMessageDialog(null, "Product name is already existing!");
+                    } else {
 
-                    // Save the image in both locations
-                    String newImageName = productName + ".jpg";
+                        // Ensure the destination directories exist
+                        Path targetImageDir = Paths.get("target/classes/ProductImages");
+                        Path resourcesImageDir = Paths.get("src/main/resources/ProductImages");
+                        Files.createDirectories(targetImageDir); // Ensure `target/classes` directory exists
+                        Files.createDirectories(resourcesImageDir); // Ensure `resources` directory exists
 
-                    // Save to `target/classes`
-                    Path targetImagePath = targetImageDir.resolve(newImageName);
-                    saveImageToFile(selectedImageFile, targetImagePath);
+                        // Save the image in both locations
+                        String newImageName = productName + ".jpg";
 
-                    // Save to `src/main/resources`
-                    Path resourcesImagePath = resourcesImageDir.resolve(newImageName);
-                    saveImageToFile(selectedImageFile, resourcesImagePath);
+                        // Save to `target/classes`
+                        Path targetImagePath = targetImageDir.resolve(newImageName);
+                        saveImageToFile(selectedImageFile, targetImagePath);
 
-                    // Add the product to the system (assuming `admin.addProduct` does this)
-                    admin.addProduct(productName, quantity, ingredients, price);
+                        // Save to `src/main/resources`
+                        Path resourcesImagePath = resourcesImageDir.resolve(newImageName);
+                        saveImageToFile(selectedImageFile, resourcesImagePath);
 
-                    // Clear input fields and reset the ImageView
-                    newProductName.clear();
-                    newQuantity.clear();
-                    newPrice.clear();
-                    newIngredients.clear();
-                    attachImage.setImage(null);
+                        // Add the product to the system (assuming `admin.addProduct` does this)
+                        admin.addProduct(productName, quantity, ingredients, price);
 
-                    // Show success message
-                    JOptionPane.showMessageDialog(null, "Product added and image saved successfully!",
-                            "Success", JOptionPane.INFORMATION_MESSAGE);
+                        // Clear input fields and reset the ImageView
+                        newProductName.clear();
+                        newQuantity.clear();
+                        newPrice.clear();
+                        newIngredients.clear();
+                        attachImage.setImage(null);
+
+                        // Show success message
+                        JOptionPane.showMessageDialog(null, "Product added and image saved successfully!",
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Error while saving the image: " + e.getMessage(),
