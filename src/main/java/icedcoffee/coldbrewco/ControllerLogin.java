@@ -48,7 +48,7 @@ public class ControllerLogin {
             JOptionPane.showMessageDialog(null,"Login Successful");
             switchtoMain();
         } else {
-            JOptionPane.showMessageDialog(null,"Login Failed");
+            JOptionPane.showMessageDialog(null,"Username or Password Incorrect!");
         }
     }
 

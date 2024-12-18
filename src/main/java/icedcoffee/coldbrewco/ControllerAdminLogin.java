@@ -54,7 +54,7 @@ public class ControllerAdminLogin {
             JOptionPane.showMessageDialog(null,"Admin Login Successful");
             switchtoAdminMainPage();
         } else {
-            JOptionPane.showMessageDialog(null,"Admin Login Failed");
+            JOptionPane.showMessageDialog(null,"Username or Password Incorrect!");
         }
     }
 
