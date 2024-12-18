@@ -42,9 +42,9 @@ public class ControllerLogin {
         Employee employee = new Employee();
         String username = usernameField.getText();
         String password = passwordField.getText();
-        int currentLoginID = employee.ReturnLoginEmployee(username,password);
+        int currentLoginID = employee.returnLoginEmployee(username,password);
         if(currentLoginID > 0){
-            employee.setEmployeeId(currentLoginID);
+            Employee.setEmployeeId(currentLoginID);
             JOptionPane.showMessageDialog(null,"Login Successful");
             switchtoMain();
         } else {

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+//abstraction for emp
 abstract class EmployeeIdentificationFunctions{
     public abstract String showName(int employeeId);
     public abstract String showUserName(int employeeId);
@@ -15,15 +16,20 @@ abstract class EmployeeIdentificationFunctions{
 
 public class Employee extends EmployeeIdentificationFunctions{
 
+    //encapsulation
     private static int employeeId;
     public static void setEmployeeId(int userId) {employeeId = userId;}
     public static int getEmployeeId() {return employeeId;}
+
+    private String empFullName;
+    private String username;
+    private String password;
 
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
-    public int ReturnLoginEmployee(String username, String password) {
+    public int returnLoginEmployee(String username, String password) {
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String checkData = ("SELECT empId,username,password FROM employee WHERE username = ? AND password = ?");
@@ -91,8 +97,8 @@ public class Employee extends EmployeeIdentificationFunctions{
             preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                String Name = result.getString("empFullName");
-                return Name;
+                empFullName = result.getString("empFullName");
+                return empFullName;
             }
             preparedStatement.close();
             result.close();
@@ -112,7 +118,7 @@ public class Employee extends EmployeeIdentificationFunctions{
             preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                String username = result.getString("username");
+                username = result.getString("username");
                 return username;
             }
             preparedStatement.close();
@@ -134,8 +140,8 @@ public class Employee extends EmployeeIdentificationFunctions{
             preparedStatement.setInt(1, employeeId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                String Password = result.getString("password");
-                return Password;
+                password = result.getString("password");
+                return password;
             }
 
             preparedStatement.close();

@@ -7,17 +7,16 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+//abstraction for admin
 abstract class AdminIdentificationFunctions{
     public abstract int returnLoginAdmin(String username, String password);
     public abstract String showAdminName(int AdminId);
 }
 
 public class Admin extends AdminIdentificationFunctions{
-    public String sqlurl = DatabaseLink.getsqlurl();
-    public String sqluser = DatabaseLink.getsqluser();
-    public String sqlpassword = DatabaseLink.getsqlpassword();
 
-    public static int adminId;
+    //encapsulation
+    private static int adminId;
     public static void setAdminId(int id) {
         adminId = id;
     }
@@ -25,14 +24,22 @@ public class Admin extends AdminIdentificationFunctions{
         return adminId;
     }
 
+    private String adminName;
+    private String adminPassword;
+
+    public String sqlurl = DatabaseLink.getsqlurl();
+    public String sqluser = DatabaseLink.getsqluser();
+    public String sqlpassword = DatabaseLink.getsqlpassword();
+
     //to return admin user and pass
     public int returnLoginAdmin(String username, String password) {
+        adminPassword = password;
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String checkData = ("SELECT adminId,username,password FROM admin WHERE username = ? AND password = ?");
             PreparedStatement preparedStatement = connection.prepareStatement(checkData);
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(2, adminPassword);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -59,7 +66,8 @@ public class Admin extends AdminIdentificationFunctions{
             preparedStatement.setInt(1, AdminId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                return result.getString("username");
+                adminName = result.getString("username");
+                return adminName;
             }
             preparedStatement.close();
             result.close();
@@ -86,6 +94,37 @@ public class Admin extends AdminIdentificationFunctions{
             preparedStatement.close();
             connection.close();
             return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Method to check if FullName or username already exists in the database
+    public boolean isEmployeeAccountExisting(String FullName, String username) {
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+            String checkData = "SELECT COUNT(*) FROM employee WHERE empFullName = ? OR username = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(checkData);
+            preparedStatement.setString(1, FullName);
+            preparedStatement.setString(2, username);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            boolean exists = false;
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                if (count > 0) {
+                    exists = true; // Record exists
+                }
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+            return exists;
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -8,11 +8,21 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Order {
+    private int orderId;
+    private int empId;
+    private int productId;
+    private int orderQuantity;
+    private int subTotal;
+
     public String sqlurl = DatabaseLink.getsqlurl();
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
-    public void addOrder(int empId, int productId, int orderQuantity, int subTotal){
+    public void addOrder(int employeeId, int coffeeId, int orderQuantity, int Total){
+        empId = employeeId;
+        productId = coffeeId;
+        orderQuantity = orderQuantity;
+        subTotal = Total;
         try {
             Connection connection = DriverManager.getConnection(sqlurl,sqluser,sqlpassword);
             String insertOrderQuery = "INSERT INTO orders (empId,productId,orderQuantity,date,subTotal)VALUES(?,?,?,CURRENT_DATE,?)";

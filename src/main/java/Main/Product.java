@@ -16,6 +16,12 @@ public class Product extends ProductIdentificationFunctions{
     public String sqluser = DatabaseLink.getsqluser();
     public String sqlpassword = DatabaseLink.getsqlpassword();
 
+    private int productId;
+    private String productName;
+    private String productDescription;
+    private int productPrice;
+    private int productQuantity;
+
     // to show product id using product name
     public int showProductId(String productName) {
         try {
@@ -25,7 +31,8 @@ public class Product extends ProductIdentificationFunctions{
             preparedStatement.setString(1, productName);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                return result.getInt("productId");
+                productId = result.getInt("productId");
+                return productId;
             }
             preparedStatement.close();
             result.close();
@@ -47,11 +54,11 @@ public class Product extends ProductIdentificationFunctions{
             ResultSet result = preparedStatement.executeQuery();
 
             if (result.next()) {
-                String Name = result.getString("productName");
+                productName = result.getString("productName");
                 preparedStatement.close();
                 result.close();
                 connection.close();
-                return Name;
+                return productName;
             } else {
                 preparedStatement.close();
                 result.close();
@@ -74,7 +81,8 @@ public class Product extends ProductIdentificationFunctions{
             preparedStatement.setInt(1, productId);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
-                return result.getInt("productQuantity");
+                productQuantity = result.getInt("productQuantity");
+                return productQuantity;
             }
             preparedStatement.close();
             result.close();
@@ -96,11 +104,11 @@ public class Product extends ProductIdentificationFunctions{
             ResultSet result = Description.executeQuery();
 
             if (result.next()) {
-                String description = result.getString("productDescription");
+                productDescription = result.getString("productDescription");
                 Description.close();
                 result.close();
                 connection.close();
-                return description;
+                return productDescription;
             } else {
                 Description.close();
                 result.close();
@@ -118,7 +126,6 @@ public class Product extends ProductIdentificationFunctions{
     //to show price of a product using product id
     public int showProductPrice(int productId) {
         try {
-            int price;
             Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
 
             String showPrice = "SELECT * FROM product WHERE productId = ?";
@@ -130,11 +137,11 @@ public class Product extends ProductIdentificationFunctions{
 
 
             if (result.next()) {
-                price = result.getInt("price");
+                productPrice = result.getInt("price");
                 preparedStatement.close();
                 result.close();
                 connection.close();
-                return price;
+                return productPrice;
             } else {
                 preparedStatement.close();
                 result.close();

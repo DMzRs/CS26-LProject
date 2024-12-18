@@ -25,15 +25,6 @@ public class ControllerAdminCreateEmployeeAcc {
     private Button createEmployeeButton;
 
     @FXML
-    private void initialize() {
-        createEmployeeButton.setDefaultButton(true);
-
-        createEmployeeButton.setOnAction(event -> {
-            onCreateAccountButtonClick();
-        });
-    }
-
-    @FXML
     private void backtoMainPage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("AdminMainPage.fxml"));
         Scene adminPage = new Scene(fxmlLoader.load(), 900, 700);
@@ -57,14 +48,18 @@ public class ControllerAdminCreateEmployeeAcc {
             JOptionPane.showMessageDialog(null, "Username and Password must be 5-10 characters long");
         }else {
             Admin admin = new Admin();
-            boolean isCreated = admin.addEmployeeAccount(EmpFullName, NewUsername, NewPassword);
-            fullNameField.setText("");
-            newUserField.setText("");
-            newPassField.setText("");
-            if (isCreated) {
-                JOptionPane.showMessageDialog(null, "User Created");
+            if(admin.isEmployeeAccountExisting(EmpFullName,NewUsername)){
+                JOptionPane.showMessageDialog(null, "Employee Name or Username is already existing");
             } else {
-                JOptionPane.showMessageDialog(null, "User Not Created");
+                boolean isCreated = admin.addEmployeeAccount(EmpFullName, NewUsername, NewPassword);
+                fullNameField.setText("");
+                newUserField.setText("");
+                newPassField.setText("");
+                if (isCreated) {
+                    JOptionPane.showMessageDialog(null, "User Created");
+                } else {
+                    JOptionPane.showMessageDialog(null, "User Not Created");
+                }
             }
         }
     }
