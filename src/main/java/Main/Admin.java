@@ -246,6 +246,35 @@ public class Admin extends AdminIdentificationFunctions{
         }
     }
 
+    // Method to check if product name already existed
+    public boolean isProductNameExisting(String productName) {
+        try {
+            Connection connection = DriverManager.getConnection(sqlurl, sqluser, sqlpassword);
+            String checkData = "SELECT COUNT(*) FROM product WHERE productName = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(checkData);
+            preparedStatement.setString(1, productName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            boolean exists = false;
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                if (count > 0) {
+                    exists = true; // Record exists
+                }
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+            return exists;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     // Method to remove quantity from a product
     public void removeProductQuantity(int productId, int newQuantity) {
 
