@@ -87,7 +87,7 @@ public class ControllerAdminAddProduct {
                 }
 
                 if (admin.isProductNameExisting(productName)) {
-                    JOptionPane.showMessageDialog(null, "Product name is already existing!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Product name is already existing!");
                 } else {
 
                     // Ensure the destination directories exist
