@@ -49,7 +49,7 @@ public class ControllerAdminCreateEmployeeAcc {
         }else {
             Admin admin = new Admin();
             if(admin.isEmployeeAccountExisting(EmpFullName,NewUsername)){
-                JOptionPane.showMessageDialog(null, "Employee Name or Username is already existing");
+                JOptionPane.showMessageDialog(null, "Employee Name or Username is already existing!");
             } else {
                 boolean isCreated = admin.addEmployeeAccount(EmpFullName, NewUsername, NewPassword);
                 fullNameField.setText("");
