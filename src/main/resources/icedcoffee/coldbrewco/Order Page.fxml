@@ -62,7 +62,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="nameBox" contentDisplay="CENTER" layoutX="24.0" layoutY="88.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="233.0">
+                  <Label fx:id="nameBox" contentDisplay="CENTER" layoutX="24.0" layoutY="88.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="400.0" wrapText="true">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="25.0" />
                      </font>
