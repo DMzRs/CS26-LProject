@@ -147,6 +147,7 @@ public class ControllerOrderDetailsPage {
                             FXMLLoader fxmlLoader = new FXMLLoader(AppLogin.class.getResource("ReceiptPage.fxml"));
                             Scene receiptPage = new Scene(fxmlLoader.load(), 450, 600);
 
+                            if(costumerNameStr==null) costumerNameStr = "";
                             // Get the controller and pass data
                             ControllerReceiptPage controllerReceiptPage = fxmlLoader.getController();
                             controllerReceiptPage.setOrderItems(receiptItems, moneyReceived, costumerNameStr); // Pass data here
