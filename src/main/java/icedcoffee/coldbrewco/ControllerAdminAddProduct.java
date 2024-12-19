@@ -118,7 +118,9 @@ public class ControllerAdminAddProduct {
                         newQuantity.clear();
                         newPrice.clear();
                         newIngredients.clear();
-                        attachImage.setImage(null);
+
+                        Path placeholderImagePath = Paths.get("src/main/resources/ProductImages/add.png");
+                        attachImage.setImage(new Image(placeholderImagePath.toUri().toString()));
 
                         // Show success message
                         JOptionPane.showMessageDialog(null, "Product added and image saved successfully!",
